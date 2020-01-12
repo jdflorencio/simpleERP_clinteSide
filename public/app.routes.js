@@ -39,6 +39,24 @@ router.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             params: {
                 title: "Tabs"
             }
+        })
+        .state('clientes', {
+            url: '/clientes',
+            templateUrl: '/modules/clientes/views/clientes.html',
+            controller: 'clientesCtrl',
+            controllerAs: 'Clientes',
+            params: {
+                title: "Clientes"
+            }
+        })
+        .state('clientes', {
+            url: '/clientes',
+            templateUrl: '/modules/clientes/views/clientes.html',
+            controller: 'clientesCtrl',
+            controllerAs: 'Clientes',
+            params: {
+                title: "Clientes"
+            }
         });
 
     $locationProvider.html5Mode(true);

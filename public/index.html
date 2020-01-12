@@ -58,24 +58,18 @@
         
         </md-toolbar>
 
-        <md-list-item layout="row" ng-click="app.toggleLeft()" href="/">
-            <span>Home</span>
+        
+
+        <div ng-repeat="menu in app.siderbar">
+        <md-list-item 
+        
+        layout="row" ng-click="app.toggleLeft()" href="{{menu.href}}">
+            <span>{{menu.title}}</span>
         </md-list-item>
         <md-divider></md-divider>
-    
-        <md-list-item layout="row" ng-click="app.toggleLeft()" href="/cards">
-            <span>Cards</span>
-        </md-list-item>
-        <md-divider></md-divider>
-    
-        <md-list-item layout="row" ng-click="app.toggleLeft()" href="/list">
-            <span>List</span>
-        </md-list-item>
-        <md-divider></md-divider>
-    
-        <md-list-item layout="row" ng-click="app.toggleLeft()" href="/tabs">
-            <span>Tabs</span>
-        </md-list-item>
+        </div>
+
+
 
     </md-sidenav>
 
@@ -133,6 +127,9 @@
 
 <script src="modules/tabs/controllers/tabsCtrl.js"></script>
 <script src="modules/tabs/services/tabsService.js"></script>
+
+<script src="modules/clientes/controllers/clientesCtrl.js"></script>
+<script src="modules/clientes/services/clientesService.js"></script>
 
 <script src="app.controller.js"></script>
 

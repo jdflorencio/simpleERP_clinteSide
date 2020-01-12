@@ -3,6 +3,22 @@ angular.module('appCtrl', [])
 
     self = this;
 
+    self.siderbar = {
+			home: {
+				title: "Home",
+				href: "/"
+			},
+			Cliente: {
+				title: "Cliente",
+				href: "/clientes"
+			},
+			cards: {
+				title: "Cards",
+				href: "/cards"
+			}
+			
+		}
+
     // Update title using rootscope
     self.updateTitle = function() {
         $rootScope.title = $stateParams.title;

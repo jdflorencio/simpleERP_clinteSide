@@ -9,7 +9,10 @@ var materialApp = angular
     'listCtrl',
     'listService',
     'tabsCtrl',
-    'tabsService'
+    'tabsService',
+    'clientesCtrl',
+    'clientesService'
+
 ]).config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
     .primaryPalette('blue')

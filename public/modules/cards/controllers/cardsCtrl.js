@@ -3,14 +3,5 @@ angular.module('cardsCtrl', ['cardsService'])
 	
 	self = this;
 	
-	// Grab all the items from Cards Service
-	Cards.all()
-    .success(function(data) {
-        console.log(data);
-        self.cardItems = data;
-    })
-    .error(function(data) {
-        // Error Handling
-    });
-
+	console.log('Cards')
 });
