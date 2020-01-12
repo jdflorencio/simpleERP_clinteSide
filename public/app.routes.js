@@ -49,15 +49,16 @@ router.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
                 title: "Clientes"
             }
         })
-        .state('clientes', {
-            url: '/clientes',
-            templateUrl: '/modules/clientes/views/clientes.html',
-            controller: 'clientesCtrl',
-            controllerAs: 'Clientes',
+        .state('cliente', {
+            url: '/clientes/add',
+            templateUrl: '/modules/subModules/cliente/views/cliente.html',
+            controller: 'clienteCtrl',
+            controllerAs: 'Cliente',
             params: {
-                title: "Clientes"
+                title: "Adicionar clientes"
             }
-        });
+        })
+        ;
 
     $locationProvider.html5Mode(true);
 
