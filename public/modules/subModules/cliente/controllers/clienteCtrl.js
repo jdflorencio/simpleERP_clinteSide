@@ -1,8 +1,8 @@
 angular.module('clienteCtrl', ['clienteService'])
-.controller('clienteCtrl', function(Example) {
+.controller('clienteCtrl', function(Clientes) {
 	
 	self = this;
 
-	self.exampleItems = Example.all();
+	console.log("clientes")
 
 });

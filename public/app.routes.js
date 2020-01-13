@@ -49,13 +49,22 @@ router.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
                 title: "Clientes"
             }
         })
-        .state('cliente', {
-            url: '/clientes/add',
+        .state('adicionar_cliente', {
+            url: '/cliente/add',
             templateUrl: '/modules/subModules/cliente/views/cliente.html',
             controller: 'clienteCtrl',
-            controllerAs: 'Cliente',
+            controllerAs: 'Clientes',
             params: {
-                title: "Adicionar clientes"
+                title: "Adicionar novo clientes"
+            }
+        })
+        .state('editar_cliente', {
+            url: '/cliente/:id',
+            templateUrl: '/modules/subModules/cliente/views/cliente.html',
+            controller: 'clienteCtrl',
+            controllerAs: 'Clientes',
+            params: {
+                title: "Editando cliente"
             }
         })
         ;

@@ -11,7 +11,9 @@ var materialApp = angular
     'tabsCtrl',
     'tabsService',
     'clientesCtrl',
-    'clientesService'
+    'clientesService',
+    'clienteCtrl',
+    'clienteService'
 
 ]).config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
