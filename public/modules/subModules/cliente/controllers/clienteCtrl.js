@@ -1,25 +1,22 @@
 angular.module('clienteCtrl', ['clienteService'])
-.controller('clienteCtrl', ['$http', function($http) {
+.controller('clienteCtrl', ['$http', '$stateParams', function($http, $stateParams) {
 	
 	self = this;
 
-	self.formulario = {
-		status: true
-
-
+	if (!$stateParams.id) {
+		self.cliente = {
+			telefones: [{numero: "123456"}]
+		}
 	}
 
-self.cliente = {
-	telefones: [{}]
-}
-
-	$http.get(`http://127.0.0.1:3000/cliente/2`)
+	$http.get(`http://127.0.0.1:3000/cliente/${$stateParams.id}`)
 	.then(( result ) => {
-		self.cliente = result.data.cliente
-		
-		self.endereco = result.data.endereco
-		console.log(self.endereco)
+		self.cliente = result.data
+	
 	})
+	.catch((error) => {
+		console.log('error')
+	} )
 
 	self.removerTelefone = function(index) {
     self.cliente.telefones.splice(index, 1);
