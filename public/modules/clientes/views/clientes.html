@@ -1,12 +1,14 @@
 <div >
-  <md-subheader class="md-no-sticky">Lista de sclientes</md-subheader>
-  <md-list-item  class="noright">
-    <img alt="{{ person.name }}" ng-src="{{ person.img }}" class="md-avatar" />
-    <p>{{ person.name }}</p>
-    <md-checkbox class="md-secondary" ng-model="person.selected"></md-checkbox>
-    <md-icon md-svg-icon="communication:email"  ng-click="doSecondaryAction($event)" aria-label="Send Email" class="md-secondary md-hue-3" ></md-icon>
-    <md-icon class="md-secondary" ng-click="doSecondaryAction($event)" aria-label="Chat" md-svg-icon="communication:message"></md-icon>
-  </md-list-item>
-</md-list>
+  <md-subheader class="md-no-sticky">Lista de clientes</md-subheader>
+  
+  <md-list>
+    <md-list-item  class="noright" ng-repeat="cliente in ctrl.clientes">
+      <!-- <img alt="{{ person.name }}" ng-src="{{ person.img }}" class="md-avatar" /> -->
+      <p>{{ cliente.nome }} {{cliente.nome_fantasia}}</p>
+      <md-checkbox class="md-secondary" ng-model="cliente.nome_$index" > </md-checkbox>
+      <!--  <md-icon md-svg-icon="communication:email"  aria-label="Send Email" class="md-secondary md-hue-3" ></md-icon> -->
+      <!-- <md-icon class="md-secondary"  aria-label="Chat" md-svg-icon="communication:message"></md-icon> -->
+    </md-list-item>
+  </md-list>
 
 </div>

@@ -1,8 +1,15 @@
 angular.module('clientesCtrl', ['clientesService'])
-.controller('clientesCtrl', function(Clientes) {
+.controller('clientesCtrl', ['$http', function($http) {
 	
 	self = this;
 
-	console.log("clientes")
 
-});
+	$http.get(`http://127.0.0.1:3000/cliente/`)
+	.then((result) => {
+		self.clientes = result.data
+	})	
+}])
+
+self.redirecionar = function() {
+	console.log('cliando aqui')
+}
