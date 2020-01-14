@@ -17,7 +17,7 @@ router.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             url: '/cards',
             templateUrl: '/modules/cards/views/cards.html',
             controller: 'cardsCtrl',
-            controllerAs: 'Cards',
+            controllerAs: 'ctrl',
             params: {
                 title: "Cards"
             }
@@ -26,16 +26,16 @@ router.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             url: '/list',
             templateUrl: '/modules/list/views/list.html',
             controller: 'listCtrl',
-            controllerAs: 'List',
+            controllerAs: 'ctrl',
             params: {
-                title: "List"
+                title: "List"   
             }
         })
         .state('tabs', {
             url: '/tabs',
             templateUrl: '/modules/tabs/views/tabs.html',
             controller: 'tabsCtrl',
-            controllerAs: 'Tabs',
+            controllerAs: 'ctrl',
             params: {
                 title: "Tabs"
             }
@@ -44,7 +44,7 @@ router.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             url: '/clientes',
             templateUrl: '/modules/clientes/views/clientes.html',
             controller: 'clientesCtrl',
-            controllerAs: 'Clientes',
+            controllerAs: 'ctrl',
             params: {
                 title: "Clientes"
             }
@@ -53,7 +53,7 @@ router.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             url: '/cliente/add',
             templateUrl: '/modules/subModules/cliente/views/cliente.html',
             controller: 'clienteCtrl',
-            controllerAs: 'Clientes',
+            controllerAs: 'ctrl',
             params: {
                 title: "Adicionar novo clientes"
             }
@@ -62,12 +62,11 @@ router.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             url: '/cliente/:id',
             templateUrl: '/modules/subModules/cliente/views/cliente.html',
             controller: 'clienteCtrl',
-            controllerAs: 'Clientes',
+            controllerAs: 'ctrl',
             params: {
                 title: "Editando cliente"
             }
-        })
-        ;
+        });
 
     $locationProvider.html5Mode(true);
 

@@ -1,3 +1,136 @@
-<div >
-  {{2 + 2}}
+<div class="padding-inner ng-scope">
+    <md-content layout-padding >
+      <div>
+        <form name="userForm">
+          <div ng-show="ctrl.formulario.status">
+              <h2 class="md-title">Dados Pessoais</h2>
+          <div layout-gt-xs="row">
+            <div class="flex-40">
+                <md-input-container class="md-block" flex-md-xs>
+                    <label>Nome</label>
+                    <input ng-model="ctrl.cliente.nome" >
+                  </md-input-container>
+            </div>            
+            <div class="flex-30">
+                <md-input-container ng-show="ctrl.cliente.tipo=='pj'"> 
+                    <label>Data de Fundação </label>
+                    <input ng-model="ctrl.cliente.data_fundacao" aria-label="Enter date"></input>
+                </md-input-container>
+            </div>
+
+            <div class="flex-40" ng-show="ctrl.cliente.tipo=='pf'">
+                <md-input-container ng-show="ctrl.cliente.tipo=='pf'"> 
+                  <label>Data Nascimento </label>
+                  <input ng-model="ctrl.cliente.data_nascimento" aria-label="Enter date"></input>
+                </md-input-container>
+            </div>
+
+            <md-radio-group class="flex-30" ng-init="user = {tipo: 'pf'}">
+                <md-radio-button name="tipo" ng-model="ctrl.cliente.tipo" value="pf" class="md-primary">Pessoa Fisica</md-radio-button>
+                <md-radio-button name="tipo" ng-model="ctrl.cliente.tipo" value="pj"> Pessoa juridica </md-radio-button>                          
+            </md-radio-group>
+            <md-radio-group class="flex-30" ng-init="user = {tipo: 'pf'}">
+                <md-radio-button name="tipo" ng-model="ctrl.cliente.tipo" value="pf" class="md-primary">Pessoa Fisica</md-radio-button>
+                <md-radio-button name="tipo" ng-model="ctrl.cliente.tipo" value="pj"> Pessoa juridica </md-radio-button>                          
+            </md-radio-group>
+            
+          </div>
+          <div layout-gt-xs="row">
+            <md-input-container class="md-block" flex-md-xs>
+              <label>Estado Civil</label>
+              <input ng-model="ctrl.cliente.estado_civil" ng-disabled="ctrl.cliente.tipo=='pj'">
+            </md-input-container>  
+            <md-input-container>
+              <label>Nacionalidade </label>
+              <input ng-model="ctrl.cliente.nacionalidade" ng-disabled="ctrl.cliente.tipo='pj'"></input>
+            </md-input-container>
+            <md-input-container>
+              <label>RG</label>
+                <input ng-model="ctrl.cliente.rg" ng-disabled="ctrl.cliente.tipo =='pj'"></input>
+                </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+              <label ng-show="ctrl.cliente.tipo =='pf'">CPF</label>
+              <label ng-show="ctrl.cliente.tipo =='pj'">CNPJ</label>
+              <input ng-model="ctrl.cliente.cpf_cnpj">
+            </md-input-container>
+          </div>
+          <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+              <label >Nome Fantasia</label>
+              <input ng-model="ctrl.cliente.nome_fantasia" ng-disabled="ctrl.cliente.tipo=='pf' ">
+            </md-input-container>     
+
+            <md-input-container class="md-block" flex-gt-sm>
+               <label>Inscrição Estadual</label>
+               <input ng-model="ctrl.cliente.inscricao_estadual" ng-disabled="ctrl.cliente.tipo == 'pf'">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>E-mail</label>              
+              <input ng-model="ctrl.cliente.email">
+            </md-input-container>
+          </div>
+          
+          <h2 class="md-title">Telefones para contato  </h2>
+          <md-divider></md-divider>
+
+          <div layout-gt-sm="row"ng-repeat="telefone in ctrl.cliente.telefones" >
+            <md-input-container class="md-block" flex-mt-md>
+              <label >Numero de telefone {{1 + $index}}</label>
+              <input ng-model="telefone.numero" >
+            </md-input-container>
+            <md-input-container class="md-block" flex-mt-md>
+              <select>
+                <option >{{telefone.tipo}}</option>
+              </select>
+            </md-input-container>
+            <md-input-container class="md-block" flex-mt-md ng-click="ctrl.removerTelefone($index)">                
+              <button >-</button>
+            </md-input-container>
+            <md-input-container class="md-block" flex-mt-md>                
+              <button ng-click="ctrl.addTelefone()">+</button>
+            </md-input-container>  
+          </div>
+        
+          
+        </div>
+          <h2 class="md-title">Informações do endereço</h2>
+          <md-divider></md-divider>
+          <a href="javascript:void(0)" ng-click="ctrl.ocultarForm()">Clique aqui para adicionar um novo endereço para esse Cliente</a>
+          <div ng-repeat="endereco in ctrl.endereco">
+          <div layout-gt-xs="row">
+              <md-input-container class="md-block" flex-md-xs>
+                <label>Endereço</label>
+                <input ng-model="endereco.ender" >
+              </md-input-container>
+              <md-input-container class="md-block" flex-md-xs>
+                  <label>Complemento</label>
+                  <input ng-model="endereco.complemento" >
+              </md-input-container>  
+              <md-input-container class="md-block" flex-md-xs>
+                  <label>Número</label>
+                  <input ng-model="endereco.numero" >
+              </md-input-container>
+              <md-input-container class="md-block" flex-md-xs>
+                  <label>bairro</label>
+                  <input ng-model="endereco.bairro" >
+              </md-input-container>
+          </div>
+          <div layout-gt-xs="row">
+              <md-input-container>
+                <label>Estado</label>
+                  <input ng-model="endereco.cidade"></input>
+              </md-input-container>
+
+               <md-input-container>
+                <label>UF</label> 
+                  <input ng-model="endereco.uf" ></input>
+                </md-input-container>
+              </div>
+            </div>        
+            </div>     
+        </div>
+        </div>        
+      </div>
+    </md-content>  
+  </div>
 </div>

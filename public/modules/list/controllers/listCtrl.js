@@ -7,7 +7,7 @@ angular.module('listCtrl', ['listService'])
 	List.all()
     .success(function(data) {
         self.listItems = data;
-    })
+    })  
     .error(function(data) {
         // Error Handling
     });
