@@ -27,11 +27,15 @@
                   <input ng-model="ctrl.cliente.data_nascimento" aria-label="Enter date"></input>
                 </md-input-container>
             </div>
+            <md-divider ></md-divider>
 
             <md-radio-group class="flex-30">
                 <md-radio-button name="tipo" ng-model="ctrl.cliente.tipo" value="pf" class="md-primary">Pessoa Fisica</md-radio-button>
                 <md-radio-button name="tipo" ng-model="ctrl.cliente.tipo" value="pj"> Pessoa juridica </md-radio-button>                          
             </md-radio-group>
+
+            <md-divider layout-align="center end" ></md-divider>
+
             <md-radio-group class="flex-30">
                 <md-radio-button name="sexo" ng-model="ctrl.cliente.sexo" value="masculino" class="md-primary">Masculino</md-radio-button>
                 <md-radio-button name="sexo" ng-model="ctrl.cliente.sexo" value="feminino"> Feminino</md-radio-button>                          
@@ -81,14 +85,25 @@
 
           <div layout-gt-sm="row"ng-repeat="telefone in ctrl.cliente.telefones" >
             <md-input-container class="md-block" flex-mt-md>
-              <label >Numero de telefone {{1 + $index}}</label>
-              <input ng-model="telefone.numero" >
+              <label>{{1 + $index}}º Numero de telefone</label>
+              <input ng-model="telefone.telefone" >
             </md-input-container>
+
+            <md-button class="md-fab md-mini md-danger" value="-" aria-label="-">
+              <i class="fas fa-remove"></i>
+            </md-button>
+          <div class="label">FAB</div>
+        </section>
+        
+
+            
+           
             <md-input-container class="md-block" flex-mt-md>
               <select>
                 <option >{{telefone.tipo}}</option>
               </select>
             </md-input-container>
+
             <md-input-container class="md-block" flex-mt-md ng-click="ctrl.removerTelefone($index)">                
               <button >-</button>
             </md-input-container>
@@ -108,7 +123,7 @@
             <div layout-gt-xs="row">
                 <md-input-container class="md-block" flex-md-xs>
                   <label>Endereço</label>
-                  <input ng-model="endereco.ender" >
+                  <input ng-model="endereco.endereco" >
                 </md-input-container>
                 <md-input-container class="md-block" flex-md-xs>
                     <label>Complemento</label>
