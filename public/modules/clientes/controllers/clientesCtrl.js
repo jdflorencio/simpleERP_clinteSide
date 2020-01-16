@@ -13,3 +13,13 @@ angular.module('clientesCtrl', ['clientesService'])
 self.redirecionar = function() {
 	console.log('cliando aqui')
 }
+
+self.irCliente = function(clienteId)
+{
+	console.log('cliente id', clienteId)
+}
+
+self.remover = function(clienteId)
+{
+	console.log('deletando', clienteId)
+}

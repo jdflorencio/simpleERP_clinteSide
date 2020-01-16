@@ -2,13 +2,15 @@
   <md-subheader class="md-no-sticky">Lista de clientes</md-subheader>
   
   <md-list>
-    <md-list-item  class="noright" ng-repeat="cliente in ctrl.clientes">
-      <!-- <img alt="{{ person.name }}" ng-src="{{ person.img }}" class="md-avatar" /> -->
-      <p>{{ cliente.nome }} {{cliente.nome_fantasia}}</p>
-      <md-checkbox class="md-secondary" ng-model="cliente.nome_$index" > </md-checkbox>
-      <!--  <md-icon md-svg-icon="communication:email"  aria-label="Send Email" class="md-secondary md-hue-3" ></md-icon> -->
+    <md-list-item  class="noright" ng-repeat="(key, cliente) in ctrl.clientes">
+      <i class="fas fa-user-alt" style="margin-right: 2%;"></i>
+      <p ng-onclick="irCliente({{cliente.id}})">{{ cliente.nome }} {{cliente.nome_fantasia}}</p>
+      
+      <md-button ng-click="ctrl.remover({{cliente.id}})" class="md-icon-button" aria-label="More">
+        <md-icon class="fas fa-trash-alt" ></md-icon>
+      </md-button>
+      <!-- <i class="fas fa-plus-circle" style="margin-right: 2%;"> </i> -->
       <!-- <md-icon class="md-secondary"  aria-label="Chat" md-svg-icon="communication:message"></md-icon> -->
     </md-list-item>
   </md-list>
-
 </div>
