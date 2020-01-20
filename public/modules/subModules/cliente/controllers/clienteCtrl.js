@@ -1,5 +1,5 @@
 angular.module('clienteCtrl', ['clienteService'])
-.controller('clienteCtrl', ['$http', '$stateParams',  function($http, $stateParams) {
+.controller('clienteCtrl', ['$http', '$stateParams','$state', function($http, $stateParams, $state) {
 	
 	const host = 'http://127.0.0.1:3000/cliente'
 	self = this
@@ -14,30 +14,74 @@ angular.module('clienteCtrl', ['clienteService'])
 				self.consultarCientes()
 				break
 			case false:
-				self.cliente = {tipo: 'pf', sexo: 'masculino'}
+				self.cliente = {tipo: 'pf', sexo: 'masculino', enderecos: [{}], telefones: [{}]}
+				// self.cliente = {
+    
+				// 	"tipo": "pf",
+				// 	"nome": "Cecília Josefa da Costa",
+				// 	"sexo": "feminino",
+					
+				// 	"data_nascimento": "1987-08-18",
+					
+				// 	"nacionalidade": "BRASILEIRO",
+				// 	"estado_civil": "SOLTEIRA",
+				// 	"rg": "44.295.734-8",
+				// 	"cpf_cnpj": "036.725.120-52",
+					
+				// 	"email": "cceciliajosefadacosta@panevale.com.br",
+					
+				// 	"telefones": [
+				// 		{
+						
+				// 			"telefone": "(73)99115-6650",
+				// 			"tipo": "Celular",
+				// 		},
+				// 		{
+							
+				// 			"telefone": "(73)3013-5050",
+				// 			"tipo": "Fixo"
+				// 		}
+				// 	],
+				// 	"enderecos": [
+				// 		{
+							
+				// 			"endereco": "Travessa Francisco Alves",
+				// 			"bairro": "Marechal Rondon",
+				// 			"numero": "555",
+				// 			"complemento": "perto da mercado da esquina",
+				// 			"cidade": "Salvador",
+				// 			"uf": "BA"
+				// 		}
+				// 	]
+				// }
 		}
 	}
 
-	self.removerTelefone = function(index) {
-    self.telefones.splice(index, 1);
-    if (self.telefones.length === 0) {
+	self.removerTelefone =  async function(index) {
+		console.log(self.cliente.telefones[index].id)
+
+		 const teste = await self.delete('telefone', self.cliente.telefones[index].id)
+		
+		self.cliente.telefones.splice(index, 1);
+		
+    if (self.cliente.telefones.length === 0) {
 			self.addTelefone();
 		}
 	}
 	
 	self.addTelefone = function() {
-		self.telefones.push({})
+		self.cliente.telefones.push({})
 	}
 
 	self.removerEndereco = function(index) {
-    self.enderecos.splice(index, 1);
-    if (self.enderecos.length === 0) {
+    self.cliente.enderecos.splice(index, 1);
+    if (self.cliente.enderecos.length === 0) {
 			self.addTelefone();
 		}
 	}
 	
 	self.addEndereco = function() {
-		self.enderecos.push({})
+		self.cliente.enderecos.push({})
 	}
 
 	self.setTipoFormulario = function() {
@@ -47,37 +91,6 @@ angular.module('clienteCtrl', ['clienteService'])
 	self.salvarGeral = function() {
 		console.log('aqui',self.cliente)	
 	}
-
-	self.consultarTelefone = function() {
-		switch ("id" in $stateParams) {
-			case true :
-				$http.get(`${host}/${$stateParams.id}/telefone`)
-					.then(result => {
-						self.telefones = result.data
-					})
-				$http.get(`${host}/${$stateParams.id}/telefonetipo`)
-					.then((result) => {
-						console.log(result.data)
-						self.tipos = result.data.tipos
-					})
-				break
-			case false:
-				self.telefones = [{}]
-			}
-	}
-
-	self.consultarEnderecos = function() {
-		switch ("id" in $stateParams) {
-			case true:
-				$http.get(`${host}/${$stateParams.id}/endereco`)
-					.then(result => {
-						self.enderecos = result.data
-				})
-				break
-			case false:
-				self.enderecos = [{}]
-			}
-		}
 
 	self.consultarCientes = function() {
 		$http.get(`${host}/${$stateParams.id}`)
@@ -91,23 +104,39 @@ angular.module('clienteCtrl', ['clienteService'])
 		})
 	}
 
-	self.salvarEnderecos = function() {
-		if(self.enderecos.id) {
-			self.atualizar('endereco', self.enderecos)
+	self.salvarAtualizar = () => {
+		console.log('id' in $stateParams)
+		switch ('id' in $stateParams) {
+			case true:
+				console.log('teste')
+
+				$http.put(`${host}/`, self.cliente)
+					.then((result) => {
+						$state.go('editar_cliente', {id: result.data.id});
+
+					}).catch( error => {
+						console.log('apos salvar', error)
+				})
+				break
+			case false:
+				$http.post(`${host}`, self.cliente)
+					.then((result) => {
+						console.log(result)
+						$state.go('editar_cliente', {id: result.data.id});
+					}).catch( error => {
+						console.log('apos salvar', error)
+				})
 		}
 	}
 
-	self.atualizar = (tipo, valores) => {
-		console.log('aquis')
-		$http.put(`${host}/${$stateParams.id}/${tipo}`, valores)
-			.then((result) => {
-				console.log('apos atulizar', result)
-			})
-			.catch( error => {
-				console.log('apos salvar', error)
-			})
+	self.delete = (table, id_registro) => {		
+		console.log('aqui', `${host}/${table}/${id_registro}`)
+		$http.delete(`${host}/${$stateParams.id}/${table}/${id_registro}`)
+		.then( result => {
+			result
+		})
 	}
-	self.init()
 
+	self.init()
 	
 }]);

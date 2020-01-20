@@ -98,22 +98,22 @@
           </md-fab-trigger>
         </md-content>  
         </md-content>
-        <button ng-click="ctrl.salvarGeral()"> SALVAR DADOS INICIAIS</button>
+        <button ng-click="ctrl.salvarAtualizar()"> SALVAR DADOS INICIAIS</button>
       </md-tab>
 
-      <md-tab label="telefones" ng-click="ctrl.consultarTelefone()">
+      <md-tab label="telefones">
         <md-content class="md-padding">
           <h3 >Cadastre os telefones de contato</h3>
       
-          <div layout-gt-sm="row"ng-repeat="telefone in ctrl.telefones" >
+          <div layout-gt-sm="row" ng-repeat="telefone in ctrl.cliente.telefones" >
             <md-input-container class="md-block" flex-mt-md>
               <label>{{1 + $index}}º Numero de telefone</label>
               <input ng-model="telefone.telefone" >
             </md-input-container>
            
             <md-input-container>
-              <md-select ng-model="ctrl.telefones[$indexs].tipo">
-                <md-option   value="ctrl.telefones[$index].tipo" ng-repeat="tipo in ctrl.tipos">{{ tipo }}</md-option>
+              <md-select ng-model="ctrl.clientes.telefones[$indexs].tipo">
+                <md-option   value="ctrl.clientes.telefones[$index].tipo" ng-repeat="tipo in ctrl.tipos">{{ tipo }}</md-option>
               </md-select>
             </md-input-container>
 
@@ -128,22 +128,16 @@
           <md-button aria-label="menu" class="md-fab md-warn">
             <i class="fas fa-plus"></i>
           </md-button>
-        </md-fab-trigger>
-          
-         </div>
-         
-      
-
-
-      
-          <button ng-click="ctrl.salvarTelefones">SALVAR DADOS TELEFONES</button>
+        </md-fab-trigger>     
+      </div>
+          <button>SALVAR DADOS TELEFONES</button>
         </md-content>
       </md-tab>
 
-      <md-tab ng-click="ctrl.consultarEnderecos()" label="Endereços">
+      <md-tab label="Endereços">
         <md-content class="md-padding">
           <h3 >informe os endereços</h3> 
-          <div ng-repeat="endereco in ctrl.enderecos">
+          <div ng-repeat="endereco in ctrl.cliente.enderecos">
             <div layout-gt-xs="row">
                 <md-input-container class="md-block" flex-md-xs>
                   <label>Endereço</label>
@@ -171,11 +165,16 @@
                   <label>UF</label> 
                     <input ng-model="endereco.uf" ></input>
                   </md-input-container>
-              </div>
-              
+              </div>              
               <hr ng-show="!$last"/>
             </div>
-            <button>SALVAR DADOS ENDERECOS</button>
+            <button ng-click="ctrl.salvarAtualizar()">   SALVAR  </button>
+            <button ng-click="ctrl.removerEnderecos()">APAGAR  ENDERECOS</button>
+            <md-fab-trigger class="app-fab--absolute" ng-click="ctrl.addEndereco()">
+              <md-button aria-label="menu" class="md-fab md-warn">
+                <i class="fas fa-plus"></i>
+              </md-button>
+            </md-fab-trigger>
         </md-content>
       </md-tab>
     </md-tabs>
