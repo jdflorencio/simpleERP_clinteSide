@@ -1,6 +1,5 @@
 <style>
 
-
 .app-fab--absolute {
   position: fixed;
   bottom: 1rem;
@@ -14,7 +13,6 @@
     right: 1.5rem;
   }
 }
-
 </style>
 <div ng-cloak>
   <md-content>
@@ -51,7 +49,7 @@
                 <md-radio-button name="tipo" value="pj" > Pessoa juridica </md-radio-button>                          
             </md-radio-group>
             <md-divider layout-align="center end" ></md-divider>
-            <md-radio-group class="flex-30" ng-model="ctrl.cliente.sexo">
+            <md-radio-group ng-disabled="ctrl.cliente.tipo == 'pj'" class="flex-30" ng-model="ctrl.cliente.sexo">
                 <md-radio-button name="sexo"  value="masculino" class="md-primary">Masculino</md-radio-button>
                 <md-radio-button name="sexo"  value="feminino"> Feminino</md-radio-button>                          
             </md-radio-group>            
@@ -59,7 +57,7 @@
           <div layout-gt-xs="row">
             <md-input-container class="md-block" flex-md-xs>
               <label>Estado Civil</label>
-              <input ng-model="ctrl.cliente.estado_civil" ng-disabled="!ctrl.tipoFormulario.fisica">
+              <input ng-model="ctrl.cliente.estado_civil" ng-disabled="ctrl.cliente.tipo == 'pj'">
 
             </md-input-container>  
               <md-input-container>
@@ -78,7 +76,7 @@
           </div>
           <div layout-gt-sm="row">
             <md-input-container class="md-block" flex-gt-sm>
-              <label >Nome Fantasia</label>
+              <label>Nome Fantasia</label>
               <input ng-model="ctrl.cliente.nome_fantasia" ng-disabled="ctrl.cliente.tipo=='pf' ">
             </md-input-container>     
 
@@ -109,8 +107,7 @@
             <md-input-container class="md-block" flex-mt-md>
               <label>{{1 + $index}}º Numero de telefone</label>
               <input ng-model="telefone.telefone" >
-            </md-input-container>
-           
+            </md-input-container>           
             <md-input-container>
               <md-select ng-model="ctrl.clientes.telefones[$indexs].tipo">
                 <md-option   value="ctrl.clientes.telefones[$index].tipo" ng-repeat="tipo in ctrl.tipos">{{ tipo }}</md-option>
@@ -133,7 +130,6 @@
           <button>SALVAR DADOS TELEFONES</button>
         </md-content>
       </md-tab>
-
       <md-tab label="Endereços">
         <md-content class="md-padding">
           <h3 >informe os endereços</h3> 
@@ -158,13 +154,40 @@
               </div>
               <div layout-gt-xs="row">
                 <md-input-container>
-                  <label>Estado</label>
+                  <label>Cidade</label>
                     <input ng-model="endereco.cidade"></input>
-                </md-input-container>  
-                  <md-input-container>
-                  <label>UF</label> 
-                    <input ng-model="endereco.uf" ></input>
-                  </md-input-container>
+                </md-input-container>
+                <md-input-container>                
+                  <select ng-model="ctrl.endereco.uf">
+                    <option  ng-value='AC'>AC</option>
+                    <option ng-value='AL'>AL</option>
+                    <option ng-value='AP'>AP</option>
+                    <option ng-value='AM'>AM</option>
+                    <option ng-value='BA'>BA</option>
+                    <option ng-value='CE'>CE</option>
+                    <option ng-value='DF'>DF</option>
+                    <option ng-value='ES'>ES</option>
+                    <option ng-value='GO'>GO</option>
+                    <option ng-value='MA'>MA</option>
+                    <option ng-value='MT'>MT</option>
+                    <option ng-value='MS'>MS</option>
+                    <option ng-value='MG'>MG</option>
+                    <option ng-value='PA'>PA</option>
+                    <option ng-value='PB'>PB</option>
+                    <option ng-value='PR'>PR</option>
+                    <option ng-value='PE'>PE</option>
+                    <option ng-value='PI'>PI</option>
+                    <option ng-value='RJ'>RJ</option>
+                    <option ng-value='RN'>RN</option>
+                    <option ng-value='RS'>RS</option>
+                    <option ng-value='RO'>RO</option>
+                    <option ng-value='RR'>RR</option>
+                    <option ng-value='SC'>SC</option>
+                    <option ng-value='SP'>SP</option>
+                    <option ng-value='SE'>SE</option>
+                    <option ng-value='TO'>TO</option>            
+                  <select>
+                </md-input-container>
               </div>              
               <hr ng-show="!$last"/>
             </div>

@@ -14,47 +14,8 @@ angular.module('clienteCtrl', ['clienteService'])
 				self.consultarCientes()
 				break
 			case false:
+			}
 				self.cliente = {tipo: 'pf', sexo: 'masculino', enderecos: [{}], telefones: [{}]}
-				// self.cliente = {
-    
-				// 	"tipo": "pf",
-				// 	"nome": "Cecília Josefa da Costa",
-				// 	"sexo": "feminino",
-					
-				// 	"data_nascimento": "1987-08-18",
-					
-				// 	"nacionalidade": "BRASILEIRO",
-				// 	"estado_civil": "SOLTEIRA",
-				// 	"rg": "44.295.734-8",
-				// 	"cpf_cnpj": "036.725.120-52",
-					
-				// 	"email": "cceciliajosefadacosta@panevale.com.br",
-					
-				// 	"telefones": [
-				// 		{
-						
-				// 			"telefone": "(73)99115-6650",
-				// 			"tipo": "Celular",
-				// 		},
-				// 		{
-							
-				// 			"telefone": "(73)3013-5050",
-				// 			"tipo": "Fixo"
-				// 		}
-				// 	],
-				// 	"enderecos": [
-				// 		{
-							
-				// 			"endereco": "Travessa Francisco Alves",
-				// 			"bairro": "Marechal Rondon",
-				// 			"numero": "555",
-				// 			"complemento": "perto da mercado da esquina",
-				// 			"cidade": "Salvador",
-				// 			"uf": "BA"
-				// 		}
-				// 	]
-				// }
-		}
 	}
 
 	self.removerTelefone =  async function(index) {
@@ -84,9 +45,7 @@ angular.module('clienteCtrl', ['clienteService'])
 		self.cliente.enderecos.push({})
 	}
 
-	self.setTipoFormulario = function() {
-		self.tipoFormulario.fisica = false
-	}
+
 
 	self.salvarGeral = function() {
 		console.log('aqui',self.cliente)	
@@ -96,9 +55,7 @@ angular.module('clienteCtrl', ['clienteService'])
 		$http.get(`${host}/${$stateParams.id}`)
 		.then(( result ) => {
 			self.cliente = result.data
-			if (self.cliente.tipo == 'pf') {
-
-			}})
+		})
 		.catch((error) => {
 			console.log(error)
 		})
@@ -137,6 +94,41 @@ angular.module('clienteCtrl', ['clienteService'])
 		})
 	}
 
+	self.ufs = [
+		'AC',
+		'AL',
+		'AP',
+		'AM',
+		'BA',
+		'CE',
+		'DF',
+		'ES',
+		'GO',
+		'MA',
+		'MT',
+		'MS',
+		'MG',
+		'PA',
+		'PB',
+		'PR',
+		'PE',
+		'PI',
+		'RJ',
+		'RN',
+		'RS',
+		'RO',
+		'RR',
+		'SC',
+		'SP',
+		'SE',
+		'TO']
+
+	
+
 	self.init()
+
+
+cep('05010000')
+.then(console.log)
 	
 }]);

@@ -6,11 +6,11 @@ router.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     // UI Router States
     // Inserting Page title as State Param
     $stateProvider
-        .state('home', {
-            url: '/',
+        .state('homex', {
+            url: '/homex',
             templateUrl: 'home.html',
             params: {
-                title: "Material Starter"
+                title: "SimpleERP"
             }
         })
         .state('cards', {
@@ -40,8 +40,8 @@ router.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
                 title: "Tabs"
             }
         })
-        .state('clientes', {
-            url: '/clientes',
+        .state('home', {
+            url: '/',
             templateUrl: '/modules/clientes/views/clientes.html',
             controller: 'clientesCtrl',
             controllerAs: 'ctrl',
