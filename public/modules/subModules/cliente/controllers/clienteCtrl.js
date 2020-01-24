@@ -1,7 +1,7 @@
 angular.module('clienteCtrl', ['clienteService'])
-.controller('clienteCtrl', ['$http', '$stateParams','$state', function($http, $stateParams, $state) {
+.controller('clienteCtrl', ['$http', '$stateParams','$state', '$window', function($http, $stateParams, $state, $window) {
 	
-	const host = 'http://127.0.0.1:3000/cliente'
+	const host = 'http://127.0.0.1:3333/cliente'
 	self = this
 
 	self.tipoFormulario = {
@@ -20,8 +20,8 @@ angular.module('clienteCtrl', ['clienteService'])
 
 	self.removerTelefone =  async function(index) {
 		console.log(self.cliente.telefones[index].id)
-
-		 const teste = await self.delete('telefone', self.cliente.telefones[index].id)
+		
+		const teste = await self.delete('telefone', self.cliente.telefones[index].id)
 		
 		self.cliente.telefones.splice(index, 1);
 		
@@ -45,8 +45,6 @@ angular.module('clienteCtrl', ['clienteService'])
 		self.cliente.enderecos.push({})
 	}
 
-
-
 	self.salvarGeral = function() {
 		console.log('aqui',self.cliente)	
 	}
@@ -61,16 +59,14 @@ angular.module('clienteCtrl', ['clienteService'])
 		})
 	}
 
-	self.salvarAtualizar = () => {
-		console.log('id' in $stateParams)
+	self.salvarAtualizar = () => {		
 		switch ('id' in $stateParams) {
 			case true:
-				console.log('teste')
-
 				$http.put(`${host}/`, self.cliente)
 					.then((result) => {
-						$state.go('editar_cliente', {id: result.data.id});
-
+						$state.go('home', {id: result.data.id});
+							// $window.location.reload();
+							// self.init()
 					}).catch( error => {
 						console.log('apos salvar', error)
 				})
@@ -94,41 +90,6 @@ angular.module('clienteCtrl', ['clienteService'])
 		})
 	}
 
-	self.ufs = [
-		'AC',
-		'AL',
-		'AP',
-		'AM',
-		'BA',
-		'CE',
-		'DF',
-		'ES',
-		'GO',
-		'MA',
-		'MT',
-		'MS',
-		'MG',
-		'PA',
-		'PB',
-		'PR',
-		'PE',
-		'PI',
-		'RJ',
-		'RN',
-		'RS',
-		'RO',
-		'RR',
-		'SC',
-		'SP',
-		'SE',
-		'TO']
-
-	
-
 	self.init()
-
-
-cep('05010000')
-.then(console.log)
 	
 }]);

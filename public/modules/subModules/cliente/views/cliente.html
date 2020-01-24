@@ -16,6 +16,7 @@
 </style>
 <div ng-cloak>
   <md-content>
+    
     <md-tabs md-dynamic-height md-border-bottom>
       <md-tab label="Cadastro">
         <md-content class="md-padding">
@@ -37,7 +38,15 @@
             <div class="flex-40" ng-show="ctrl.cliente.tipo=='pf'">
                 <md-input-container ng-show="ctrl.cliente.tipo=='pf'"> 
                   <label>Data Nascimento </label>
-                  <input ng-model="ctrl.cliente.data_nascimento" aria-label="Enter date"></input>
+                  <!-- <input ng-model="ctrl.cliente.data_nascimento" aria-label="Enter date"></input> -->
+
+
+
+  <md-datepicker ng-model="ctrl.cliente.data_nascimento" md-placeholder="Enter date"></md-datepicker>
+  
+</md-content>
+
+
                 </md-input-container>
             </div>
 
@@ -57,36 +66,36 @@
           <div layout-gt-xs="row">
             <md-input-container class="md-block" flex-md-xs>
               <label>Estado Civil</label>
-              <input ng-model="ctrl.cliente.estado_civil" ng-disabled="ctrl.cliente.tipo == 'pj'">
+              <input ng-model="ctrl.cliente.estado_civil" name="estado_civil" ng-disabled="ctrl.cliente.tipo == 'pj'">
 
             </md-input-container>  
               <md-input-container>
               <label>Nacionalidade </label>
-              <input ng-model="ctrl.cliente.nacionalidade" ng-disabled="ctrl.cliente.tipo=='pj'"></input>
+              <input ng-model="ctrl.cliente.nacionalidade" name="nacionalidade" ng-disabled="ctrl.cliente.tipo=='pj'"></input>
             </md-input-container>
             <md-input-container>
               <label>RG</label>
-                <input ng-model="ctrl.cliente.rg" ng-disabled="ctrl.cliente.tipo =='pj'"></input>
+                <input ng-model="ctrl.cliente.rg" name="rg" ng-disabled="ctrl.cliente.tipo =='pj'"></input>
                 </md-input-container>
             <md-input-container class="md-block" flex-gt-sm>
-              <label ng-show="ctrl.cliente.tipo =='pf'">CPF</label>
-              <label ng-show="ctrl.cliente.tipo =='pj'">CNPJ</label>
-              <input ng-model="ctrl.cliente.cpf_cnpj">
+              <label ng-show="ctrl.cliente.tipo =='pf'">CPF*</label>
+              <label ng-show="ctrl.cliente.tipo =='pj'">CNPJ*</label>
+              <input name="cpf_cnpj" required md-no-asterisk ng-model="ctrl.cliente.cpf_cnpj">
             </md-input-container>
           </div>
           <div layout-gt-sm="row">
             <md-input-container class="md-block" flex-gt-sm>
               <label>Nome Fantasia</label>
-              <input ng-model="ctrl.cliente.nome_fantasia" ng-disabled="ctrl.cliente.tipo=='pf' ">
+              <input ng-model="ctrl.cliente.nome_fantasia" name="nome_fantasia" ng-disabled="ctrl.cliente.tipo=='pf' ">
             </md-input-container>     
 
             <md-input-container class="md-block" flex-gt-sm>
                <label>Inscrição Estadual</label>
-               <input ng-model="ctrl.cliente.inscricao_estadual" ng-disabled="ctrl.cliente.tipo == 'pf'">
+               <input ng-model="ctrl.cliente.inscricao_estadual" name="inscricao_estadual" ng-disabled="ctrl.cliente.tipo == 'pf'">
             </md-input-container>
             <md-input-container class="md-block" flex-gt-sm>
               <label>E-mail</label>              
-              <input ng-model="ctrl.cliente.email">
+              <input name="email" ng-model="ctrl.cliente.email">
             </md-input-container>
           </div>
           <md-fab-trigger class="app-fab--absolute">
@@ -106,7 +115,7 @@
           <div layout-gt-sm="row" ng-repeat="telefone in ctrl.cliente.telefones" >
             <md-input-container class="md-block" flex-mt-md>
               <label>{{1 + $index}}º Numero de telefone</label>
-              <input ng-model="telefone.telefone" >
+              <input name="telefone_{{$index}}" ng-model="telefone.telefone" >
             </md-input-container>           
             <md-input-container>
               <md-select ng-model="ctrl.clientes.telefones[$indexs].tipo">
@@ -137,55 +146,55 @@
             <div layout-gt-xs="row">
                 <md-input-container class="md-block" flex-md-xs>
                   <label>Endereço</label>
-                  <input ng-model="endereco.endereco" >
+                  <input name="endereco" ng-model="endereco.endereco" >
                 </md-input-container>
                 <md-input-container class="md-block" flex-md-xs>
                     <label>Complemento</label>
-                    <input ng-model="endereco.complemento" >
+                    <input name="complemento" ng-model="endereco.complemento" >
                 </md-input-container>  
                 <md-input-container class="md-block" flex-md-xs>
                     <label>Número</label>
-                    <input ng-model="endereco.numero" >
+                    <input numero="numero" ng-model="endereco.numero" >
                 </md-input-container>
                 <md-input-container class="md-block" flex-md-xs>
                     <label>bairro</label>
-                    <input ng-model="endereco.bairro" >
+                    <input name="bairro" ng-model="endereco.bairro" >
                 </md-input-container>
               </div>
               <div layout-gt-xs="row">
                 <md-input-container>
                   <label>Cidade</label>
-                    <input ng-model="endereco.cidade"></input>
+                    <input name="cidade" ng-model="endereco.cidade"></input>
                 </md-input-container>
                 <md-input-container>                
-                  <select ng-model="ctrl.endereco.uf">
-                    <option  ng-value='AC'>AC</option>
-                    <option ng-value='AL'>AL</option>
-                    <option ng-value='AP'>AP</option>
-                    <option ng-value='AM'>AM</option>
-                    <option ng-value='BA'>BA</option>
-                    <option ng-value='CE'>CE</option>
-                    <option ng-value='DF'>DF</option>
-                    <option ng-value='ES'>ES</option>
-                    <option ng-value='GO'>GO</option>
-                    <option ng-value='MA'>MA</option>
-                    <option ng-value='MT'>MT</option>
-                    <option ng-value='MS'>MS</option>
-                    <option ng-value='MG'>MG</option>
-                    <option ng-value='PA'>PA</option>
-                    <option ng-value='PB'>PB</option>
-                    <option ng-value='PR'>PR</option>
-                    <option ng-value='PE'>PE</option>
-                    <option ng-value='PI'>PI</option>
-                    <option ng-value='RJ'>RJ</option>
-                    <option ng-value='RN'>RN</option>
-                    <option ng-value='RS'>RS</option>
-                    <option ng-value='RO'>RO</option>
-                    <option ng-value='RR'>RR</option>
-                    <option ng-value='SC'>SC</option>
-                    <option ng-value='SP'>SP</option>
-                    <option ng-value='SE'>SE</option>
-                    <option ng-value='TO'>TO</option>            
+                  <select name="uf" ng-model="endereco.uf">
+                    <option value='AC'>AC</option>
+                    <option value='AL'>AL</option>
+                    <option value='AP'>AP</option>
+                    <option value='AM'>AM</option>
+                    <option value='BA'>BA</option>
+                    <option value='CE'>CE</option>
+                    <option value='DF'>DF</option>
+                    <option value='ES'>ES</option>
+                    <option value='GO'>GO</option>
+                    <option value='MA'>MA</option>
+                    <option value='MT'>MT</option>
+                    <option value='MS'>MS</option>
+                    <option value='MG'>MG</option>
+                    <option value='PA'>PA</option>
+                    <option value='PB'>PB</option>
+                    <option value='PR'>PR</option>
+                    <option value='PE'>PE</option>
+                    <option value='PI'>PI</option>
+                    <option value='RJ'>RJ</option>
+                    <option value='RN'>RN</option>
+                    <option value='RS'>RS</option>
+                    <option value='RO'>RO</option>
+                    <option value='RR'>RR</option>
+                    <option value='SC'>SC</option>
+                    <option value='SP'>SP</option>
+                    <option value='SE'>SE</option>
+                    <option value='TO'>TO</option>            
                   <select>
                 </md-input-container>
               </div>              

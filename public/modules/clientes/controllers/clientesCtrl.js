@@ -2,7 +2,7 @@ angular.module('clientesCtrl', ['clientesService'])
 .controller('clientesCtrl', ['$http', '$state', function($http, $state) {
 	
 	self = this;
-	const host = `http://127.0.0.1:3000/cliente/` 
+	const host = `http://127.0.0.1:3333/cliente/` 
 
 init = function() {
 		$http.get(`${host}`)
@@ -25,7 +25,7 @@ init = function() {
 		.then(result => {
 			switch(result.data.status) {
 				case 200: 
-					init()
+					self.init()
 				break
 				default:
 					alert('Erro Inesperado!')
