@@ -1,7 +1,7 @@
 angular.module('clienteCtrl', ['clienteService'])
 .controller('clienteCtrl', ['$http', '$stateParams','$state', '$window', function($http, $stateParams, $state, $window) {
 	
-	const host = 'http://127.0.0.1:3333/cliente'
+	const host = 'http://127.0.0.1:3333/api/cliente'
 	self = this
 
 	self.tipoFormulario = {
@@ -12,6 +12,7 @@ angular.module('clienteCtrl', ['clienteService'])
 		switch ("id" in $stateParams) {
 			case true:
 				self.consultarCientes()
+
 				break
 			case false:
 			}
@@ -21,7 +22,7 @@ angular.module('clienteCtrl', ['clienteService'])
 	self.removerTelefone =  async function(index) {
 		console.log(self.cliente.telefones[index].id)
 		
-		const teste = await self.delete('telefone', self.cliente.telefones[index].id)
+		//const teste = await self.delete('telefone', self.cliente.telefones[index].id)
 		
 		self.cliente.telefones.splice(index, 1);
 		
@@ -51,8 +52,12 @@ angular.module('clienteCtrl', ['clienteService'])
 
 	self.consultarCientes = function() {
 		$http.get(`${host}/${$stateParams.id}`)
-		.then(( result ) => {
-			self.cliente = result.data
+		.then( ( obj ) => {
+			const { result } =  obj.data
+			self.cliente = result
+			self.cliente.enderecos = self.cliente.enderecos.length > 0 ? self.cliente.enderecos : new Array({})
+			self.cliente.telefones = self.cliente.telefones.length > 0 ? self.cliente.telefones : new Array({})
+			console.log(self.cliente.telefones)
 		})
 		.catch((error) => {
 			console.log(error)
@@ -82,11 +87,12 @@ angular.module('clienteCtrl', ['clienteService'])
 		}
 	}
 
-	self.delete = (table, id_registro) => {		
+	self.delete = (table, id_registro) => {
 		console.log('aqui', `${host}/${table}/${id_registro}`)
 		$http.delete(`${host}/${$stateParams.id}/${table}/${id_registro}`)
 		.then( result => {
-			result
+			console.log(result.data)
+			if (result.data.sucesso) {}
 		})
 	}
 

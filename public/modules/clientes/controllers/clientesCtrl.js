@@ -2,12 +2,13 @@ angular.module('clientesCtrl', ['clientesService'])
 .controller('clientesCtrl', ['$http', '$state', function($http, $state) {
 	
 	self = this;
-	const host = `http://127.0.0.1:3333/cliente/` 
+	const host = `http://127.0.0.1:3333/api/cliente/` 
 
 init = function() {
 		$http.get(`${host}`)
-		.then((result) => {
-			self.clientes = result.data
+		.then((obj) => {
+			const { result } = obj.data
+			self.clientes = result
 		})
 	}
 
@@ -22,8 +23,10 @@ init = function() {
 	self.remover = function(id) {
 		console.log(id)
 		$http.delete(`${host}${id}`)
-		.then(result => {
-			switch(result.data.status) {
+		.then(obj => {
+			const { result } = obj.data
+
+			switch(result.status) {
 				case 200: 
 					self.init()
 				break
