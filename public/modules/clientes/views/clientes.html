@@ -10,7 +10,7 @@
   <md-list>
     <md-list-item  class="noright" ng-repeat="(key, cliente) in ctrl.clientes">
       <i class="fas fa-user-alt" style="margin-right: 2%;"></i>
-      <p ng-onclick="irCliente({{cliente.id}})"> <strong>{{ cliente.nome }}</strong>  <i style="color: #B6B6B6"layout-align="end center">atualizado: {{cliente.updatedAt}}</i> </p>
+      <p ng-onclick="irCliente({{cliente.id}})"> <strong>{{ cliente.nome }}</strong>  <i style="color: #B6B6B6"layout-align="end center">atualizado: {{cliente.updatedAt | date: 'dd/MM/yyyy'}}</i> </p>
       
       <md-button  ng-click="ctrl.irCliente(cliente.id)" class="md-icon-button md-primary" arial-label="Mora">
         <i class="fas fa-address-card"></i>

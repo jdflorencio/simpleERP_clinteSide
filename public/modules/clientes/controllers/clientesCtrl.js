@@ -1,5 +1,5 @@
 angular.module('clientesCtrl', ['clientesService'])
-.controller('clientesCtrl', ['$http', '$state', function($http, $state) {
+.controller('clientesCtrl', ['$http', '$state','$filter', function($http, $state, $filter) {
 	
 	self = this;
 	const host = `http://127.0.0.1:3333/api/cliente/` 
@@ -9,6 +9,8 @@ init = function() {
 		.then((obj) => {
 			const { result } = obj.data
 			self.clientes = result
+			console.log($filter('date')(self.clientes[0].updatedAt, 'dd/MM/yyyy'))
+			
 		})
 	}
 
@@ -25,18 +27,10 @@ init = function() {
 		$http.delete(`${host}${id}`)
 		.then(obj => {
 			const { result } = obj.data
-
-			switch(result.status) {
-				case 200: 
-					self.init()
-				break
-				default:
-					alert('Erro Inesperado!')
-					console.log('ERRO INESPERADO ===>', resul.data)
+			if (obj.status == 200) {				
+					self.init()					
 			}
 		})
 	}
-
 	init()
-
 }])
