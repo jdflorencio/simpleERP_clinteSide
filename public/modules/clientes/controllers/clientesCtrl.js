@@ -28,7 +28,7 @@ init = function() {
 		.then(obj => {
 			const { result } = obj.data
 			if (obj.status == 200) {				
-					self.init()					
+					init()	
 			}
 		})
 	}

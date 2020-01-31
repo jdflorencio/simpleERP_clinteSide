@@ -32,19 +32,16 @@
             <div class="flex-30">
                 <md-input-container ng-show="ctrl.cliente.tipo=='pj'"> 
                     <label>Data de Fundação </label>
-                    <input ng-model="ctrl.cliente.data_fundacao" aria-label="Enter date"></input>
+                    <input  ng-model="ctrl.cliente.data_fundacao" aria-label="Enter date">
                 </md-input-container>
             </div>
             <div class="flex-40" ng-show="ctrl.cliente.tipo=='pf'">
                 <md-input-container ng-show="ctrl.cliente.tipo=='pf'"> 
                   <label>Data Nascimento </label>
-                  <!-- <input ng-model="ctrl.cliente.data_nascimento" aria-label="Enter date"></input> -->
-
-
-
-  <md-datepicker ng-model="ctrl.cliente.data_nascimento" md-placeholder="Enter date"></md-datepicker>
+                  <input ng-model="ctrl.cliente.data_nascimento" aria-label="Enter date">                  
+                  <!-- <md-datepicker ng-model="ctrl.cliente.data_nascimento" md-placeholder="Enter date"></md-datepicker> -->
   
-</md-content>
+            </md-content>
 
 
                 </md-input-container>

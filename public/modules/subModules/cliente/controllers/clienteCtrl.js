@@ -1,11 +1,23 @@
 angular.module('clienteCtrl', ['clienteService'])
-.controller('clienteCtrl', ['$http', '$stateParams','$state', '$window', function($http, $stateParams, $state, $window) {
+.controller('clienteCtrl', ['$http', '$stateParams','$state', '$window', '$filter', function($http, $stateParams, $state, $window, $filter) {
 	
 	const host = 'http://127.0.0.1:3333/api/cliente'
 	self = this
 
 	self.tipoFormulario = {
 		ativo: true
+	}
+	
+	frontDate = function(date) {
+		
+		date = date != null ? date.split('-').reverse().join('/') : null
+		return date		
+
+	}
+
+	backDate = function(date) {
+		date = date !=null ? date.split('/').reverse().join('-') : null
+		return date
 	}
 
 	self.init = function() {
@@ -57,14 +69,17 @@ angular.module('clienteCtrl', ['clienteService'])
 			self.cliente = result
 			self.cliente.enderecos = self.cliente.enderecos.length > 0 ? self.cliente.enderecos : new Array({})
 			self.cliente.telefones = self.cliente.telefones.length > 0 ? self.cliente.telefones : new Array({})
-			console.log(self.cliente.telefones)
+			self.cliente.data_nascimento = frontDate(self.cliente.data_nascimento, 'front')
+			self.cliente.data_fundacao = self.frontDate(self.cliente.data_fundacao, 'front')			
 		})
 		.catch((error) => {
 			console.log(error)
 		})
 	}
 
-	self.salvarAtualizar = () => {		
+	self.salvarAtualizar = () => {
+		self.cliente.data_nascimento = backDate(self.cliente.data_nascimento)
+		self.cliente.data_fundacao = backDate(self.cliente.data_fundacao)
 		switch ('id' in $stateParams) {
 			case true:
 				$http.put(`${host}/`, self.cliente)
@@ -74,6 +89,8 @@ angular.module('clienteCtrl', ['clienteService'])
 							// self.init()
 					}).catch( error => {
 						console.log('apos salvar', error)
+						self.cliente.data_nascimento = frontDate(self.cliente.data_nascimento)
+						self.cliente.data_fundacao = frontDate(self.cliente.data_fundacao)
 				})
 				break
 			case false:
@@ -82,7 +99,8 @@ angular.module('clienteCtrl', ['clienteService'])
 						console.log(result)
 						$state.go('editar_cliente', {id: result.data.id});
 					}).catch( error => {
-						console.log('apos salvar', error)
+							self.cliente.data_nascimento = frontDate(self.cliente.data_nascimento)
+							self.cliente.data_fundacao = frontDate(self.cliente.data_fundacao)
 				})
 		}
 	}
