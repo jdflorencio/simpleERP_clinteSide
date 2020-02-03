@@ -108,8 +108,9 @@
       <md-tab label="telefones">
         <md-content class="md-padding">
           <h3 >Cadastre os telefones de contato</h3>
+          
       
-          <div layout-gt-sm="row" ng-repeat="telefone in ctrl.cliente.telefones" >
+          <div layout-gt-sm="row" ng-repeat="telefone in ctrl.cliente.telefones " >
             <md-input-container class="md-block" flex-mt-md>
               <label>{{1 + $index}}º Numero de telefone</label>
               <input name="telefone_{{$index}}" ng-model="telefone.telefone" >

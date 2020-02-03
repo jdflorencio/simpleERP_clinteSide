@@ -34,8 +34,6 @@ angular.module('clienteCtrl', ['clienteService'])
 	self.removerTelefone =  async function(index) {
 		console.log(self.cliente.telefones[index].id)
 		
-		//const teste = await self.delete('telefone', self.cliente.telefones[index].id)
-		
 		self.cliente.telefones.splice(index, 1);
 		
     if (self.cliente.telefones.length === 0) {
@@ -50,7 +48,7 @@ angular.module('clienteCtrl', ['clienteService'])
 	self.removerEndereco = function(index) {
     self.cliente.enderecos.splice(index, 1);
     if (self.cliente.enderecos.length === 0) {
-			self.addTelefone();
+			self.addEndereco();
 		}
 	}
 	
@@ -78,6 +76,16 @@ angular.module('clienteCtrl', ['clienteService'])
 	}
 
 	self.salvarAtualizar = () => {
+		
+		
+		if (Object.keys(self.cliente.enderecos[0]).length  == 1 &&  self.cliente.enderecos[0].$$hashKey) {
+			delete self.cliente.enderecos;
+		}
+
+		if (Object.keys(self.cliente.telefones[0]).length == 1 &&  self.cliente.telefones[0].$$hashKey) {
+			delete self.cliente.telefones;
+		}
+		console.log(typeof self.cliente.telefones)
 		self.cliente.data_nascimento = backDate(self.cliente.data_nascimento)
 		self.cliente.data_fundacao = backDate(self.cliente.data_fundacao)
 		switch ('id' in $stateParams) {
