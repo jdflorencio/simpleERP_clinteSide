@@ -85,7 +85,7 @@ angular.module('clienteCtrl', ['clienteService'])
 		if (Object.keys(self.cliente.telefones[0]).length == 1 &&  self.cliente.telefones[0].$$hashKey) {
 			delete self.cliente.telefones;
 		}
-		console.log(typeof self.cliente.telefones)
+
 		self.cliente.data_nascimento = backDate(self.cliente.data_nascimento)
 		self.cliente.data_fundacao = backDate(self.cliente.data_fundacao)
 		switch ('id' in $stateParams) {
