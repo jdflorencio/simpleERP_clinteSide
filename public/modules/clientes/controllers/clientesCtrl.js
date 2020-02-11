@@ -4,7 +4,7 @@ angular.module('clientesCtrl', ['clientesService'])
 	self = this;
 	const host = `http://127.0.0.1:3333/api/cliente/` 
 
-init = function() {
+	init = function() {
 		$http.get(`${host}`)
 		.then((obj) => {
 			const { result } = obj.data

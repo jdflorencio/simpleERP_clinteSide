@@ -10,9 +10,10 @@
   <md-list>
     <md-list-item  class="noright" ng-repeat="(key, produto) in ctrl.produtos">
       <i class="fas fa-user-alt" style="margin-right: 2%;"></i>
-      <p ng-onclick="irproduto({{produto.id}})"> <strong>{{ produto.nome }}</strong>  <i style="color: #B6B6B6"layout-align="end center">atualizado: {{produto.updatedAt | date: 'dd/MM/yyyy'}}</i> </p>
+
+      <p> <strong>{{ produto.descricao }}</strong>  <i style="color: #B6B6B6"layout-align="end center">atualizado: {{produto.log_atualizacao | date: 'dd/MM/yyyy'}}</i> </p>
       
-      <md-button  ng-click="ctrl.irproduto(produto.id)" class="md-icon-button md-primary" arial-label="Mora">
+      <md-button  ng-click="ctrl.irProduto(produto.id)" class="md-icon-button md-primary" arial-label="Mora">
         <i class="fas fa-address-card"></i>
       </md-button>
       <md-button ng-click="ctrl.remover(produto.id) " class="md-icon-button md-warn" >
