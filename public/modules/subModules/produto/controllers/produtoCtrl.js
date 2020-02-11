@@ -64,11 +64,13 @@ angular.module('produtoCtrl', ['produtoService'])
 		$http.get(`${host}/${$stateParams.id}`)
 		.then( ( obj ) => {
 			const { result } =  obj.data
-			self.produto = result
-			self.produto.enderecos = self.produto.enderecos.length > 0 ? self.produto.enderecos : new Array({})
-			self.produto.telefones = self.produto.telefones.length > 0 ? self.produto.telefones : new Array({})
-			self.produto.data_nascimento = frontDate(self.produto.data_nascimento, 'front')
-			self.produto.data_fundacao = self.frontDate(self.produto.data_fundacao, 'front')			
+			
+			self.produto = result.produto
+			self.grupo = result.grupo
+			self.subgrupo = result.subgrupo
+			console.log(self.produto)
+		
+
 		})
 		.catch((error) => {
 			console.log(error)

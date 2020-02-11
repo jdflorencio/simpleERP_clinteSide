@@ -1,212 +1,126 @@
-<style>
-
-.app-fab--absolute {
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  z-index: 999;
-}
-
-@media(min-width: 1024px) {
-   .app-fab--absolute {
-    bottom: 1.5rem;
-    right: 1.5rem;
-  }
-}
-</style>
 <div ng-cloak>
-  <md-content>
-    
-    <md-tabs md-dynamic-height md-border-bottom>
-      <md-tab label="Cadastro">
-        <md-content class="md-padding">
-            <md-content layout-padding>
-          <h3 >Dados dos produtos</h3>
-          <div layout-gt-xs="row">
-            <div class="flex-40">
-                <md-input-container class="md-block" flex-md-xs>
-                    <label>Nome</label>
-                    <input ng-model="ctrl.produto.nome" >
-                  </md-input-container>
-            </div>
-            <div class="flex-30">
-                <md-input-container ng-show="ctrl.produto.tipo=='pj'"> 
-                    <label>Data de Fundação </label>
-                    <input  ng-model="ctrl.produto.data_fundacao" aria-label="Enter date">
-                </md-input-container>
-            </div>
-            <div class="flex-40" ng-show="ctrl.produto.tipo=='pf'">
-                <md-input-container ng-show="ctrl.produto.tipo=='pf'"> 
-                  <label>Data Nascimento </label>
-                  <input ng-model="ctrl.produto.data_nascimento" aria-label="Enter date">                  
-                  <!-- <md-datepicker ng-model="ctrl.produto.data_nascimento" md-placeholder="Enter date"></md-datepicker> -->
-  
-            </md-content>
-
-
-                </md-input-container>
-            </div>
-
-            <md-divider>              
-            </md-divider>
-            
-            <md-radio-group class="flex-30" ng-model="ctrl.produto.tipo" >
-              <md-radio-button name="tipo"  value="pf" class="md-primary" >Pessoa Fisica</md-radio-button>
-                <md-radio-button name="tipo" value="pj" > Pessoa juridica </md-radio-button>                          
-            </md-radio-group>
-            <md-divider layout-align="center end" ></md-divider>
-            <md-radio-group ng-disabled="ctrl.produto.tipo == 'pj'" class="flex-30" ng-model="ctrl.produto.sexo">
-                <md-radio-button name="sexo"  value="masculino" class="md-primary">Masculino</md-radio-button>
-                <md-radio-button name="sexo"  value="feminino"> Feminino</md-radio-button>                          
-            </md-radio-group>            
-          </div>
-          <div layout-gt-xs="row">
-            <md-input-container class="md-block" flex-md-xs>
-              <label>Estado Civil</label>
-              <input ng-model="ctrl.produto.estado_civil" name="estado_civil" ng-disabled="ctrl.produto.tipo == 'pj'">
-
-            </md-input-container>  
-              <md-input-container>
-              <label>Nacionalidade </label>
-              <input ng-model="ctrl.produto.nacionalidade" name="nacionalidade" ng-disabled="ctrl.produto.tipo=='pj'"></input>
-            </md-input-container>
-            <md-input-container>
-              <label>RG</label>
-                <input ng-model="ctrl.produto.rg" name="rg" ng-disabled="ctrl.produto.tipo =='pj'"></input>
-                </md-input-container>
-            <md-input-container class="md-block" flex-gt-sm>
-              <label ng-show="ctrl.produto.tipo =='pf'">CPF*</label>
-              <label ng-show="ctrl.produto.tipo =='pj'">CNPJ*</label>
-              <input name="cpf_cnpj" required md-no-asterisk ng-model="ctrl.produto.cpf_cnpj">
-            </md-input-container>
-          </div>
-          <div layout-gt-sm="row">
-            <md-input-container class="md-block" flex-gt-sm>
-              <label>Nome Fantasia</label>
-              <input ng-model="ctrl.produto.nome_fantasia" name="nome_fantasia" ng-disabled="ctrl.produto.tipo=='pf' ">
-            </md-input-container>     
-
-            <md-input-container class="md-block" flex-gt-sm>
-               <label>Inscrição Estadual</label>
-               <input ng-model="ctrl.produto.inscricao_estadual" name="inscricao_estadual" ng-disabled="ctrl.produto.tipo == 'pf'">
-            </md-input-container>
-            <md-input-container class="md-block" flex-gt-sm>
-              <label>E-mail</label>              
-              <input name="email" ng-model="ctrl.produto.email">
-            </md-input-container>
-          </div>
-          <md-fab-trigger class="app-fab--absolute">
-            <md-button aria-label="menu" class="md-fab md-warn">
-              <i class="fas fa-plus"></i>
-            </md-button>
-          </md-fab-trigger>
-        </md-content>  
-        </md-content>
-        <button ng-click="ctrl.salvarAtualizar()"> SALVAR DADOS INICIAIS</button>
-      </md-tab>
-
-      <md-tab label="telefones">
-        <md-content class="md-padding">
-          <h3 >Cadastre os telefones de contato</h3>
-          
-      
-          <div layout-gt-sm="row" ng-repeat="telefone in ctrl.produto.telefones " >
-            <md-input-container class="md-block" flex-mt-md>
-              <label>{{1 + $index}}º Numero de telefone</label>
-              <input name="telefone_{{$index}}" ng-model="telefone.telefone" >
-            </md-input-container>           
-            <md-input-container>
-              <md-select ng-model="ctrl.produtos.telefones[$indexs].tipo">
-                <md-option   value="ctrl.produtos.telefones[$index].tipo" ng-repeat="tipo in ctrl.tipos">{{ tipo }}</md-option>
-              </md-select>
-            </md-input-container>
-
-            <md-button class="md-fab md-mini md-danger " ng-click="ctrl.removerTelefone($index)">
-              <i class="fas fa-remove"></i>
-            </md-button>
-        </section>           
-        <md-input-container class="md-block" flex-mt-md>
-         
-        </md-input-container>
-        <md-fab-trigger class="app-fab--absolute" ng-click="ctrl.addTelefone()">
-          <md-button aria-label="menu" class="md-fab md-warn">
-            <i class="fas fa-plus"></i>
-          </md-button>
-        </md-fab-trigger>     
+  <md-content layout-margin="">
+    <div  laytout="row" layout-margin="" layout-align="center">
+      <div layout="row">
+        <div flex=""><h3>Informações do Produto</h3></div>
       </div>
-          <button>SALVAR DADOS TELEFONES</button>
-        </md-content>
-      </md-tab>
-      <md-tab label="Endereços">
-        <md-content class="md-padding">
-          <h3 >informe os endereços</h3> 
-          <div ng-repeat="endereco in ctrl.produto.enderecos">
-            <div layout-gt-xs="row">
-                <md-input-container class="md-block" flex-md-xs>
-                  <label>Endereço</label>
-                  <input name="endereco" ng-model="endereco.endereco" >
-                </md-input-container>
-                <md-input-container class="md-block" flex-md-xs>
-                    <label>Complemento</label>
-                    <input name="complemento" ng-model="endereco.complemento" >
-                </md-input-container>  
-                <md-input-container class="md-block" flex-md-xs>
-                    <label>Número</label>
-                    <input numero="numero" ng-model="endereco.numero" >
-                </md-input-container>
-                <md-input-container class="md-block" flex-md-xs>
-                    <label>bairro</label>
-                    <input name="bairro" ng-model="endereco.bairro" >
-                </md-input-container>
-              </div>
-              <div layout-gt-xs="row">
-                <md-input-container>
-                  <label>Cidade</label>
-                    <input name="cidade" ng-model="endereco.cidade"></input>
-                </md-input-container>
-                <md-input-container>                
-                  <select name="uf" ng-model="endereco.uf">
-                    <option value='AC'>AC</option>
-                    <option value='AL'>AL</option>
-                    <option value='AP'>AP</option>
-                    <option value='AM'>AM</option>
-                    <option value='BA'>BA</option>
-                    <option value='CE'>CE</option>
-                    <option value='DF'>DF</option>
-                    <option value='ES'>ES</option>
-                    <option value='GO'>GO</option>
-                    <option value='MA'>MA</option>
-                    <option value='MT'>MT</option>
-                    <option value='MS'>MS</option>
-                    <option value='MG'>MG</option>
-                    <option value='PA'>PA</option>
-                    <option value='PB'>PB</option>
-                    <option value='PR'>PR</option>
-                    <option value='PE'>PE</option>
-                    <option value='PI'>PI</option>
-                    <option value='RJ'>RJ</option>
-                    <option value='RN'>RN</option>
-                    <option value='RS'>RS</option>
-                    <option value='RO'>RO</option>
-                    <option value='RR'>RR</option>
-                    <option value='SC'>SC</option>
-                    <option value='SP'>SP</option>
-                    <option value='SE'>SE</option>
-                    <option value='TO'>TO</option>            
-                  <select>
-                </md-input-container>
-              </div>              
-              <hr ng-show="!$last"/>
+      
+      <md-card>
+        <md-card-content>      
+          
+        <h4>Identificação do Produto</h4> 
+          <div style="background: #fff;" layout-padding="" layout-margin="">
+            <md-input-container>
+              <label>Codigo</label>
+              <input ng-model="ctrl.produto.id" disabled>
+            </md-input-container>      
+            <md-input-container>
+              <label>referencia</label>
+              <input ng-model="ctrl.produto.referencia" >
+            </md-input-container>
+          </div>
+
+          <div > 
+
+
+          </div>
+          
+          <div layout="row" layout-xs="row" layout-align="center">          
+            <div flex="50">
+              <md-input-container class="md-block" >
+                <label>Descrição</label>
+                <input ng-model="ctrl.produto.descricao" >
+              </md-input-container>
             </div>
-            <button ng-click="ctrl.salvarAtualizar()">   SALVAR  </button>
-            <button ng-click="ctrl.removerEnderecos()">APAGAR  ENDERECOS</button>
-            <md-fab-trigger class="app-fab--absolute" ng-click="ctrl.addEndereco()">
-              <md-button aria-label="menu" class="md-fab md-warn">
-                <i class="fas fa-plus"></i>
-              </md-button>
-            </md-fab-trigger>
-        </md-content>
-      </md-tab>
-    </md-tabs>
+            <div flex="33">
+              <md-input-container class="md-block" >
+                <label>Codigo de barras</label>
+                <input ng-model="ctrl.produto.codigo_ean" >
+              </md-input-container>
+            </div>
+         </div>
+         <md-divider>              
+        </md-divider>
+
+
+
+<div layout="row" layout-xs="column">
+  <div flex="22" layout-margin="">
+    <h4>Controle de estoques</h4>      
+        <md-input-container class="md-block">
+          <label>Minimo</label>
+          <input ng-model="ctrl.produto.estoque_minimo">
+        </md-input-container>
+     
+      
+        <md-input-container class="md-block">
+          <label>Maximo</label>
+          <input ng-model="ctrl.produto.estoque_maximo">
+        </md-input-container>
+      
+      
+        <md-input-container class="md-block">
+          <label>Atual</label>
+          <input ng-model="ctrl.produto.estoque_atual">
+        </md-input-container>
+      
+    
+  </div>
+  <md-divider>              
+  </md-divider>
+  <div flex="22" layout-margin="">
+    <h4>Preço</h4>
+    <md-input-container class="md-block">
+      <label>Custo</label>
+      <input ng-model="ctrl.produto.vl_custo">
+    </md-input-container>
+  
+  
+    <md-input-container class="md-block">
+      <label>Venda</label>
+      <input ng-model="ctrl.produto.vl_venda">
+    </md-input-container>
+
+    <md-input-container class="md-block">
+      <label>Status</label>
+      <input ng-model="ctrl.produto.status">
+    </md-input-container>
+  </div>
+  <md-divider>              
+  </md-divider>
+
+  <div flex="" layout-margin="">
+    <h4>Tributação</h4>
+
+    <md-input-container class="md-block">
+      <label>NCM</label>
+      <input ng-model="ctrl.produto.ncm">
+    </md-input-container>
+ 
+  
+    <md-input-container class="md-block">
+      <label>grupo</label>
+      <input ng-model="ctrl.grupo.descricao">
+    </md-input-container>
+  
+  
+    <md-input-container class="md-block">
+      <label>Subgrupo</label>
+      <input ng-model="ctrl.subgrupo.descricao">
+    </md-input-container>
+  </div>
+</div>
+
+
+         
+    </md-card-content>
+    <md-card-footer>
+      Card footer
+    </md-card-footer>
+    </md-card>
+
+
+        
+      </div>
   </md-content>
 </div>
