@@ -6,42 +6,15 @@ router.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     // UI Router States
     // Inserting Page title as State Param
     $stateProvider
-        .state('homex', {
-            url: '/homex',
+        .state('home', {
+            url: '/',
             templateUrl: 'home.html',
             params: {
                 title: "SimpleERP"
             }
         })
-        .state('cards', {
-            url: '/cards',
-            templateUrl: '/modules/cards/views/cards.html',
-            controller: 'cardsCtrl',
-            controllerAs: 'ctrl',
-            params: {
-                title: "Cards"
-            }
-        })
-        .state('list', {
-            url: '/list',
-            templateUrl: '/modules/list/views/list.html',
-            controller: 'listCtrl',
-            controllerAs: 'ctrl',
-            params: {
-                title: "List"   
-            }
-        })
-        .state('tabs', {
-            url: '/tabs',
-            templateUrl: '/modules/tabs/views/tabs.html',
-            controller: 'tabsCtrl',
-            controllerAs: 'ctrl',
-            params: {
-                title: "Tabs"
-            }
-        })
-        .state('home', {
-            url: '/',
+        .state('clientes', {
+            url: '/clientes',
             templateUrl: '/modules/clientes/views/clientes.html',
             controller: 'clientesCtrl',
             controllerAs: 'ctrl',
@@ -65,6 +38,33 @@ router.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             controllerAs: 'ctrl',
             params: {
                 title: "Editando cliente"
+            }
+        })
+        .state('produtos', {
+            url: '/produtos',
+            templateUrl: '/modules/produtos/views/produtos.html',
+            controller: 'produtosCtrl',
+            controllerAs: 'ctrl',
+            params: {
+                title: "Produtos"
+            }
+        })
+        .state('adicionar_produtos', {
+            url: '/produto/add',
+            templateUrl: '/modules/subModules/produto/views/produto.html',
+            controller: 'produtoCtrl',
+            controllerAs: 'ctrl',
+            params: {
+                title: "Adicionar novo produtos"
+            }
+        })
+        .state('editar_produto', {
+            url: '/produto/:id',
+            templateUrl: '/modules/subModules/produto/views/produto.html',
+            controller: 'produtoCtrl',
+            controllerAs: 'ctrl',
+            params: {
+                title: "Editando produto"
             }
         });
 

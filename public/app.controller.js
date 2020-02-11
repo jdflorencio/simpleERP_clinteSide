@@ -12,9 +12,9 @@ angular.module('appCtrl', [])
 				title: "Cliente",
 				href: "/clientes"
 			},
-			cards: {
-				title: "Cards",
-				href: "/cards"
+			Produtos: {
+				title: "Produto",
+				href: "/produtos"
 			}
 			
 		}

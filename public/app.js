@@ -4,16 +4,15 @@ var materialApp = angular
     'ui.router',
     'ngMaterial',
     'appCtrl',
-    'cardsCtrl',
-    'cardsService',
-    'listCtrl',
-    'listService',
-    'tabsCtrl',
-    'tabsService',
     'clientesCtrl',
     'clientesService',
     'clienteCtrl',
-    'clienteService'
+    'clienteService',
+    
+    'produtosCtrl',
+    'produtosService',
+    'produtoCtrl',
+    'produtoService'
 
 ]).config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
