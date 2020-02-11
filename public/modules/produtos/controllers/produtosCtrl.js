@@ -1,8 +1,9 @@
 angular.module('produtosCtrl', ['produtosService'])
-.controller('produtosCtrl', ['$http', '$state','$filter', function($http, $state, $filter) {
+.controller('produtosCtrl', ['$http', '$state','$filter', 'configURL', function($http, $state, $filter, configURL) {
 	
 	self = this;
-	const host = `http://127.0.0.1:3333/api/produto/` 
+	const { baseURL } = configURL
+	const host = `${baseURL}/produto/` 
 
 init = function() {
 		$http.get(`${host}`)
