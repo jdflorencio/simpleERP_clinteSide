@@ -1,6 +1,5 @@
 angular.module('produtosCtrl', ['produtosService'])
 .controller('produtosCtrl', ['$http', '$state','$filter', 'configURL', function($http, $state, $filter, configURL) {
-	
 	self = this;
 	const { baseURL } = configURL
 	const host = `${baseURL}/produto/` 
