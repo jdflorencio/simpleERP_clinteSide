@@ -1,0 +1,212 @@
+<style>
+
+.app-fab--absolute {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 999;
+}
+
+@media(min-width: 1024px) {
+   .app-fab--absolute {
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+}
+</style>
+<div ng-cloak>
+  <md-content>
+    
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="Cadastro">
+        <md-content class="md-padding">
+            <md-content layout-padding>
+          <h3 >Dados dos clientes</h3>
+          <div layout-gt-xs="row">
+            <div class="flex-40">
+                <md-input-container class="md-block" flex-md-xs>
+                    <label>Nome</label>
+                    <input ng-model="ctrl.cliente.nome" >
+                  </md-input-container>
+            </div>
+            <div class="flex-30">
+                <md-input-container ng-show="ctrl.cliente.tipo=='pj'"> 
+                    <label>Data de Fundação </label>
+                    <input  ng-model="ctrl.cliente.data_fundacao" aria-label="Enter date">
+                </md-input-container>
+            </div>
+            <div class="flex-40" ng-show="ctrl.cliente.tipo=='pf'">
+                <md-input-container ng-show="ctrl.cliente.tipo=='pf'"> 
+                  <label>Data Nascimento </label>
+                  <input ng-model="ctrl.cliente.data_nascimento" aria-label="Enter date">                  
+                  <!-- <md-datepicker ng-model="ctrl.cliente.data_nascimento" md-placeholder="Enter date"></md-datepicker> -->
+  
+            </md-content>
+
+
+                </md-input-container>
+            </div>
+
+            <md-divider>              
+            </md-divider>
+            
+            <md-radio-group class="flex-30" ng-model="ctrl.cliente.tipo" >
+              <md-radio-button name="tipo"  value="pf" class="md-primary" >Pessoa Fisica</md-radio-button>
+                <md-radio-button name="tipo" value="pj" > Pessoa juridica </md-radio-button>                          
+            </md-radio-group>
+            <md-divider layout-align="center end" ></md-divider>
+            <md-radio-group ng-disabled="ctrl.cliente.tipo == 'pj'" class="flex-30" ng-model="ctrl.cliente.sexo">
+                <md-radio-button name="sexo"  value="masculino" class="md-primary">Masculino</md-radio-button>
+                <md-radio-button name="sexo"  value="feminino"> Feminino</md-radio-button>                          
+            </md-radio-group>            
+          </div>
+          <div layout-gt-xs="row">
+            <md-input-container class="md-block" flex-md-xs>
+              <label>Estado Civil</label>
+              <input ng-model="ctrl.cliente.estado_civil" name="estado_civil" ng-disabled="ctrl.cliente.tipo == 'pj'">
+
+            </md-input-container>  
+              <md-input-container>
+              <label>Nacionalidade </label>
+              <input ng-model="ctrl.cliente.nacionalidade" name="nacionalidade" ng-disabled="ctrl.cliente.tipo=='pj'"></input>
+            </md-input-container>
+            <md-input-container>
+              <label>RG</label>
+                <input ng-model="ctrl.cliente.rg" name="rg" ng-disabled="ctrl.cliente.tipo =='pj'"></input>
+                </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+              <label ng-show="ctrl.cliente.tipo =='pf'">CPF*</label>
+              <label ng-show="ctrl.cliente.tipo =='pj'">CNPJ*</label>
+              <input name="cpf_cnpj" required md-no-asterisk ng-model="ctrl.cliente.cpf_cnpj">
+            </md-input-container>
+          </div>
+          <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Nome Fantasia</label>
+              <input ng-model="ctrl.cliente.nome_fantasia" name="nome_fantasia" ng-disabled="ctrl.cliente.tipo=='pf' ">
+            </md-input-container>     
+
+            <md-input-container class="md-block" flex-gt-sm>
+               <label>Inscrição Estadual</label>
+               <input ng-model="ctrl.cliente.inscricao_estadual" name="inscricao_estadual" ng-disabled="ctrl.cliente.tipo == 'pf'">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>E-mail</label>              
+              <input name="email" ng-model="ctrl.cliente.email">
+            </md-input-container>
+          </div>
+          <md-fab-trigger class="app-fab--absolute">
+            <md-button aria-label="menu" class="md-fab md-warn">
+              <i class="fas fa-plus"></i>
+            </md-button>
+          </md-fab-trigger>
+        </md-content>  
+        </md-content>
+        <button ng-click="ctrl.salvarAtualizar()"> SALVAR DADOS INICIAIS</button>
+      </md-tab>
+
+      <md-tab label="telefones">
+        <md-content class="md-padding">
+          <h3 >Cadastre os telefones de contato</h3>
+          
+      
+          <div layout-gt-sm="row" ng-repeat="telefone in ctrl.cliente.telefones " >
+            <md-input-container class="md-block" flex-mt-md>
+              <label>{{1 + $index}}º Numero de telefone</label>
+              <input name="telefone_{{$index}}" ng-model="telefone.telefone" >
+            </md-input-container>           
+            <md-input-container>
+              <md-select ng-model="ctrl.clientes.telefones[$indexs].tipo">
+                <md-option   value="ctrl.clientes.telefones[$index].tipo" ng-repeat="tipo in ctrl.tipos">{{ tipo }}</md-option>
+              </md-select>
+            </md-input-container>
+
+            <md-button class="md-fab md-mini md-danger " ng-click="ctrl.removerTelefone($index)">
+              <i class="fas fa-remove"></i>
+            </md-button>
+        </section>           
+        <md-input-container class="md-block" flex-mt-md>
+         
+        </md-input-container>
+        <md-fab-trigger class="app-fab--absolute" ng-click="ctrl.addTelefone()">
+          <md-button aria-label="menu" class="md-fab md-warn">
+            <i class="fas fa-plus"></i>
+          </md-button>
+        </md-fab-trigger>     
+      </div>
+          <button>SALVAR DADOS TELEFONES</button>
+        </md-content>
+      </md-tab>
+      <md-tab label="Endereços">
+        <md-content class="md-padding">
+          <h3 >informe os endereços</h3> 
+          <div ng-repeat="endereco in ctrl.cliente.enderecos">
+            <div layout-gt-xs="row">
+                <md-input-container class="md-block" flex-md-xs>
+                  <label>Endereço</label>
+                  <input name="endereco" ng-model="endereco.endereco" >
+                </md-input-container>
+                <md-input-container class="md-block" flex-md-xs>
+                    <label>Complemento</label>
+                    <input name="complemento" ng-model="endereco.complemento" >
+                </md-input-container>  
+                <md-input-container class="md-block" flex-md-xs>
+                    <label>Número</label>
+                    <input numero="numero" ng-model="endereco.numero" >
+                </md-input-container>
+                <md-input-container class="md-block" flex-md-xs>
+                    <label>bairro</label>
+                    <input name="bairro" ng-model="endereco.bairro" >
+                </md-input-container>
+              </div>
+              <div layout-gt-xs="row">
+                <md-input-container>
+                  <label>Cidade</label>
+                    <input name="cidade" ng-model="endereco.cidade"></input>
+                </md-input-container>
+                <md-input-container>                
+                  <select name="uf" ng-model="endereco.uf">
+                    <option value='AC'>AC</option>
+                    <option value='AL'>AL</option>
+                    <option value='AP'>AP</option>
+                    <option value='AM'>AM</option>
+                    <option value='BA'>BA</option>
+                    <option value='CE'>CE</option>
+                    <option value='DF'>DF</option>
+                    <option value='ES'>ES</option>
+                    <option value='GO'>GO</option>
+                    <option value='MA'>MA</option>
+                    <option value='MT'>MT</option>
+                    <option value='MS'>MS</option>
+                    <option value='MG'>MG</option>
+                    <option value='PA'>PA</option>
+                    <option value='PB'>PB</option>
+                    <option value='PR'>PR</option>
+                    <option value='PE'>PE</option>
+                    <option value='PI'>PI</option>
+                    <option value='RJ'>RJ</option>
+                    <option value='RN'>RN</option>
+                    <option value='RS'>RS</option>
+                    <option value='RO'>RO</option>
+                    <option value='RR'>RR</option>
+                    <option value='SC'>SC</option>
+                    <option value='SP'>SP</option>
+                    <option value='SE'>SE</option>
+                    <option value='TO'>TO</option>            
+                  <select>
+                </md-input-container>
+              </div>              
+              <hr ng-show="!$last"/>
+            </div>
+            <button ng-click="ctrl.salvarAtualizar()">   SALVAR  </button>
+            <button ng-click="ctrl.removerEnderecos()">APAGAR  ENDERECOS</button>
+            <md-fab-trigger class="app-fab--absolute" ng-click="ctrl.addEndereco()">
+              <md-button aria-label="menu" class="md-fab md-warn">
+                <i class="fas fa-plus"></i>
+              </md-button>
+            </md-fab-trigger>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</div>

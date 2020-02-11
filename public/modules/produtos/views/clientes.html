@@ -1,0 +1,25 @@
+<md-toolbar>
+  <md-fab-actions class="md-toolbar-tools">
+    <md-button ng-click="ctrl.novoCliente()" aria-label="comment" class="md-icon-button-primary">
+      <i class="fas fa-user-plus"> Clientes</i>
+    </md-button>
+</md-toolbar>
+</md-fab-toolbar>
+<div >
+  <md-subheader class="md-no-sticky">Lista de clientes</md-subheader> 
+  <md-list>
+    <md-list-item  class="noright" ng-repeat="(key, cliente) in ctrl.clientes">
+      <i class="fas fa-user-alt" style="margin-right: 2%;"></i>
+      <p ng-onclick="irCliente({{cliente.id}})"> <strong>{{ cliente.nome }}</strong>  <i style="color: #B6B6B6"layout-align="end center">atualizado: {{cliente.updatedAt | date: 'dd/MM/yyyy'}}</i> </p>
+      
+      <md-button  ng-click="ctrl.irCliente(cliente.id)" class="md-icon-button md-primary" arial-label="Mora">
+        <i class="fas fa-address-card"></i>
+      </md-button>
+      <md-button ng-click="ctrl.remover(cliente.id) " class="md-icon-button md-warn" >
+        <md-icon class="fas fa-trash-alt" ></md-icon>
+      </md-button>
+      <!-- <i class="fas fa-plus-circle" style="margin-right: 2%;"> </i> -->
+      <!-- <md-icon class="md-secondary"  aria-label="Chat" md-svg-icon="communication:message"></md-icon> -->
+    </md-list-item>
+  </md-list>
+</div>
