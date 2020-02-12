@@ -1,119 +1,144 @@
 <div ng-cloak>
   <md-content layout-margin="">
-    <div  laytout="row" layout-margin="" layout-align="center">
-      <div layout="row">
-        <div flex=""><h3>Informações do Produto</h3></div>
+    <div layout-wrap="" layout="row">
+      <div flex="100" layout="row">
+        <div flex="" layout-margin="">
+          <h3>Informações do Produto</h3>
+        </div>
       </div>
-      
-      <md-card>
-        <md-card-content>      
-          <div style="background: #fff;" >
-            <md-input-container>
-              <label>Codigo</label>
-              <input ng-model="ctrl.produto.id" disabled>
-            </md-input-container>      
-            <md-input-container>
-              <label>referencia</label>
-              <input ng-model="ctrl.produto.referencia" >
-            </md-input-container>
-          </div>
-          
-          <div layout="row" layout-xs="row" layout-align="center">          
-            <div flex="50">
-              <md-input-container class="md-block" >
-                <label>Descrição</label>
-                <input ng-model="ctrl.produto.descricao" >
+      <md-card flex="100">
+        <md-card-content>
+          <div layout="row" layout-wrap="">
+            <div flex="10">
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Código Interno</label>
+                <input ng-model="ctrl.produto.id" disabled>
+              </md-input-container>
+            </div>
+            <div flex="15">
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Código Referencia</label>
+                <input ng-model="ctrl.produto.referencia">
+              </md-input-container>
+
+            </div>
+            <div flex="25">
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Código Barras(EAN)</label>
+                <input ng-model="ctrl.produto.codigo_ean">
               </md-input-container>
             </div>
             <div flex="33">
-              <md-input-container class="md-block" >
-                <label>Codigo de barras</label>
-                <input ng-model="ctrl.produto.codigo_ean" >
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Descricao</label>
+                <input ng-model="ctrl.produto.descricao">
+              </md-input-container>
+
+            </div>
+            <div flex="17">
+              <md-input-container>
+                <md-select ng-model="ctrl.produto.status" placeholder="Status do produto">
+                  <md-option ng-value="opt" ng-repeat="opt in neighborhoods2">{{ opt }}</md-option>
+                </md-select>
               </md-input-container>
             </div>
-         </div>
-         <md-divider>              
-        </md-divider>
+          </div>
+        </md-card-content>
+      </md-card>
+      <div flex="33">
 
-
-
-<div layout="row" layout-xs="column">
-  <div flex="22" layout-margin="">
-    <h4>Controle de estoques</h4>      
-        <md-input-container class="md-block">
-          <label>Minimo</label>
-          <input ng-model="ctrl.produto.estoque_minimo">
-        </md-input-container>
-     
-      
-        <md-input-container class="md-block">
-          <label>Maximo</label>
-          <input ng-model="ctrl.produto.estoque_maximo">
-        </md-input-container>
-      
-      
-        <md-input-container class="md-block">
-          <label>Atual</label>
-          <input ng-model="ctrl.produto.estoque_atual">
-        </md-input-container>
-      
-    
-  </div>
-  <md-divider>              
-  </md-divider>
-  <div flex="22" layout-margin="">
-    <h4>Preço</h4>
-    <md-input-container class="md-block">
-      <label>Custo</label>
-      <input ng-model="ctrl.produto.vl_custo">
-    </md-input-container>
-  
-  
-    <md-input-container class="md-block">
-      <label>Venda</label>
-      <input ng-model="ctrl.produto.vl_venda">
-    </md-input-container>
-
-    <md-input-container class="md-block">
-      <label>Status</label>
-      <input ng-model="ctrl.produto.status">
-    </md-input-container>
-  </div>
-  <md-divider>              
-  </md-divider>
-
-  <div flex="" layout-margin="">
-    <h4>Tributação</h4>
-
-    <md-input-container class="md-block">
-      <label>NCM</label>
-      <input ng-model="ctrl.produto.ncm">
-    </md-input-container>
- 
-  
-    <md-input-container class="md-block">
-      <label>grupo</label>
-      <input ng-model="ctrl.grupo.descricao">
-    </md-input-container>
-  
-  
-    <md-input-container class="md-block">
-      <label>Subgrupo</label>
-      <input ng-model="ctrl.subgrupo.descricao">
-    </md-input-container>
-  </div>
-</div>
-
-
-         
-    </md-card-content>
-    <md-card-footer>
-      Card footer
-    </md-card-footer>
-    </md-card>
-
-
-        
+        <div flex="100" layout="row">
+          <div flex="" layout-margin="">
+            <h3>Tributação</h3>
+          </div>
+        </div>
+        <md-card flex="100">
+          <md-card-content>
+            <div layout="row" layout-wrap="">
+              <div flex="30">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>NCM</label>
+                  <input ng-model="ctrl.produto.ncm">
+                </md-input-container>
+              </div>
+              <div flex="60">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Tributacao</label>
+                  <input ng-model="ctrl.produto.tribucao">
+                </md-input-container>
+              </div>
+            </div>
+          </md-card-content>
+        </md-card>
       </div>
+      <div flex="33">
+
+        <div flex="100" layout="row">
+          <div flex="" layout-margin="">
+            <h3>Estoque</h3>
+          </div>
+        </div>
+        <md-card flex="100">
+          <md-card-content>
+            <div layout="row" layout-wrap="">
+              <div flex="33">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Minimo</label>
+                  <input ng-model="ctrl.produto.estoque_minimo">
+                </md-input-container>
+              </div>
+              <div flex="33">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Maximo</label>
+                  <input ng-model="ctrl.produto.estoque_maximo">
+                </md-input-container>
+              </div>
+              <div flex="33">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Atual</label>
+                  <input ng-model="ctrl.produto.estoque_atual">
+                </md-input-container>
+              </div>
+            </div>
+          </md-card-content>
+        </md-card>
+      </div>
+      <div flex="33">
+
+        <div flex="100" layout="row">
+          <div flex="" layout-margin="">
+            <h3>Preços</h3>
+          </div>
+        </div>
+        <md-card flex="100">
+          <md-card-content>
+            <div layout="row" layout-wrap="">
+              <div flex="50">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Custo</label>
+                  <input ng-model="ctrl.produto.vl_custo">
+                </md-input-container>
+              </div>
+              <div flex="50">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Venda</label>
+                  <input ng-model="ctrl.produto.vl_venda">
+                </md-input-container>
+              </div>
+            </div>
+          </md-card-content>
+        </md-card>
+      </div>
+      <div flex="100" layout-margin="">
+        <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
+          <md-button>{{title1}}</md-button>
+          <md-button md-no-ink class="md-primary">Salvar</md-button>
+          <md-button class="md-warn">Cancelar</md-button>
+        </section>
+        <div class="label">Recursos</div>
+
+      </div>
+
+    </div>
   </md-content>
 </div>
