@@ -1,6 +1,8 @@
 angular.module('clienteCtrl', ['clienteService'])
-.controller('clienteCtrl', ['$http', '$stateParams','$state', '$window', '$filter', function($http, $stateParams, $state, $window, $filter) {
+.controller('clienteCtrl', ['$http', '$stateParams','$state', '$window', '$filter', 'configURL', 'FormatToAPI', function($http, $stateParams, $state, $window, $filter, configURL , FormatToAPI) {
+	FormatToAPI
 	
+	const {baseURL} = configURL
 	const host = 'http://127.0.0.1:3333/api/cliente'
 	self = this
 
@@ -65,10 +67,11 @@ angular.module('clienteCtrl', ['clienteService'])
 		.then( ( obj ) => {
 			const { result } =  obj.data
 			self.cliente = result
+			self.cliente.data_nascimento = self.cliente.data_nascimento != null ? $filter('date')(self.cliente.data_nascimento, 'dd/MM/yyyy') : ''
+			self.cliente.data_fundacao = self.cliente.data_fundacao != null ? $filter('date')(self.cliente.data_fundacao, 'dd/MM/yyyy') : null
+
 			self.cliente.enderecos = self.cliente.enderecos.length > 0 ? self.cliente.enderecos : new Array({})
 			self.cliente.telefones = self.cliente.telefones.length > 0 ? self.cliente.telefones : new Array({})
-			self.cliente.data_nascimento = frontDate(self.cliente.data_nascimento, 'front')
-			self.cliente.data_fundacao = self.frontDate(self.cliente.data_fundacao, 'front')			
 		})
 		.catch((error) => {
 			console.log(error)
@@ -85,9 +88,14 @@ angular.module('clienteCtrl', ['clienteService'])
 		if (Object.keys(self.cliente.telefones[0]).length == 1 &&  self.cliente.telefones[0].$$hashKey) {
 			delete self.cliente.telefones;
 		}
+	
+		self.cliente.data_nascimento = self.cliente.data_nascimento  ? FormatToAPI.dateFormat(self.cliente.data_nascimento) : null
+		self.cliente.data_fundacao = self.cliente.data_fundacao  ? FormatToAPI.dateFormat(self.cliente.data_fundacao) : null
 
-		self.cliente.data_nascimento = backDate(self.cliente.data_nascimento)
-		self.cliente.data_fundacao = backDate(self.cliente.data_fundacao)
+		
+		self.cliente.data_fundacao = FormatToAPI.dateFormat(self.cliente.data_fundacao)
+		console.log(true, self.cliente.data_fundacao)
+
 		switch ('id' in $stateParams) {
 			case true:
 				$http.put(`${host}/`, self.cliente)
@@ -97,8 +105,7 @@ angular.module('clienteCtrl', ['clienteService'])
 							// self.init()
 					}).catch( error => {
 						console.log('apos salvar', error)
-						self.cliente.data_nascimento = frontDate(self.cliente.data_nascimento)
-						self.cliente.data_fundacao = frontDate(self.cliente.data_fundacao)
+						
 				})
 				break
 			case false:
@@ -107,8 +114,6 @@ angular.module('clienteCtrl', ['clienteService'])
 						console.log(result)
 						$state.go('editar_cliente', {id: result.data.id});
 					}).catch( error => {
-							self.cliente.data_nascimento = frontDate(self.cliente.data_nascimento)
-							self.cliente.data_fundacao = frontDate(self.cliente.data_fundacao)
 				})
 		}
 	}

@@ -84,19 +84,19 @@
               <div flex="33">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Minimo</label>
-                  <input ng-model="ctrl.produto.estoque_minimo">
+                  <input ng-model="ctrl.produto.estoque_minimo" ui-number-mask>
                 </md-input-container>
               </div>
               <div flex="33">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Maximo</label>
-                  <input ng-model="ctrl.produto.estoque_maximo">
+                  <input ng-model="ctrl.produto.estoque_maximo" ui-number-mask>
                 </md-input-container>
               </div>
               <div flex="33">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Atual</label>
-                  <input ng-model="ctrl.produto.estoque_atual">
+                  <input ng-model="ctrl.produto.estoque_atual" ui-number-mask>
                 </md-input-container>
               </div>
             </div>
@@ -116,13 +116,13 @@
               <div flex="50">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Custo</label>
-                  <input ng-model="ctrl.produto.vl_custo">
+                  <input ng-model="ctrl.produto.vl_custo" ui-number-mask>
                 </md-input-container>
               </div>
               <div flex="50">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Venda</label>
-                  <input ng-model="ctrl.produto.vl_venda">
+                  <input ng-model="ctrl.produto.vl_venda"  ui-hide-group-sep ui-hide-space ui-money-mask >
                 </md-input-container>
               </div>
             </div>

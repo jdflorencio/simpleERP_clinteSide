@@ -31,13 +31,14 @@
               <div class="flex-30">
                 <md-input-container ng-show="ctrl.cliente.tipo=='pj'">
                   <label>Data de Fundação </label>
-                  <input ng-model="ctrl.cliente.data_fundacao" aria-label="Enter date">
+                  <input ng-model="ctrl.cliente.data_fundacao" aria-label="Enter date" ui-date-mask>
                 </md-input-container>
               </div>
               <div class="flex-40" ng-show="ctrl.cliente.tipo=='pf'">
                 <md-input-container ng-show="ctrl.cliente.tipo=='pf'">
                   <label>Data Nascimento </label>
-                  <input ng-model="ctrl.cliente.data_nascimento" aria-label="Enter date">
+                 <!----> <input ng-model="ctrl.cliente.data_nascimento" aria-label="Enter date" ui-date-mask>
+                 </md-input-container>
                   <!-- <md-datepicker ng-model="ctrl.cliente.data_nascimento" md-placeholder="Enter date"></md-datepicker> -->
 
           </md-content>
@@ -76,7 +77,7 @@
   <md-input-container class="md-block" flex-gt-sm>
     <label ng-show="ctrl.cliente.tipo =='pf'">CPF*</label>
     <label ng-show="ctrl.cliente.tipo =='pj'">CNPJ*</label>
-    <input name="cpf_cnpj" required md-no-asterisk ng-model="ctrl.cliente.cpf_cnpj">
+    <input name="cpf_cnpj" required md-no-asterisk ng-model="ctrl.cliente.cpf_cnpj" ui-br-cpfcnpj-mask>
   </md-input-container>
 </div>
 <div layout-gt-sm="row">
@@ -112,7 +113,7 @@
     <div layout-gt-sm="row" ng-repeat="telefone in ctrl.cliente.telefones ">
       <md-input-container class="md-block" flex-mt-md>
         <label>{{1 + $index}}º Numero de telefone</label>
-        <input name="telefone_{{$index}}" ng-model="telefone.telefone">
+        <input name="telefone_{{$index}}" ng-model="telefone.telefone" ui-br-phone-number-mask="areaCode">
       </md-input-container>
       <md-input-container>
         <md-select ng-model="ctrl.clientes.telefones[$indexs].tipo">

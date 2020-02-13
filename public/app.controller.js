@@ -1,4 +1,4 @@
-angular.module('appCtrl', [])
+angular.module('appCtrl',[])
 .controller('appCtrl', function($mdSidenav, $stateParams, $rootScope) {
 
     self = this;
@@ -35,6 +35,9 @@ angular.module('appCtrl', [])
     	$mdSidenav('right').toggle();
     }
 
-}).constant("configURL", {
+})
+.constant("configURL", {
 	baseURL: "http://127.0.0.1:3333/api"
 })
+
+
