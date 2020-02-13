@@ -10,8 +10,6 @@ angular.module('produtosCtrl', ['produtosService'])
 		.then((obj) => {
 			const { result } = obj.data
 			self.produtos = result
-			console.log(self.produtos)
-			console.log($filter('date')(self.produtos[0].updatedAt, 'dd/MM/yyyy'))			
 		})
 	}
 

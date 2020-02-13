@@ -131,11 +131,9 @@
       </div>
       <div flex="100" layout-margin="">
         <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
-          <md-button>{{title1}}</md-button>
-          <md-button md-no-ink class="md-primary">Salvar</md-button>
-          <md-button class="md-warn">Cancelar</md-button>
+          <md-button class="md-primary" ng-click="ctrl.salvarAtualizar()">Salvar</md-button>
+          <md-button ng-click="ctrl.cancelar()" class="md-warn">Cancelar</md-button>
         </section>
-        <div class="label">Recursos</div>
 
       </div>
 

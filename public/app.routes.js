@@ -49,7 +49,7 @@ router.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
                 title: "Produtos"
             }
         })
-        .state('adicionar_produtos', {
+        .state('adicionar_produto', {
             url: '/produto/add',
             templateUrl: '/modules/subModules/produto/views/produto.html',
             controller: 'produtoCtrl',
