@@ -92,10 +92,6 @@ angular.module('clienteCtrl', ['clienteService'])
 		self.cliente.data_nascimento = self.cliente.data_nascimento  ? FormatToAPI.dateFormat(self.cliente.data_nascimento) : null
 		self.cliente.data_fundacao = self.cliente.data_fundacao  ? FormatToAPI.dateFormat(self.cliente.data_fundacao) : null
 
-		
-		self.cliente.data_fundacao = FormatToAPI.dateFormat(self.cliente.data_fundacao)
-		console.log(true, self.cliente.data_fundacao)
-
 		switch ('id' in $stateParams) {
 			case true:
 				$http.put(`${host}/`, self.cliente)
