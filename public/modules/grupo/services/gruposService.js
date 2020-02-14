@@ -1,5 +1,5 @@
-angular.module('produtosService', [])
-.factory('produtos', function($http) {
+angular.module('gruposService', [])
+.factory('grupos', function($http) {
     
     var exampleFactory = {};
 
