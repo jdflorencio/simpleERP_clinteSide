@@ -16,7 +16,12 @@ var materialApp = angular
     'gruposCtrl',
     'gruposService',
     'grupoCtrl',
+    'subgrupoCtrl',
     'gruposService',
+    'subgruposCtrl',
+    'subgruposService',
+    'subgrupoCtrl',
+    'subgruposService',
     'ngNotify'
 
 ])

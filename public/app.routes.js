@@ -94,6 +94,33 @@ router.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
                 title: "Editando grupo"
             }
         })
+        .state('subgrupos', {
+            url: '/subgrupos',
+            templateUrl: '/modules/subgrupos/views/subgrupos.html',
+            controller: 'subgruposCtrl',
+            controllerAs: 'ctrl',
+            params: {
+                title: "subgrupos"
+            }
+        })
+        .state('subadicionar_grupo', {
+            url: '/subgrupo/add',
+            templateUrl: '/modules/subModules/subgrupo/views/subgrupo.html',
+            controller: 'subgrupoCtrl',
+            controllerAs: 'ctrl',
+            params: {
+                title: "Adicionar novo subgrupos"
+            }
+        })
+        .state('subeditar_grupo', {
+            url: '/subgrupo/:id',
+            templateUrl: '/modules/subModules/subgrupo/views/subgrupo.html',
+            controller: 'subgrupoCtrl',
+            controllerAs: 'ctrl',
+            params: {
+                title: "Editando subgrupo"
+            }
+        })
 
     $locationProvider.html5Mode(true);
 
