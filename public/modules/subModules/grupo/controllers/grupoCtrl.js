@@ -17,30 +17,24 @@ angular.module('grupoCtrl', ['grupoService'])
 				self.consultarGrupo()
 				break
 			default:
-				self.grupo = {
-				estoque_minimo: 0,
-				estoque_maximo: 0,
-				estoque_atual : 0,
-				vl_custo: 0,
-				vl_venda: 0
-				}
+				console.log('testando...')
 			}
-	}
-
-	self.salvarGeral = function() {
-		console.log('aqui',self.grupo)	
 	}
 
 	self.consultarGrupo = function() {
 		$http.get(`${host}/${$stateParams.id}`)
 		.then( ( obj ) => {
-			const { result } =  obj.data
-			self.grupo = result.grupo
-			self.grupo = result.grupo
-			self.subgrupo = result.subgrupo
+			self.grupo =  obj.data.result
 		})
 		.catch((error) => {
-			console.log(error)
+			if (error.data.error) {
+				message = `${error.data.error.message} em (${error.data.error.error[0]})`
+				type = 'warn'
+			}		
+			ngNotify.set(`${message}`, {
+				type: type,
+				theme: 'pastel'
+			})
 		})
 	}
 
@@ -63,7 +57,7 @@ angular.module('grupoCtrl', ['grupoService'])
 						});
 					}))
 					.catch ((error)=> {
-						
+						console.log(error.data)
 						if (error.data.error) {
 							message = `${error.data.error.message} em (${error.data.error.error[0]})`
 							type = 'warn'
