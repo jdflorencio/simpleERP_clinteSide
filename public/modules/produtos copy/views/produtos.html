@@ -3,14 +3,12 @@
     <md-button ng-click="ctrl.novoProduto()" aria-label="comment" class="md-icon-button-primary">
       <i class="fas fa-user-plus"> produtos</i>
     </md-button>
-    <md-button ng-click="ctrl.novoProduto()" aria-label="comment" class="md-icon-button-primary">
-      <i class="fas fa-user-plus"> Grupos</i>
-    </md-button>
-</md-toolbar>
+  
+  </md-fab-actions>
+  </md-toolbar>
 </md-fab-toolbar>
 <div >
 
-  <div class="nav-header" ng-click="doTheBack()">Reverse!</div>
   <md-list>
     <md-list-item  class="noright" ng-repeat="(key, produto) in ctrl.produtos">
       <i class="fas fa-user-alt" style="margin-right: 2%;"></i>
