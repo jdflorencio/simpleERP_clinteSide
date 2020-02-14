@@ -1,22 +1,23 @@
-angular.module('produtoCtrl', ['produtoService'])
-.controller('produtoCtrl', ['$http',
+angular.module('grupoCtrl', ['grupoService'])
+.controller('grupoCtrl', ['$http',
 	'$stateParams',
 	'$state',
 	'configURL',
 	'ngNotify',
-	'$scope',
-	function($http, $stateParams, $state, configURL, ngNotify, $scope) {
+	function($http, $stateParams, $state, configURL, ngNotify ) {
 	
-	self = this	
 	const { baseURL } = configURL
-	const host = `${baseURL}/produto`
+	const host = `${baseURL}/grupo`
+
+	self = this
+
 	self.init = function() {
 		switch ("id" in $stateParams) {
 			case true:
-				self.consultarProduto()
+				self.consultarGrupo()
 				break
 			default:
-				self.produto = {
+				self.grupo = {
 				estoque_minimo: 0,
 				estoque_maximo: 0,
 				estoque_atual : 0,
@@ -24,16 +25,17 @@ angular.module('produtoCtrl', ['produtoService'])
 				vl_venda: 0
 				}
 			}
-		}
-	self.salvarGeral = function() {
-		console.log('aqui',self.produto)	
 	}
 
-	self.consultarProduto = function() {
+	self.salvarGeral = function() {
+		console.log('aqui',self.grupo)	
+	}
+
+	self.consultarGrupo = function() {
 		$http.get(`${host}/${$stateParams.id}`)
 		.then( ( obj ) => {
 			const { result } =  obj.data
-			self.produto = result.produto
+			self.grupo = result.grupo
 			self.grupo = result.grupo
 			self.subgrupo = result.subgrupo
 		})
@@ -43,7 +45,7 @@ angular.module('produtoCtrl', ['produtoService'])
 	}
 
 	self.cancelar = function() {
-		$state.go('produtos');
+		$state.go('grupos');
 	}
 
 	self.salvarAtualizar = () => {
@@ -52,9 +54,9 @@ angular.module('produtoCtrl', ['produtoService'])
 		let type = 'error'
 		switch ("id" in $stateParams && $stateParams.id != '' ) {
 			case true:				
-					const result  = $http.put(`${host}/`, self.produto)
+					const result  = $http.put(`${host}/`, self.grupo)
 					.then((result =>{						
-						$state.go('produtos', {id: result.data.id});
+						$state.go('grupos', {id: result.data.id});
 						let msg = result.data.sucesso ? result.data.msg :data.error.message
 						ngNotify.set(`${msg}`, {
 							type:'info'
@@ -73,9 +75,9 @@ angular.module('produtoCtrl', ['produtoService'])
 					})
 				break
 			case false:
-				$http.post(`${host}`, self.produto)
+				$http.post(`${host}`, self.grupo)
 					.then((result) => {
-						$state.go('produtos');
+						$state.go('grupos');
 						let msg = result.data.sucesso ? result.data.msg : result.data.error.message
 						ngNotify.set(`${msg}`, {type:'info',  theme: 'pastel'});
 					}).catch( error => {

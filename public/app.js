@@ -12,12 +12,13 @@ var materialApp = angular
     'produtosCtrl',
     'produtosService',
     'produtoCtrl',
-    'produtoService'
+    'produtoService',
+    'ngNotify'
 
 ]).config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
     .primaryPalette('blue')
-    .accentPalette('pink');
+    .accentPalette('red');
 })
 .factory('FormatToAPI', function(){
   

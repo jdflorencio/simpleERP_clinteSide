@@ -1,6 +1,14 @@
 angular.module('clienteCtrl', ['clienteService'])
-.controller('clienteCtrl', ['$http', '$stateParams','$state', '$window', '$filter', 'configURL', 'FormatToAPI', function($http, $stateParams, $state, $window, $filter, configURL , FormatToAPI) {
-	FormatToAPI
+.controller('clienteCtrl', [
+	'$http',
+	'$stateParams',
+	'$state',
+	'$filter',
+	'configURL',
+	'FormatToAPI',
+	'ngNotify',
+	function($http, $stateParams, $state, $filter, configURL , FormatToAPI, ngNotify) {
+	
 	
 	const {baseURL} = configURL
 	const host = 'http://127.0.0.1:3333/api/cliente'
@@ -96,12 +104,24 @@ angular.module('clienteCtrl', ['clienteService'])
 			case true:
 				$http.put(`${host}/`, self.cliente)
 					.then((result) => {
-						$state.go('home', {id: result.data.id});
+						$state.go('clientes', {id: result.data.id});
 							// $window.location.reload();
 							// self.init()
+							let msg = result.data.sucesso ? result.data.msg : result.data.error.message
+							ngNotify.set(`${msg}`, {
+								type:'info'
+							});
 					}).catch( error => {
-						console.log('apos salvar', error)
-						
+						if (error.data.error) {
+							const { message } = error.data.error
+							const type = 'warn'
+						} else {
+							const message = "Ops! Houve inesperado."
+							const type = "error"
+						}
+						ngNotify.set(`${message}`, {
+							type: type,
+						});
 				})
 				break
 			case false:
