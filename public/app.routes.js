@@ -66,7 +66,34 @@ router.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             params: {
                 title: "Editando produto"
             }
-        });
+        })
+        .state('grupos', {
+            url: '/grupos',
+            templateUrl: '/modules/grupos/views/grupos.html',
+            controller: 'gruposCtrl',
+            controllerAs: 'ctrl',
+            params: {
+                title: "grupos"
+            }
+        })
+        .state('adicionar_grupo', {
+            url: '/grupo/add',
+            templateUrl: '/modules/subModules/grupo/views/grupo.html',
+            controller: 'grupoCtrl',
+            controllerAs: 'ctrl',
+            params: {
+                title: "Adicionar novo grupos"
+            }
+        })
+        .state('editar_grupo', {
+            url: '/grupo/:id',
+            templateUrl: '/modules/subModules/grupo/views/grupo.html',
+            controller: 'grupoCtrl',
+            controllerAs: 'ctrl',
+            params: {
+                title: "Editando grupo"
+            }
+        })
 
     $locationProvider.html5Mode(true);
 

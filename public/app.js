@@ -8,14 +8,19 @@ var materialApp = angular
     'clientesService',
     'clienteCtrl',
     'clienteService',
-    'ui.utils.masks',    
+    'ui.utils.masks',
     'produtosCtrl',
     'produtosService',
     'produtoCtrl',
     'produtoService',
+    'gruposCtrl',
+    'gruposService',
+    'grupoCtrl',
+    'gruposService',
     'ngNotify'
 
-]).config(function($mdThemingProvider) {
+])
+.config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
     .primaryPalette('blue')
     .accentPalette('red');
