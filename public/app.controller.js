@@ -33,11 +33,13 @@ angular.module('appCtrl',[])
 
     self.toggleRight = function() {
     	$mdSidenav('right').toggle();
-    }
+	}
+
+	self.doTheBack = function() {
+		window.history.back();
+	  };
 
 })
 .constant("configURL", {
 	baseURL: "http://127.0.0.1:3333/api"
 })
-
-
