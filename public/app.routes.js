@@ -103,7 +103,7 @@ router.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
                 title: "subgrupos"
             }
         })
-        .state('subadicionar_grupo', {
+        .state('adicionar_subgrupo', {
             url: '/subgrupo/add',
             templateUrl: '/modules/subModules/subgrupo/views/subgrupo.html',
             controller: 'subgrupoCtrl',
@@ -112,7 +112,7 @@ router.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
                 title: "Adicionar novo subgrupos"
             }
         })
-        .state('subeditar_grupo', {
+        .state('editar_subgrupo', {
             url: '/subgrupo/:id',
             templateUrl: '/modules/subModules/subgrupo/views/subgrupo.html',
             controller: 'subgrupoCtrl',

@@ -14,8 +14,15 @@ angular.module('produtosCtrl', ['produtosService'])
 	}
 
 	self.irProduto = function(produtoId) {
-		console.log('aqui', produtoId) 
 		$state.go('editar_produto', {id: produtoId})
+	}
+
+	self.irTributos = function(produtoId) {
+		$state.go('editar_produto', {id: produtoId})
+	}
+
+	self.irGrupos = function(produtoId) {
+		$state.go('grupos')
 	}
 
 	self.novoProduto = function() {
