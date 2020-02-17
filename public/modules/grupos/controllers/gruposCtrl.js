@@ -13,13 +13,18 @@ angular.module('gruposCtrl', ['gruposService'])
 		})
 	}
 
+	self.novoGrupo = function(grupoId) {
+		console.log('aqui', grupoId) 
+		$state.go('adicionar_grupo', {id: grupoId})
+	}
+
 	self.irGrupo = function(grupoId) {
 		console.log('aqui', grupoId) 
 		$state.go('editar_grupo', {id: grupoId})
 	}
 
-	self.novoGrupo = function() {
-		$state.go('adicionar_grupo')
+	self.irSubgrupo = function(grupoId) {
+		$state.go('subgrupos')
 	}
 
 	self.remover = function(id) {

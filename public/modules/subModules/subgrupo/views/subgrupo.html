@@ -15,10 +15,14 @@
                 <input ng-model="ctrl.subgrupo.id" disabled>
               </md-input-container>
             </div>
-            <div flex="30">
-              <md-input-container class="md-block" flex-gt-sm>
-                <label>grupo</label>
-                <input ng-model="ctrl.subgrupo.descricao">
+            <div flex="">
+              <md-input-container>
+                <label>Grupos</label>
+                <md-select ng-model="ctrl.subgrupo.grupoId">
+                  <md-option ng-repeat="grupo in ctrl.grupos" ng-value="grupo.id">
+                    {{grupo.descricao}}
+                  </md-option>
+                </md-select>
               </md-input-container>
             </div>
             <div flex="50">

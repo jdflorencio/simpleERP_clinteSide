@@ -10,7 +10,6 @@ angular.module('subgrupoCtrl', ['subgrupoService'])
 	const host = `${baseURL}/subgrupo`
 
 	self = this
-
 	self.init = function() {
 		switch ("id" in $stateParams) {
 			case true:
@@ -19,6 +18,11 @@ angular.module('subgrupoCtrl', ['subgrupoService'])
 			default:
 				console.log('testando...')
 			}
+
+		$http.get(`${baseURL}/grupo`)
+		.then((req) => {
+			self.grupos = req.data.result
+		})
 	}
 
 	self.consultarSubgrupo = function() {
