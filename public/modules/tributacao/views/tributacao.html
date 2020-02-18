@@ -1,0 +1,26 @@
+<md-toolbar>
+  <md-fab-actions class="md-toolbar-tools">
+    <md-button ng-click="ctrl.novoTributacao()" aria-label="comment" class="md-icon-button-primary">
+      <i class="fas fa-plus"> tributacaos</i>      
+    </md-button>
+  </md-fab-actions>
+  </md-toolbar>
+</md-fab-toolbar>
+<div >
+
+  <md-list>
+    <md-list-item  class="noright" ng-repeat="(key, tributacao) in ctrl.tributacaos">
+      <i class="fas fa-user-alt" style="margin-right: 2%;"></i>
+      <p> <strong>{{ tributacao.descricao }}</strong>  <i style="color: #B6B6B6"layout-align="end center">atualizado: {{tributacao.log_atualizacao | date: 'dd/MM/yyyy'}}</i> </p>
+      
+      <md-button  ng-click="ctrl.irTributacao(tributacao.id)" class="md-icon-button md-primary" arial-label="Mora">
+        <i class="fas fa-address-card"></i>
+      </md-button>
+      <md-button ng-click="ctrl.remover(tributacao.id) " class="md-icon-button md-warn" >
+        <md-icon class="fas fa-trash-alt" ></md-icon>
+      </md-button>
+      <!-- <i class="fas fa-plus-circle" style="margin-right: 2%;"> </i> -->
+      <!-- <md-icon class="md-secondary"  aria-label="Chat" md-svg-icon="communication:message"></md-icon> -->
+    </md-list-item>
+  </md-list>
+</div>

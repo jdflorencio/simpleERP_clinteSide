@@ -1,0 +1,104 @@
+<div ng-cloak>
+  <md-content layout-margin="">
+    <div layout-wrap="" layout="row">
+      <div flex="40">
+        <div flex="100" layout="row">
+          <div flex="" layout-margin="">
+            <h3>Informações do Tributo</h3>
+          </div>
+        </div>
+        <md-card >
+          <md-card-content>
+            <div layout="row" layout-wrap="">
+              <div flex="25">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Código Interno</label>
+                  <input ng-model="ctrl.tributo.id" disabled>
+                </md-input-container>
+              </div>
+              <div flex="">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Descrição</label>
+                  <input ng-model="ctrl.tributo.descricao" >
+                </md-input-container>
+              </div>      
+            </div>
+          </md-card-content>
+        </md-card>
+      </div>
+      <div flex="60">
+        <div flex="100" layout="row">
+          <div flex="" layout-margin="">
+            <h3>Aliquota ICMS </h3>
+          </div>
+        </div>
+        <md-card>
+          <md-card-content>
+            <div layout="row" layout-wrap="">
+              <div flex="25">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>%ICMS - DE</label>
+                  <input ng-model="ctrl.tributo.aliq_icms_venda_dentro_estado" >
+                </md-input-container>
+              </div>
+              <div flex="25">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>%ICMS - FE</label>
+                  <input ng-model="ctrl.tributo.aliq_icms_venda_fora_estado" >
+                </md-input-container>
+              </div>
+              <div flex="25">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>%REDUÇÃO - FE</label>
+                  <input ng-model="ctrl.tributo.aliq_icms_reducao_venda" >
+                </md-input-container>
+              </div>
+              <div flex="25">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>%REDUÇÃO - FE</label>
+                  <input ng-model="ctrl.tributo.aliq_icms_reducao_venda" >
+                </md-input-container>
+              </div>
+            </div>
+          </md-card-content>
+        </md-card>
+      </div>
+
+      <div flex="40">
+        <div flex="100" layout="row">
+          <div flex="" layout-margin="">
+            <h3>PIS E COFINS</h3>
+          </div>
+        </div>
+        <md-card >
+          <md-card-content>
+            <div layout="row" layout-wrap="">
+              <div flex="25">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Código Interno</label>
+                  <input ng-model="ctrl.tributo.id" disabled>
+                </md-input-container>
+              </div>
+              <div flex="">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Descrição</label>
+                  <input ng-model="ctrl.tributo.descricao" >
+                </md-input-container>
+              </div>      
+            </div>
+          </md-card-content>
+        </md-card>
+      </div>
+           
+      
+      <div flex="100" layout-margin="">
+        <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
+          <md-button class="md-primary" ng-click="ctrl.salvarAtualizar()">Salvar</md-button>
+          <md-button ng-click="ctrl.cancelar()" class="md-warn">Cancelar</md-button>
+         </section>
+
+      </div>
+
+    </div>
+  </md-content>
+</div>

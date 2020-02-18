@@ -121,6 +121,34 @@ router.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
                 title: "Editando subgrupo"
             }
         })
+        .state('tributacao', {
+            url: '/tributacao',
+            templateUrl: '/modules/tributacao/views/tributacao.html',
+            controller: 'tributacaoCtrl',
+            controllerAs: 'ctrl',
+            params: {
+                title: "Tributacão"
+            }
+        })
+        .state('adicionar_tributo', {
+            url: '/tributo/add',
+            templateUrl: '/modules/subModules/tributo/views/tributo.html',
+            controller: 'tributoCtrl',
+            controllerAs: 'ctrl',
+            params: {
+                title: "Adicionar novo tributos"
+            }
+        })
+        .state('editar_tributo', {
+            url: '/tributo/:id',
+            templateUrl: '/modules/subModules/tributo/views/tributo.html',
+            controller: 'tributoCtrl',
+            controllerAs: 'ctrl',
+            params: {
+                title: "Editando tributo"
+            }
+        })
+
 
     $locationProvider.html5Mode(true);
 
