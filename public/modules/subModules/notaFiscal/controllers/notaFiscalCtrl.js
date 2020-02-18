@@ -33,9 +33,8 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 		$http.get(`${host}/${$stateParams.id}`)
 		.then( ( obj ) => {
 			const { result } =  obj.data
-			self.notaFiscal = result.notaFiscal
-			self.grupo = result.grupo
-			self.subgrupo = result.subgrupo
+			self.notaFiscal = result
+			console.log(self.notaFiscal)
 		})
 		.catch((error) => {
 			console.log(error)
