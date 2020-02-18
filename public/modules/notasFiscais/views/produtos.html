@@ -1,0 +1,38 @@
+<md-toolbar>
+  <md-fab-actions class="md-toolbar-tools">
+
+    <md-button ng-click="ctrl.novoNotasFiscais()" aria-label="comment" class="md-icon-button-primary">
+      <i class="fas fa-plus"> NotasFiscaiss</i>
+    </md-button>
+
+    <md-button ng-click="ctrl.irTributos()" aria-label="comment" class="md-icon-button-primary">
+      <i class="fas fa-money-check-alt"> Tributos</i>
+    </md-button>
+
+    <md-button ng-click="ctrl.irGrupos()" aria-label="comment" class="md-icon-button-primary">
+      <i class="fas fa-layer-group"> Grupos</i>
+    </md-button>
+
+    </md-fab-actions>
+</md-toolbar>
+</md-fab-toolbar>
+<div >
+
+  <div class="nav-header" ng-click="doTheBack()">Reverse!</div>
+  <md-subheader class="md-no-sticky">Lista de notasFiscaiss</md-subheader> 
+  <md-list>
+    <md-list-item  class="noright" ng-repeat="(key, notasFiscais) in ctrl.notasFiscaiss">
+      <i class="fas fa-user-alt" style="margin-right: 2%;"></i>
+      <p> <strong>{{ notasFiscais.descricao }}</strong>  <i style="color: #B6B6B6"layout-align="end center">atualizado: {{notasFiscais.log_atualizacao | date: 'dd/MM/yyyy'}}</i> </p>
+      
+      <md-button  ng-click="ctrl.irNotasFiscais(notasFiscais.id)" class="md-icon-button md-primary" arial-label="Mora">
+        <i class="fas fa-address-card"></i>
+      </md-button>
+      <md-button ng-click="ctrl.remover(notasFiscais.id) " class="md-icon-button md-warn" >
+        <md-icon class="fas fa-trash-alt" ></md-icon>
+      </md-button>
+      <!-- <i class="fas fa-plus-circle" style="margin-right: 2%;"> </i> -->
+      <!-- <md-icon class="md-secondary"  aria-label="Chat" md-svg-icon="communication:message"></md-icon> -->
+    </md-list-item>
+  </md-list>
+</div>
