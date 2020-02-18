@@ -81,22 +81,49 @@
               </div>
               <div flex="30">
                 <md-input-container class="md-block" flex-gt-sm>
-                  <label>ALIQUOTA PIS</label>
+                  <label>Aliquota PIS</label>
                   <input ng-model="ctrl.tributo.aliq_pis_venda" >
                 </md-input-container>                
               </div>
               <div flex="20">
                 <md-input-container class="md-block" flex-gt-sm>
-                  <label>ALIQUOTA COFINS</label>
+                  <label>CST COFINS</label>
                   <input ng-model="ctrl.tributo.cst_cofins_venda" >
                 </md-input-container>                
               </div>
               <div flex="30">
                 <md-input-container class="md-block" flex-gt-sm>
-                  <label>ALIQUOTA COFINS</label>
+                  <label>Aliquota COFINS</label>
                   <input ng-model="ctrl.tributo.aliq_cofins_venda" >
                 </md-input-container>                
               </div>
+            </div>
+          </md-card-content>
+        </md-card>
+      </div>
+
+      <div flex="40">
+        <div flex="100" layout="row">
+          <div flex="" layout-margin="">
+            <h3>CFOP</h3>
+          </div>
+        </div>
+        <md-card >
+          <md-card-content>
+            <div layout="row" layout-wrap="">
+              <div flex="50">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Dentro do estado </label>
+                  <input ng-model="ctrl.tributo.cfop_dentro_estado" >
+                </md-input-container>
+              </div>
+              <div flex="50">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Fora do estado</label>
+                  <input ng-model="ctrl.tributo.cfop_fora_estado" >
+                </md-input-container>                
+              </div>
+            
             </div>
           </md-card-content>
         </md-card>

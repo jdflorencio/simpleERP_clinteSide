@@ -47,9 +47,9 @@ angular.module('tributoCtrl', ['tributoService'])
 		let type = 'error'
 		switch ("id" in $stateParams && $stateParams.id != '' ) {
 			case true:				
-					const result  = $http.put(`${host}/`, self.tributo)
+					$http.put(`${host}/`, self.tributo)
 					.then((result =>{						
-						$state.go('tributos', {id: result.data.id});
+						$state.go('tributacao');
 						let msg = result.data.sucesso ? result.data.msg :data.error.message
 						ngNotify.set(`${msg}`, {
 							type:'info'
@@ -70,9 +70,13 @@ angular.module('tributoCtrl', ['tributoService'])
 			case false:
 				$http.post(`${host}`, self.tributo)
 					.then((result) => {
-						$state.go('tributos');
+
+						const { data } = result.data
+						console.log(data)
+						$state.go('editar_tributo', {id: data.id})
+						
 						let msg = result.data.sucesso ? result.data.msg : result.data.error.message
-						ngNotify.set(`${msg}`, {type:'info',  theme: 'pastel'});
+						ngNotify.set(`${msg}`, {type:'info',  theme: 'pastel'})
 					}).catch( error => {
 						ngNotify.set(`${message}`, {
 							type: type,

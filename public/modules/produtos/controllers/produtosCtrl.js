@@ -18,7 +18,7 @@ angular.module('produtosCtrl', ['produtosService'])
 	}
 
 	self.irTributos = function(produtoId) {
-		$state.go('editar_produto', {id: produtoId})
+		$state.go('tributacao', {id: produtoId})
 	}
 
 	self.irGrupos = function(produtoId) {
