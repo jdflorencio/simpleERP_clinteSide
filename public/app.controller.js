@@ -15,8 +15,11 @@ angular.module('appCtrl',[])
 			Produtos: {
 				title: "Produto",
 				href: "/produtos"
-			}
-			
+			},
+			notasFiscais: {
+				title: "Notas Fiscais",
+				href: "/notasfiscais"
+			}		
 		}
 
     // Update title using rootscope

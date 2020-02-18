@@ -1,12 +1,12 @@
-angular.module('notasFiscaissService', [])
-.factory('notasFiscaiss', function($http) {
+angular.module('notasFiscaisService', [])
+.factory('NotasFiscais', function($http) {
     
-    var exampleFactory = {};
+    var notasFiscaisFactory = {};
 
-    exampleFactory.all = function() {
-        //return $http.get(API.URL/example);
+    notasFiscaisFactory.all = function() {
+        //return $http.get(API.URL/notasFiscais);
     };
 
-    return exampleFactory;
+    return notasFiscaisFactory;
 
 });

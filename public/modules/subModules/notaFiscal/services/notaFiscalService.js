@@ -1,4 +1,4 @@
-angular.module('produtoService', [])
+angular.module('notaFiscalService', [])
 .factory('Cliente', function($http) {
     
     var exampleFactory = {};

@@ -27,6 +27,11 @@ var materialApp = angular
     'tributoCtrl',
     'tributoService',
 
+    'notasFiscaisCtrl',
+    'notasFiscaisService',
+    'notaFiscalCtrl',
+    'notaFiscalService',
+
     'ngNotify'
 
 ])

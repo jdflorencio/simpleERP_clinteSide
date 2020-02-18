@@ -147,6 +147,32 @@ router.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             params: {
                 title: "Editando tributo"
             }
+        }).state('notasfiscais', {
+            url: '/notasfiscais',
+            templateUrl: '/modules/notasFiscais/views/notasFiscais.html',
+            controller: 'notasFiscaisCtrl',
+            controllerAs: 'ctrl',
+            params: {
+                title: "Notas Fiscais"
+            }
+        })
+        .state('adicionar_nota_fiscal', {
+            url: '/notafiscal/add',
+            templateUrl: '/modules/subModules/notaFiscal/views/notaFiscal.html',
+            controller: 'notaFiscalCtrl',
+            controllerAs: 'ctrl',
+            params: {
+                title: "Adicionando uma nova nota Fiscal"
+            }
+        })
+        .state('editar_nota_fiscal', {
+            url: '/notafiscal/:id',
+            templateUrl: '/modules/subModules/notaFiscal/views/notaFiscal.html',
+            controller: 'notaFiscalCtrl',
+            controllerAs: 'ctrl',
+            params: {
+                title: "Editando a nota Fiscal"
+            }
         })
 
 
