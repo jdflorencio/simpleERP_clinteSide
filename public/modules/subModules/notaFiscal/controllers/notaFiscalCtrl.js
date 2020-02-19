@@ -86,4 +86,22 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 		}
 	}
 	self.init()
+
+
+    self.querySearch =  function(query) {
+		let list = {}
+		$http.get(`${baseURL}/produtofilter/${query}`)
+			.then((result) => {
+				list.produto = result.data.result
+				console.log(list.produto)
+				return [{desc : "novo"}]
+
+			})
+		
+		
+	  }
+
+
+
+	
 }]);
