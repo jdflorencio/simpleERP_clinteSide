@@ -63,11 +63,7 @@
 
 
       <div flex="100">
-        <div flex="100" layout="row">
-          <div flex="" layout-margin="">
-            <h3>Cabeçalho</h3>
-          </div>
-        </div>
+       
         <md-card flex="100">
           <md-card-content>
             <div layout="row" layout-wrap="">
@@ -87,7 +83,7 @@
               <div flex="">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Chave da Nota</label>
-                  <input ng-model="ctrl.notaFiscal.chave_nfe" disabled>
+                  <input ng-model="ctrl.notaFiscal.chave_nfe" >
                 </md-input-container>
               </div>              
             </div>
@@ -100,6 +96,7 @@
                <md-card flex="100">
           <md-card-content>
             <div layout="row" layout-wrap="">
+              {{ctrl.notaFiscal.nota_itens.subtotal}}
               <table class="mdc-data-table__table">
                 <thead>
                     <tr>
@@ -112,22 +109,24 @@
                       <th>Desc.</th>
                       <th>Acresc.</th>
                       <th>SubTotal</th>
-                      <th style="display: none;">Total</th>
+                      <!-- <th style="display: none;">Total</th> -->
                     </tr>
                   </thead>
                   <tbody  class="mdc-data-table__content">
+
                     <tr ng-repeat="item in ctrl.notaFiscal.nota_itens" class="mdc-data-table__row" >
-                      {{item}}
+
                     <td >{{item.id}}</td>
-                    <td flex="40" class="mdc-data-table__cell">{{item.descricao}}</td>
+                    <td flex="40" class="mdc-data-table__cell">{{item.produto.descricao}}</td>
                     <td class="mdc-data-table__cell">{{item.cfop}}</td>
                     <td class="mdc-data-table__cell">{{item.cst}}</td class="mdc-data-table__cell">
                     <td class="mdc-data-table__cell">{{item.quantidade}}</td class="mdc-data-table__cell">
-                    <td class="mdc-data-table__cell">{{item.vl_venda}}</td class="mdc-data-table__cell">
-                    <td class="mdc-data-table__cell"></td class="mdc-data-table__cell">
-                    <td class="mdc-data-table__cell"></td class="mdc-data-table__cell">
-                    <td class="mdc-data-table__cell"></td class="mdc-data-table__cell">
-                    <td style="display: none;" class="mdc-data-table__cell"></td></tr>
+                    <td class="mdc-data-table__cell">R${{item.produto.vl_venda}}</td class="mdc-data-table__cell">
+                    <td class="mdc-data-table__cell">R${{item.acrescimo}}</td class="mdc-data-table__cell">
+                    <td class="mdc-data-table__cell">R${{item.subtotal}} </td class="mdc-data-table__cell">
+                    <td class="mdc-data-table__header-cell--numeric">R${{item.subtotal}} </td class="mdc-data-table__cell">
+                    <!-- <td style="display: none;" class="mdc-data-table__cell"></td> -->
+                  </tr>
                     
                   </tbody>
                   <tfoot></tfoot>
@@ -155,3 +154,16 @@
     </div>
   </md-content>
 </div>
+
+
+<style> 
+  table {
+    text-align: center !important;
+    width: 100%;
+  }
+  
+  .mat-header-cell {
+    text-align: center;
+  }
+
+</style>
