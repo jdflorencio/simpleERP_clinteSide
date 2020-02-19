@@ -100,7 +100,7 @@
                <md-card flex="100">
           <md-card-content>
             <div layout="row" layout-wrap="">
-              <table class="class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp"">
+              <table class="mdc-data-table__table">
                 <thead>
                     <tr>
                       <th>Id</th>
@@ -112,10 +112,22 @@
                       <th>Desc.</th>
                       <th>Acresc.</th>
                       <th>SubTotal</th>
-                      <th>Total</th>
+                      <th style="display: none;">Total</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody  class="mdc-data-table__content">
+                    <tr ng-repeat="item in ctrl.notaFiscal.nota_itens" class="mdc-data-table__row" >
+                      {{item}}
+                    <td >{{item.id}}</td>
+                    <td flex="40" class="mdc-data-table__cell">{{item.descricao}}</td>
+                    <td class="mdc-data-table__cell">{{item.cfop}}</td>
+                    <td class="mdc-data-table__cell">{{item.cst}}</td class="mdc-data-table__cell">
+                    <td class="mdc-data-table__cell">{{item.quantidade}}</td class="mdc-data-table__cell">
+                    <td class="mdc-data-table__cell">{{item.vl_venda}}</td class="mdc-data-table__cell">
+                    <td class="mdc-data-table__cell"></td class="mdc-data-table__cell">
+                    <td class="mdc-data-table__cell"></td class="mdc-data-table__cell">
+                    <td class="mdc-data-table__cell"></td class="mdc-data-table__cell">
+                    <td style="display: none;" class="mdc-data-table__cell"></td></tr>
                     
                   </tbody>
                   <tfoot></tfoot>

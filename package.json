@@ -8,6 +8,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@material/data-table": "^5.0.0",
     "angular": "^1.5.7",
     "angular-animate": "^1.5.7",
     "angular-aria": "^1.5.7",
