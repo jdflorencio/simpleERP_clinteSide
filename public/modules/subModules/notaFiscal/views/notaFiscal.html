@@ -1,7 +1,7 @@
 <div ng-cloak>  
   <md-content layout-margin="">
     <div layout-wrap="" layout="row">
-      <div flex="100" style="display: none;">
+      <div flex="100" >
         <div flex="100" layout="row">
           <div flex="" layout-margin="">
             <h3>Cabeçalho</h3>
@@ -69,7 +69,17 @@
               <div flex="15">         
                        
                 <md-autocomplete 
-                md-floating-label="Produto" flex="" required="" md-input-minlength="2" md-input-maxlength="18"  md-selected-item="ctrl.selectedIte" md-search-text="ctrl.searchText" md-items="item in ctrl.querySearch(ctrl.searchText)" md-item-text="item.descricao" md-require-match=""  input-aria-describedby="favoriteStateDescription">
+
+                  md-floating-label="Produto" 
+                  flex="" required="" 
+                  md-input-minlength="2" 
+                  md-input-maxlength="18"  
+                  md-selected-item-change="ctrl.selectedItemChange(item)"
+                  md-search-text="ctrl.searchText" 
+                  md-items="item in ctrl.querySearch(ctrl.searchText)" 
+                  md-item-text="item.descricao" 
+                  md-require-match=""  
+                  input-aria-describedby="favoriteStateDescription">
                   <md-item-template>
                     <span >{{item.descricao}}</span>
                   </md-item-template>

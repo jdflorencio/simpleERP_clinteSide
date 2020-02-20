@@ -5,10 +5,12 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 	'configURL',
 	'ngNotify',
 	'$scope',
-	function($http, $stateParams, $state, configURL, ngNotify, $scope,) {
+	function($http, $stateParams, $state, configURL, ngNotify, $scope) {
 	
 	self = this	
-	self.querySearch   = querySearch;
+	self.querySearch   = querySearch
+	self.selectedItemChange = selectedItemChange
+	
 
 	const { baseURL } = configURL
 	const host = `${baseURL}/notaFiscal`
@@ -88,7 +90,8 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 				})
 		}
 	}
-	
+
+	//AUTOCOMPLETE
 
     function querySearch(query) {
 
@@ -100,19 +103,12 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 				.catch( error  => {
 					console.erros(error)
 				})
-
-				
-		}
-
-	//   return produtos
-	// return res.result
-
+			}
+			return []
 	  }
 
-
-	  self.init()
-
-
-
-	
+	  function selectedItemChange(item) {
+		console.log(item)
+	  }
+	  self.init()	
 }]);
