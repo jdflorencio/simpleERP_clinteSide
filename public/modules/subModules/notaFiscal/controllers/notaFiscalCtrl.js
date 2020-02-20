@@ -5,9 +5,11 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 	'configURL',
 	'ngNotify',
 	'$scope',
-	function($http, $stateParams, $state, configURL, ngNotify, $scope) {
+	function($http, $stateParams, $state, configURL, ngNotify, $scope,) {
 	
 	self = this	
+	self.querySearch   = querySearch;
+
 	const { baseURL } = configURL
 	const host = `${baseURL}/notaFiscal`
 	self.init = function() {
@@ -25,6 +27,7 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 				}
 			}
 		}
+
 	self.salvarGeral = function() {
 		console.log('aqui',self.notaFiscal)	
 	}
@@ -34,7 +37,7 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 		.then( ( obj ) => {
 			const { result } =  obj.data
 			self.notaFiscal = result
-			console.log(self.notaFiscal)
+			
 		})
 		.catch((error) => {
 			console.log(error)
@@ -85,21 +88,29 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 				})
 		}
 	}
-	self.init()
+	
 
+    function querySearch(query) {
 
-    self.querySearch =  function(query) {
-		let list = {}
-		$http.get(`${baseURL}/produtofilter/${query}`)
-			.then((result) => {
-				list.produto = result.data.result
-				console.log(list.produto)
-				return [{desc : "novo"}]
+		if (query.length > 2)	{
+				return $http.get(`${baseURL}/produtofilter/${query}`).then( res => {
+					console.info(res.data.result)
+					return res.data.result
+				})
+				.catch( error  => {
+					console.erros(error)
+				})
 
-			})
-		
-		
+				
+		}
+
+	//   return produtos
+	// return res.result
+
 	  }
+
+
+	  self.init()
 
 
 

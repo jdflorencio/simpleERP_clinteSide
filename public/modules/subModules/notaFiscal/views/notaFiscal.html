@@ -66,12 +66,15 @@
         <md-card flex="100">
           <md-card-content>
             <div layout="row" layout-wrap="">
-              <div flex="15">                
-                <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in ctrl.querySearch(searchText)">
+              <div flex="15">         
+                       
+                <md-autocomplete 
+                md-floating-label="Produto" flex="" required="" md-input-minlength="2" md-input-maxlength="18"  md-selected-item="ctrl.selectedIte" md-search-text="ctrl.searchText" md-items="item in ctrl.querySearch(ctrl.searchText)" md-item-text="item.descricao" md-require-match=""  input-aria-describedby="favoriteStateDescription">
                   <md-item-template>
-                    <span md-highlight-text="searchText">{{item}}</span>
+                    <span >{{item.descricao}}</span>
                   </md-item-template>
-                </md-autocomplete>                  
+                  
+                </md-autocomplete>               
 
               </div>
            
