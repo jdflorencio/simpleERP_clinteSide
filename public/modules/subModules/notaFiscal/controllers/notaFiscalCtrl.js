@@ -10,6 +10,8 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 	self = this	
 	self.querySearch   = querySearch
 	self.selectedItemChange = selectedItemChange
+	self.chosenItemToAdd;
+	
 	
 
 	const { baseURL } = configURL
@@ -108,7 +110,8 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 	  }
 
 	  function selectedItemChange(item) {
-		console.log(item)
+		self.chosenItemToAdd = item
 	  }
-	  self.init()	
+	  self.init()
+	  console.log(self.selectedItemChange)	
 }]);

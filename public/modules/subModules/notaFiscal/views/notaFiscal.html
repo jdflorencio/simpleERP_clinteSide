@@ -1,7 +1,7 @@
-<div ng-cloak>  
+<div ng-cloak>
   <md-content layout-margin="">
     <div layout-wrap="" layout="row">
-      <div flex="100" >
+      <div flex="100" style="display: none" >
         <div flex="100" layout="row">
           <div flex="" layout-margin="">
             <h3>Cabeçalho</h3>
@@ -60,20 +60,29 @@
           </md-card-content>
         </md-card>
       </div>
-
       <div flex="100">
-       
         <md-card flex="100">
-          <md-card-content>
+          <md-card-content layout-padding="1">
             <div layout="row" layout-wrap="">
-              <div flex="15">         
-                       
-                <md-autocomplete 
+              <div flex="10">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Codigo</label>
+                  <input ng-model="ctrl.chosenItemToAdd.id" disabled>
+                </md-input-container>
+              </div>
+              <div flex="15">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Codigo de Barras</label>
+                  <input ng-model="ctrl.chosenItemToAdd.codigo_ean" disabled>
+                </md-input-container>
+              </div>
 
-                  md-floating-label="Produto" 
-                  flex="" required="" 
+              <div flex="40">
+                <md-autocomplete
+                  md-floating-label="Produto"
+                  required=""
                   md-input-minlength="2" 
-                  md-input-maxlength="18"  
+                  md-input-maxlength="18"
                   md-selected-item-change="ctrl.selectedItemChange(item)"
                   md-search-text="ctrl.searchText" 
                   md-items="item in ctrl.querySearch(ctrl.searchText)" 
@@ -83,31 +92,92 @@
                   <md-item-template>
                     <span >{{item.descricao}}</span>
                   </md-item-template>
-                  
-                </md-autocomplete>               
-
+                </md-autocomplete>
               </div>
-           
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
-                  <label>Codigo de Barras</label>
-                  <input ng-model="ctrl.notaFiscal.numero" disabled>
+                  <label>CFOP</label>
+                  <input ng-model="ctrl.chosenItemToAdd.tributacao.cfop">
                 </md-input-container>
               </div>
-              <div flex="">
+              <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
-                  <label>Chave da Nota</label>
-                  <input ng-model="ctrl.notaFiscal.chave_nfe" >
+                  <label>CST</label>
+                  <input ng-model="ctrl.chosenItemToAdd.cst_icms">
                 </md-input-container>
-              </div>              
+              </div>
             </div>
-            <div flex="100" layout-margin="">
-              <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
+
+
+
+            <div layout="row" layout-wrap="">
+              <div flex="10">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Aliquota ICMS</label>
+                  <input ng-model="ctrl.chosenItemToAdd.aliq_icms_venda_dentro_estado" disabled>
+                </md-input-container>
+              </div>
+              <div flex="10">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Aliquota ICMS</label>
+                  <input ng-model="ctrl.chosenItemToAdd.aliq_icms_venda_dentro_estado" disabled>
+                </md-input-container>
+              </div>
+
+            </div>
+
+
+
+            <div layout="row" layout-wrap="">
+              <div flex="10">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>estoque atual</label>
+                  <input ng-model="ctrl.chosenItemToAdd.estoque_atual" disabled>
+                </md-input-container>
+              </div>
+              <div flex="10">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>NCM</label>
+                  <input ng-model="ctrl.chosenItemToAdd.ncm" >
+                </md-input-container>
+              </div>
+              <div flex="10">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Quantidade</label>
+                  <input ng-model="ctrl.chosenItemToAdd.quantidade" >
+                </md-input-container>
+              </div>
+              <div flex="10">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Preço de venda</label>
+                  <input ng-model="ctrl.chosenItemToAdd.vl_venda" >
+                </md-input-container>
+              </div>
+              <div flex="10">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Desconto</label>
+                  <input ng-model="ctrl.chosenItemToAdd.desconto" >
+                </md-input-container>
+              </div>
+              <div flex="10">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Acrescimo</label>
+                  <input ng-model="ctrl.chosenItemToAdd.acrescimo" >
+                </md-input-container>
+              </div>
+              <div flex="10">
+              </div>
+            <div flex="" layout-padding="">
+              <section
+                layout="row"
+                layout-sm="column"
+                layout-align="end center"
+                layout-wrap>
                 <md-button class="md-primary" ng-click="ctrl.salvarAtualizar()">Adicionar Produto</md-button>
               </section>
-      
             </div>
-               <md-card flex="100">
+            </div>
+            <md-card flex="100">
           <md-card-content>
             <div layout="row" layout-wrap="">
 
