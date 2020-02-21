@@ -4,7 +4,9 @@ angular.module('notaFiscalService', [])
     const { baseURL } = configURL
     const host = `${baseURL}/notaFiscal`    
     const NotaFiscalFactory = {}
-    
+    const message = ':( Houve um error Inesperado '
+	const type = 'error'
+
 	NotaFiscalFactory.consultarNotaFiscal = function() {
 		$http.get(`${host}/${$stateParams.id}`)
 		.then( ( obj ) => {

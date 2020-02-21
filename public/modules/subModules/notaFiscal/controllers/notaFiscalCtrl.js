@@ -41,11 +41,9 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 	}
 
 	self.salvarAtualizar = () => {
-		let message = ':( Houve um error Inesperado '
-		let type = 'error'
 		switch ("id" in $stateParams && $stateParams.id != '' ) {
 			case true:
-					NotaFiscal.atualizar()
+				NotaFiscal.atualizar()
 				break
 			case false:				
 				NotaFiscal.salvar()
@@ -54,7 +52,6 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 
 	// AUTOCOMPLETE
     function querySearch(query) {
-
 		if (query.length > 2)	{
 				return $http.get(`${baseURL}/produtofilter/${query}`).then( res => {
 					return res.data.result
