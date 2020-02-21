@@ -54,6 +54,18 @@ angular.module('notaFiscalService', [])
 				})
     }
 
+    NotaFiscalFactory.querySearch = function(query) {
+		if (query.length > 2)	{
+				return $http.get(`${baseURL}/produtofilter/${query}`).then( res => {
+					return res.data.result
+				})
+				.catch( error  => {
+					console.erros(error)
+				})
+			}
+			return []
+	  }
+
     return NotaFiscalFactory;
 
 });

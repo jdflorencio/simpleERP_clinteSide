@@ -10,7 +10,7 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 	function($http, $stateParams, $state, configURL, ngNotify, $scope, NotaFiscal) {
 
 	self = this	
-	self.querySearch   = querySearch
+	self.querySearch   = NotaFiscal.querySearch
 	self.selectedItemChange = selectedItemChange
 	self.chosenItemToAdd;
 
@@ -50,21 +50,9 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 		}
 	}
 
-	// AUTOCOMPLETE
-    function querySearch(query) {
-		if (query.length > 2)	{
-				return $http.get(`${baseURL}/produtofilter/${query}`).then( res => {
-					return res.data.result
-				})
-				.catch( error  => {
-					console.erros(error)
-				})
-			}
-			return []
-	  }
-
-	  function selectedItemChange(item) {
+	function selectedItemChange(item) {
 		self.chosenItemToAdd = item
 	  }
+
 	  self.init()
 }]);
