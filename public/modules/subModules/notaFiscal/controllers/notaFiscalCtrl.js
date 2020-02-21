@@ -5,7 +5,7 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 	'NotaFiscal',
 	function($stateParams, $state, NotaFiscal) {
 
-	self = this		
+	self = this
 	self.querySearch = NotaFiscal.querySearch
 
 	// CLIENTE	
