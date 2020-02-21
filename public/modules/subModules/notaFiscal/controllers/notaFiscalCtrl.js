@@ -6,13 +6,11 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 	'ngNotify',
 	'$scope',
 	function($http, $stateParams, $state, configURL, ngNotify, $scope) {
-	
+
 	self = this	
 	self.querySearch   = querySearch
 	self.selectedItemChange = selectedItemChange
-	self.chosenItemToAdd;
-	
-	
+	self.chosenItemToAdd;	
 
 	const { baseURL } = configURL
 	const host = `${baseURL}/notaFiscal`
@@ -41,7 +39,6 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 		.then( ( obj ) => {
 			const { result } =  obj.data
 			self.notaFiscal = result
-			
 		})
 		.catch((error) => {
 			console.log(error)
@@ -53,11 +50,10 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 	}
 
 	self.salvarAtualizar = () => {
-
 		let message = ':( Houve um error Inesperado '
 		let type = 'error'
 		switch ("id" in $stateParams && $stateParams.id != '' ) {
-			case true:				
+			case true:
 					const result  = $http.put(`${host}/`, self.notaFiscal)
 					.then((result =>{						
 						$state.go('notaFiscals', {id: result.data.id});
@@ -67,11 +63,11 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 						});
 					}))
 					.catch ((error)=> {
-						
+
 						if (error.data.error) {
 							message = `${error.data.error.message} em (${error.data.error.error[0]})`
 							type = 'warn'
-						}		
+						}
 						ngNotify.set(`${message}`, {
 							type: type,
 							theme: 'pastel'
@@ -93,8 +89,7 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 		}
 	}
 
-	//AUTOCOMPLETE
-
+	// AUTOCOMPLETE
     function querySearch(query) {
 
 		if (query.length > 2)	{
@@ -113,5 +108,5 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 		self.chosenItemToAdd = item
 	  }
 	  self.init()
-	  console.log(self.selectedItemChange)	
+	  console.log(self.selectedItemChange)
 }]);
