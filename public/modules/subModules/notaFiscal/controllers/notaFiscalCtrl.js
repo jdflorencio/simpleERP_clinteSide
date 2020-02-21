@@ -22,12 +22,24 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 				NotaFiscal.consultarNotaFiscal()
 				break
 			default:
-				self.notaFiscal = {
-				estoque_minimo: 0,
-				estoque_maximo: 0,
-				estoque_atual : 0,
-				vl_custo: 0,
-				vl_venda: 0
+					self.chosenItemToAdd = {					
+						aliq_icms_venda_dentro_estado: 0.0,
+						aliq_icms_venda_fora_estado: 0.0,
+						aliq_icms_reducao_venda: 0.0,
+						cst_base_venda: 0.0,
+						cst_pis_venda: 0.0,
+						aliq_pis_venda: 0.0,
+						cst_cofins_venda: 0.0,
+						aliq_cofins_venda: 0.0,
+						aliq_icms_compra_dentro_estado: 0.0,
+						aliq_icms_compra_fora_estado: 0.0,
+						aliq_icms_reducao_compra: 0.0,
+						cst_base_compra: 0.0,
+						cst_pis_compra: 0.0,
+						aliq_pis_compra: 0.0,
+						cst_cofins_compra: 0.0,
+						aliq_cofins_compra: 0.0,
+						mva: 0.0
 				}
 			}
 		}
@@ -50,8 +62,8 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 		}
 	}
 
-	function selectedClienteChange(item) {
-		self.chosenItemToAdd = item
+	function selectedClienteChange(cliente) {
+		self.chosenClienteToAdd = cliente
 	}
 
 	function selectedItemChange(item) {

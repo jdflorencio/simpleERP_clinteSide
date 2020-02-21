@@ -1,7 +1,7 @@
 <div ng-cloak>
   <md-content layout-margin="">
     <div layout-wrap="" layout="row">
-      <div flex="100"  >
+      <div flex="100">
         <div flex="100" layout="row">
           <div flex="" layout-margin="">
             <h3>Cabeçalho</h3>
@@ -15,7 +15,7 @@
                   <label>Código</label>
                   <input ng-model="ctrl.notaFiscal.id" disabled>
                 </md-input-container>
-              </div>           
+              </div>
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Número da Nota</label>
@@ -28,45 +28,38 @@
                   <input ng-model="ctrl.notaFiscal.chave_nfe" disabled>
                 </md-input-container>
               </div>
-              
+
             </div>
-            <div layout="row" layout-wrap="">              
+            <div layout="row" layout-wrap="">
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Tipo da nota</label>
                   <input ng-model="ctrl.notaFiscal.tipo" disabled>
                 </md-input-container>
               </div>
-              
+
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
-                  <label>Codígo do Cliente</label>
-                  <input ng-model="ctrl.notaFiscal.pessoaId" disabled>
+                  <label>Codigo do Cliente</label>
+                  <input ng-model="ctrl.chosenClienteToAdd.id" disabled>
                 </md-input-container>
               </div>
-              <div flex="30">             
+              <div flex="30">
 
-                  <md-autocomplete
-                    md-floating-label="cliente"
-                    required=""
-                    md-input-minlength="2" 
-                    md-input-maxlength="18"
-                    md-selected-item-change="ctrl.selectedClienteChange(item)"
-                    md-search-text="ctrl.searchCliente" 
-                    md-items="item in ctrl.querySearch(ctrl.searchCliente, 'cliente')" 
-                    md-item-text="item.nome" 
-                    md-require-match=""  
-                  input-aria-describedby="favoriteStateDescription">
+                <md-autocomplete md-floating-label="cliente" required="" md-input-minlength="2" md-input-maxlength="18"
+                  md-selected-item-change="ctrl.selectedClienteChange(item)" md-search-text="ctrl.searchCliente"
+                  md-items="item in ctrl.querySearch(ctrl.searchCliente, 'cliente')" md-item-text="item.nome"
+                  md-require-match="" input-aria-describedby="favoriteStateDescription">
                   <md-item-template>
-                    <span >{{item.nome}}</span>
+                    <span>{{item.nome}}</span>
                   </md-item-template>
-                  </md-autocomplete>
+                </md-autocomplete>
 
               </div>
               <div flex="30">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Data de Emissão</label>
-                  <input ng-model="ctrl.notaFiscal.data_emssao" >
+                  <input ng-model="ctrl.notaFiscal.data_emssao">
                 </md-input-container>
               </div>
             </div>
@@ -91,19 +84,12 @@
               </div>
 
               <div flex="40">
-                <md-autocomplete
-                  md-floating-label="Produto"
-                  required=""
-                  md-input-minlength="2" 
-                  md-input-maxlength="18"
-                  md-selected-item-change="ctrl.selectedItemChange(item)"
-                  md-search-text="ctrl.searchProduto" 
-                  md-items="item in ctrl.querySearch(ctrl.searchProduto, 'produto')" 
-                  md-item-text="item.descricao" 
-                  md-require-match=""  
-                  input-aria-describedby="favoriteStateDescription">
+                <md-autocomplete md-floating-label="Produto" required="" md-input-minlength="2" md-input-maxlength="18"
+                  md-selected-item-change="ctrl.selectedItemChange(item)" md-search-text="ctrl.searchProduto"
+                  md-items="item in ctrl.querySearch(ctrl.searchProduto, 'produto')" md-item-text="item.descricao"
+                  md-require-match="" input-aria-describedby="favoriteStateDescription">
                   <md-item-template>
-                    <span >{{item.descricao}}</span>
+                    <span>{{item.descricao}}</span>
                   </md-item-template>
                 </md-autocomplete>
               </div>
@@ -125,142 +111,137 @@
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Aliquota ICMS</label>
-                  <input ng-model="ctrl.chosenItemToAdd.tributacao.aliq_icms_venda_dentro_estado" disabled>
+                  <input ng-model="ctrl.chosenItemToAdd.aliq_icms_venda_dentro_estado" ui-number-mask
+                    disabled>
                 </md-input-container>
               </div>
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Base ICMS</label>
-                  <input ng-model="ctrl.chosenItemToAdd.aliq_icms_venda_dentro_estado" disabled>
+                  <input ng-model="ctrl.chosenItemToAdd.aliq_icms_venda_dentro_estado" ui-number-mask disabled>
                 </md-input-container>
               </div>
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Base ICMS</label>
-                  <input ng-model="ctrl.chosenItemToAdd.aliq_icms_venda_dentro_estado" disabled>
+                  <input ng-model="ctrl.chosenItemToAdd.aliq_icms_venda_dentro_estado" ui-number-mask disabled>
                 </md-input-container>
               </div>
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Aliquota Ipi</label>
-                  <input ng-model="ctrl.chosenItemToAdd.aliq_icms_venda_dentro_estado" disabled>
+                  <input ng-model="ctrl.chosenItemToAdd.aliq_icms_venda_dentro_estado" ui-number-mask disabled>
                 </md-input-container>
               </div>
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Base ICMS Subst</label>
-                  <input ng-model="ctrl.chosenItemToAdd.aliq_icms_venda_dentro_estado" disabled>
+                  <input ng-model="ctrl.chosenItemToAdd.aliq_icms_venda_dentro_estado" ui-number-mask disabled>
                 </md-input-container>
               </div>
 
-
             </div>
-
-
 
             <div layout="row" layout-wrap="">
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>estoque atual</label>
-                  <input ng-model="ctrl.chosenItemToAdd.estoque_atual" disabled>
+                  <input ng-model="ctrl.chosenItemToAdd.estoque_atual" ui-number-mask disabled>
                 </md-input-container>
               </div>
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>NCM</label>
-                  <input ng-model="ctrl.chosenItemToAdd.ncm" >
+                  <input ng-model="ctrl.chosenItemToAdd.ncm">
                 </md-input-container>
               </div>
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Quantidade</label>
-                  <input ng-model="ctrl.chosenItemToAdd.quantidade" >
+                  <input ng-model="ctrl.chosenItemToAdd.quantidade" ui-number-mask>
                 </md-input-container>
               </div>
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Preço de venda</label>
-                  <input ng-model="ctrl.chosenItemToAdd.vl_venda" >
+                  <input ng-model="ctrl.chosenItemToAdd.vl_venda" ui-number-mask>
                 </md-input-container>
               </div>
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Desconto</label>
-                  <input ng-model="ctrl.chosenItemToAdd.desconto" >
+                  <input ng-model="ctrl.chosenItemToAdd.desconto" ui-number-mask>
                 </md-input-container>
               </div>
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Acrescimo</label>
-                  <input ng-model="ctrl.chosenItemToAdd.acrescimo" >
+                  <input ng-model="ctrl.chosenItemToAdd.acrescimo" ui-number-mask>
                 </md-input-container>
               </div>
               <div flex="10">
               </div>
-            <div flex="" layout-padding="">
-              <section
-                layout="row"
-                layout-sm="column"
-                layout-align="end center"
-                layout-wrap>
-                <md-button class="md-primary" ng-click="ctrl.salvarAtualizar()">Adicionar Produto</md-button>
-              </section>
-            </div>
+              <div flex="" layout-padding="">
+                <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
+                  <md-button class="md-primary" ng-click="ctrl.salvarAtualizar()">Adicionar Produto</md-button>
+                </section>
+              </div>
             </div>
             <md-card flex="100">
-          <md-card-content>
-            <div layout="row" layout-wrap="">
+              <md-card-content>
+                <div layout="row" layout-wrap="">
 
-            <div class="my-custom-scrollbar table-wrapper-scroll-y">
-              <table class="mdc-data-table__table ">
-                <thead">
-                    <tr>
-                      <th></th>
-                      <th>ID</th>
-                      <th>Descricão</th>
-                      <th>CFOP</th>
-                      <th>CST</th>
-                      <th>QTD</th>
-                      <th>Valor</th>
-                      <th>Desc.</th>
-                      <th>Acresc.</th>
-                      <th>SubTotal</th>
-                      <th>Ações</th>
-                      <!-- <th style="display: none;">Total</th> -->
-                    </tr>
-                  </thead>
-                  <tbody  class="mdc-data-table__content">
+                  <div class="my-custom-scrollbar table-wrapper-scroll-y">
+                    <table class="mdc-data-table__table ">
+                      <thead">
+                        <tr>
+                          <th></th>
+                          <th>ID</th>
+                          <th>Descricão</th>
+                          <th>CFOP</th>
+                          <th>CST</th>
+                          <th>QTD</th>
+                          <th>Valor</th>
+                          <th>Desc.</th>
+                          <th>Acresc.</th>
+                          <th>SubTotal</th>
+                          <th>Ações</th>
+                          <!-- <th style="display: none;">Total</th> -->
+                        </tr>
+                        </thead>
+                        <tbody class="mdc-data-table__content">
 
-                    <tr ng-repeat="item in ctrl.notaFiscal.nota_itens" class="mdc-data-table__row" >
-                    <td class="mdc-data-table__cell">{{$index +1 }}</td>
-                    <td class="mdc-data-table__cell">{{item.id}}</td>
-                    <td class="mdc-data-table__cell">{{item.produto.descricao}}</td>
-                    <td class="mdc-data-table__cell">{{item.cfop}}</td>
-                    <td class="mdc-data-table__cell">{{item.cst}}</td class="mdc-data-table__cell">
-                    <td class="mdc-data-table__cell">{{item.quantidade}}</td class="mdc-data-table__cell">
-                    <td class="mdc-data-table__cell">R${{item.produto.vl_venda}}</td class="mdc-data-table__cell">
-                    <td class="mdc-data-table__cell">R${{item.acrescimo}}</td class="mdc-data-table__cell">
-                    <td class="mdc-data-table__cell">R${{item.subtotal}} </td class="mdc-data-table__cell">
-                    <td class="mdc-data-table__cell">R${{item.subtotal}} </td class="mdc-data-table__cell">
-                      <td></td>
-                    <!-- <td style="display: none;" class="mdc-data-table__cell"></td> -->
-                  </tr>
-                    
-                  </tbody>
-                  <tfoot></tfoot>
-              </table>  
-            </div>           
-            </div>
-          
+                          <tr ng-repeat="item in ctrl.notaFiscal.nota_itens" class="mdc-data-table__row">
+                            <td class="mdc-data-table__cell">{{$index +1 }}</td>
+                            <td class="mdc-data-table__cell">{{item.id}}</td>
+                            <td class="mdc-data-table__cell">{{item.produto.descricao}}</td>
+                            <td class="mdc-data-table__cell">{{item.cfop}}</td>
+                            <td class="mdc-data-table__cell">{{item.cst}}</td class="mdc-data-table__cell">
+                            <td class="mdc-data-table__cell">{{item.quantidade}}</td class="mdc-data-table__cell">
+                            <td class="mdc-data-table__cell">R${{item.produto.vl_venda}}</td
+                              class="mdc-data-table__cell">
+                            <td class="mdc-data-table__cell">R${{item.acrescimo}}</td class="mdc-data-table__cell">
+                            <td class="mdc-data-table__cell">R${{item.subtotal}} </td class="mdc-data-table__cell">
+                            <td class="mdc-data-table__cell">R${{item.subtotal}} </td class="mdc-data-table__cell">
+                            <td></td>
+                            <!-- <td style="display: none;" class="mdc-data-table__cell"></td> -->
+                          </tr>
+
+                        </tbody>
+                        <tfoot></tfoot>
+                    </table>
+                  </div>
+                </div>
+
+              </md-card-content>
+            </md-card>
+
+
+
           </md-card-content>
         </md-card>
 
-
-
-          </md-card-content>
-        </md-card>
-
-      </div>  
+      </div>
 
       <div flex="100" layout-margin="">
         <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
@@ -275,27 +256,23 @@
 </div>
 
 
-<style> 
+<style>
   table {
     text-align: center !important;
     width: 100%;
   }
-  
+
   .mat-header-cell {
     text-align: center;
   }
 
- .fixo {
-   position: fixed;
-   bor
- }
   .my-custom-scrollbar {
     position: relative;
     height: 200px;
     overflow: auto;
   }
+
   .table-wrapper-scroll-y {
     display: block;
   }
-
 </style>
