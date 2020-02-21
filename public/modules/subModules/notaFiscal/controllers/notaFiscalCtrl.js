@@ -1,21 +1,21 @@
 angular.module('notaFiscalCtrl', ['notaFiscalService'])
-.controller('notaFiscalCtrl', ['$http',
+.controller('notaFiscalCtrl', [
 	'$stateParams',
 	'$state',
-	'configURL',
-	'ngNotify',
-	'$scope',
 	'NotaFiscal',
+	function($stateParams, $state, NotaFiscal) {
 
-	function($http, $stateParams, $state, configURL, ngNotify, $scope, NotaFiscal) {
+	self = this		
+	self.querySearch = NotaFiscal.querySearch
 
-	self = this	
-	self.querySearch   = NotaFiscal.querySearch
+	// CLIENTE	
+	self.selectedClienteChange = selectedClienteChange
+	self.chosenClienteToAdd
+
+	// PRODUTO
 	self.selectedItemChange = selectedItemChange
 	self.chosenItemToAdd;
 
-	const { baseURL } = configURL
-	const host = `${baseURL}/notaFiscal`
 	self.init = function() {
 		switch ("id" in $stateParams) {
 			case true:
@@ -50,9 +50,14 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 		}
 	}
 
+	function selectedClienteChange(item) {
+		self.chosenItemToAdd = item
+	}
+
 	function selectedItemChange(item) {
 		self.chosenItemToAdd = item
-	  }
+	}
+	
 
 	  self.init()
 }]);

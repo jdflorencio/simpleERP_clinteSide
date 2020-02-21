@@ -9,7 +9,6 @@ angular.module('clienteCtrl', ['clienteService'])
 	'ngNotify',
 	function($http, $stateParams, $state, $filter, configURL , FormatToAPI, ngNotify) {
 	
-	
 	const {baseURL} = configURL
 	const host = 'http://127.0.0.1:3333/api/cliente'
 	self = this
@@ -18,11 +17,9 @@ angular.module('clienteCtrl', ['clienteService'])
 		ativo: true
 	}
 	
-	frontDate = function(date) {
-		
+	frontDate = function(date) {		
 		date = date != null ? date.split('-').reverse().join('/') : null
-		return date		
-
+		return date
 	}
 
 	backDate = function(date) {

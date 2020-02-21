@@ -28,7 +28,6 @@ angular.module('notaFiscalService', [])
             });
         }))
         .catch ((error)=> {
-
             if (error.data.error) {
                 message = `${error.data.error.message} em (${error.data.error.error[0]})`
                 type = 'warn'
@@ -42,30 +41,35 @@ angular.module('notaFiscalService', [])
 
     NotaFiscalFactory.salvar =  function() {
         return $http.post(`${host}`, self.notaFiscal)
-					.then((result) => {
-						$state.go('notaFiscals');
-						let msg = result.data.sucesso ? result.data.msg : result.data.error.message
-						ngNotify.set(`${msg}`, {type:'info',  theme: 'pastel'});
-					}).catch( error => {
-						ngNotify.set(`${message}`, {
-							type: type,
-							theme: 'pastel'
-						})
-				})
+        .then((result) => {
+            $state.go('notaFiscals');
+            let msg = result.data.sucesso ? result.data.msg : result.data.error.message
+            ngNotify.set(`${msg}`, {type:'info',  theme: 'pastel'});
+        }).catch( error => {
+            ngNotify.set(`${message}`, {
+                type: type,
+                theme: 'pastel'
+            })
+        })
     }
 
-    NotaFiscalFactory.querySearch = function(query) {
-		if (query.length > 2)	{
-				return $http.get(`${baseURL}/produtofilter/${query}`).then( res => {
-					return res.data.result
-				})
-				.catch( error  => {
-					console.erros(error)
-				})
-			}
-			return []
+    NotaFiscalFactory.querySearch = function(query, the) {
+
+        const urls = {
+            cliente : "clientefilter",
+            produto : "produtofilter"
+        }
+
+		if (query.length > 2) {
+            return $http.get(`${baseURL}/${urls[the]}/${query}`).then( res => {
+                return res.data.result
+            })
+            .catch( error  => {
+                console.erros(error)
+            })
+        }
+        return []
 	  }
 
     return NotaFiscalFactory;
-
 });

@@ -44,11 +44,24 @@
                   <input ng-model="ctrl.notaFiscal.pessoaId" disabled>
                 </md-input-container>
               </div>
-              <div flex="30">
-                <md-input-container class="md-block" flex-gt-sm>
-                  <label>Nome do cliente</label>
-                  <input ng-model="ctrl.notaFiscal.pessoa.nome" >
-                </md-input-container>
+              <div flex="30">             
+
+                  <md-autocomplete
+                    md-floating-label="cliente"
+                    required=""
+                    md-input-minlength="2" 
+                    md-input-maxlength="18"
+                    md-selected-item-change="ctrl.selectedClienteChange(item)"
+                    md-search-text="ctrl.searchCliente" 
+                    md-items="item in ctrl.querySearch(ctrl.searchCliente, 'cliente')" 
+                    md-item-text="item.nome" 
+                    md-require-match=""  
+                  input-aria-describedby="favoriteStateDescription">
+                  <md-item-template>
+                    <span >{{item.nome}}</span>
+                  </md-item-template>
+                  </md-autocomplete>
+
               </div>
               <div flex="30">
                 <md-input-container class="md-block" flex-gt-sm>
@@ -84,8 +97,8 @@
                   md-input-minlength="2" 
                   md-input-maxlength="18"
                   md-selected-item-change="ctrl.selectedItemChange(item)"
-                  md-search-text="ctrl.searchText" 
-                  md-items="item in ctrl.querySearch(ctrl.searchText)" 
+                  md-search-text="ctrl.searchProduto" 
+                  md-items="item in ctrl.querySearch(ctrl.searchProduto, 'produto')" 
                   md-item-text="item.descricao" 
                   md-require-match=""  
                   input-aria-describedby="favoriteStateDescription">
