@@ -1,7 +1,7 @@
 <div ng-cloak>
   <md-content layout-margin="">
     <div layout-wrap="" layout="row">
-      <div flex="100" style="display: none" >
+      <div flex="100"  >
         <div flex="100" layout="row">
           <div flex="" layout-margin="">
             <h3>Cabeçalho</h3>
@@ -46,14 +46,14 @@
               </div>
               <div flex="30">
                 <md-input-container class="md-block" flex-gt-sm>
-                  <label>Codígo do Cliente</label>
-                  <input ng-model="ctrl.notaFiscal.pessoa.nome" disabled>
+                  <label>Nome do cliente</label>
+                  <input ng-model="ctrl.notaFiscal.pessoa.nome" >
                 </md-input-container>
               </div>
               <div flex="30">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Data de Emissão</label>
-                  <input ng-model="ctrl.notaFiscal.data_emssao" disabled>
+                  <input ng-model="ctrl.notaFiscal.data_emssao" >
                 </md-input-container>
               </div>
             </div>
@@ -107,8 +107,6 @@
                 </md-input-container>
               </div>
             </div>
-
-
 
             <div layout="row" layout-wrap="">
               <div flex="10">

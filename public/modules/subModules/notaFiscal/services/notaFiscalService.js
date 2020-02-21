@@ -1,12 +1,21 @@
 angular.module('notaFiscalService', [])
-.factory('Cliente', function($http) {
-    
-    var exampleFactory = {};
+.factory('NotaFiscal', function($http, configURL, $stateParams) {
 
-    exampleFactory.all = function() {
-        //return $http.get(API.URL/example);
-    };
+    const { baseURL } = configURL
+    const host = `${baseURL}/notaFiscal`    
+    const NotaFiscalFactory = {};
+   
+	NotaFiscalFactory.consultarNotaFiscal = function() {
+		$http.get(`${host}/${$stateParams.id}`)
+		.then( ( obj ) => {
+			const { result } =  obj.data
+			self.notaFiscal = result
+		})
+		.catch((error) => {
+			console.log(error)
+		})
+	}
 
-    return exampleFactory;
+    return NotaFiscalFactory;
 
 });

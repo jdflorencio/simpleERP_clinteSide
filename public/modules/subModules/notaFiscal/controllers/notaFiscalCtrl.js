@@ -5,19 +5,21 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 	'configURL',
 	'ngNotify',
 	'$scope',
-	function($http, $stateParams, $state, configURL, ngNotify, $scope) {
+	'NotaFiscal',
+
+	function($http, $stateParams, $state, configURL, ngNotify, $scope, NotaFiscal) {
 
 	self = this	
 	self.querySearch   = querySearch
 	self.selectedItemChange = selectedItemChange
-	self.chosenItemToAdd;	
+	self.chosenItemToAdd;
 
 	const { baseURL } = configURL
 	const host = `${baseURL}/notaFiscal`
 	self.init = function() {
 		switch ("id" in $stateParams) {
 			case true:
-				self.consultarNotaFiscal()
+				NotaFiscal.consultarNotaFiscal()
 				break
 			default:
 				self.notaFiscal = {
@@ -34,16 +36,16 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 		console.log('aqui',self.notaFiscal)	
 	}
 
-	self.consultarNotaFiscal = function() {
-		$http.get(`${host}/${$stateParams.id}`)
-		.then( ( obj ) => {
-			const { result } =  obj.data
-			self.notaFiscal = result
-		})
-		.catch((error) => {
-			console.log(error)
-		})
-	}
+	// self.consultarNotaFiscal = function() {
+	// 	$http.get(`${host}/${$stateParams.id}`)
+	// 	.then( ( obj ) => {
+	// 		const { result } =  obj.data
+	// 		self.notaFiscal = result
+	// 	})
+	// 	.catch((error) => {
+	// 		console.log(error)
+	// 	})
+	// }
 
 	self.cancelar = function() {
 		$state.go('notaFiscals');
@@ -94,7 +96,6 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 
 		if (query.length > 2)	{
 				return $http.get(`${baseURL}/produtofilter/${query}`).then( res => {
-					console.info(res.data.result)
 					return res.data.result
 				})
 				.catch( error  => {
@@ -108,5 +109,4 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 		self.chosenItemToAdd = item
 	  }
 	  self.init()
-	  console.log(self.selectedItemChange)
 }]);

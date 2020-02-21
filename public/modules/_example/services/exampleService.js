@@ -4,7 +4,7 @@ angular.module('exampleService', [])
     var exampleFactory = {};
 
     exampleFactory.all = function() {
-        //return $http.get(API.URL/example);
+        return "aqui"
     };
 
     return exampleFactory;
