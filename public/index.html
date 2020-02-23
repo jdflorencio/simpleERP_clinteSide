@@ -74,6 +74,7 @@
   </style>
 
 </head>
+
 <body ng-app="materialApp" layout="row" ng-controller="appCtrl as app">
 
   <!-- <md-sidenav class="md-sidenav-left md-whiteframe-4dp ng-cloak"   md-is-locked-open="true" md-component-id="left"> -->
@@ -100,6 +101,7 @@
       <md-list-item layout="row" ng-click="app.toggleLeft()" href="{{menu.href}}">
         <span>{{menu.title}}</span>
       </md-list-item>
+
       <md-divider></md-divider>
     </div>
   </md-sidenav>
@@ -135,8 +137,8 @@
     <md-toolbar>
       <div class="md-toolbar-tools">
         <h2 md-truncate="" flex="">{{title}}</h2>
-        <md-button>
-          Right Bar Button
+        <md-button ng-click="app.toggleRight()" class="md-icon-button" aria-label="User Menu">
+          <md-icon md-font-icon="fa-user" class="md-menu-text-color fa s24"></md-icon>
         </md-button>
       </div>
 

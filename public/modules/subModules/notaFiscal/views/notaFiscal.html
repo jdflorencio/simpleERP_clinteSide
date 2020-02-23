@@ -1,6 +1,4 @@
-<div ng-cloak >
-
-  
+<div ng-cloak>
   <md-content layout-margin="" style="margin-left: 30px;">
     <div layout-wrap="" layout="row">
       <div flex="100">
@@ -11,9 +9,9 @@
         </div>
         <md-card flex="100">
           <md-card-content>
-            <div layout="row" layout-wrap="" >
+            <div layout="row" layout-wrap="">
               <div flex="10">
-                <md-input-container class="md-block" >
+                <md-input-container class="md-block">
                   <label>Código</label>
                   <input ng-model="ctrl.notaFiscal.id" disabled>
                 </md-input-container>
@@ -78,14 +76,14 @@
                   <input ng-model="ctrl.chosenItemToAdd.id" disabled>
                 </md-input-container>
               </div>
-              <div flex="15">
+              <div flex="17">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Codigo de Barras</label>
                   <input ng-model="ctrl.chosenItemToAdd.codigo_ean" disabled>
                 </md-input-container>
               </div>
 
-              <div flex="40">
+              <div flex="">
                 <md-autocomplete md-floating-label="Produto" required="" md-input-minlength="2" md-input-maxlength="18"
                   md-selected-item-change="ctrl.selectedItemChange(item)" md-search-text="ctrl.searchProduto"
                   md-items="item in ctrl.querySearch(ctrl.searchProduto, 'produto')" md-item-text="item.descricao"
@@ -120,25 +118,29 @@
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Base ICMS</label>
-                  <input ng-model="ctrl.chosenItemToAdd.tributacao.aliq_icms_venda_dentro_estado" ui-number-mask disabled>
+                  <input ng-model="ctrl.chosenItemToAdd.tributacao.aliq_icms_venda_dentro_estado" ui-number-mask
+                    disabled>
                 </md-input-container>
               </div>
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Base ICMS</label>
-                  <input ng-model="ctrl.chosenItemToAdd.tributacao.aliq_icms_venda_dentro_estado" ui-number-mask disabled>
+                  <input ng-model="ctrl.chosenItemToAdd.tributacao.aliq_icms_venda_dentro_estado" ui-number-mask
+                    disabled>
                 </md-input-container>
               </div>
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Aliquota Ipi</label>
-                  <input ng-model="ctrl.chosenItemToAdd.tributacao.aliq_icms_venda_dentro_estado" ui-number-mask disabled>
+                  <input ng-model="ctrl.chosenItemToAdd.tributacao.aliq_icms_venda_dentro_estado" ui-number-mask
+                    disabled>
                 </md-input-container>
               </div>
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Base ICMS Subst</label>
-                  <input ng-model="ctrl.chosenItemToAdd.tributacao.aliq_icms_venda_dentro_estado" ui-number-mask disabled>
+                  <input ng-model="ctrl.chosenItemToAdd.tributacao.aliq_icms_venda_dentro_estado" ui-number-mask
+                    disabled>
                 </md-input-container>
               </div>
             </div>
@@ -265,7 +267,7 @@
 <div layout="row" layout-padding="" style="background-color: brown;">
   <div flex="">Parent layout and this element have padding.</div>
 </div>
-<div layout="row" layout-fill=""  style="background-color: darkblue;">
+<div layout="row" layout-fill="" style="background-color: darkblue;">
   <div flex="" style="background-color: darkgoldenrod;">Parent layout is set to fill available space.</div>
 </div>
 <div layout="row" layout-padding="" layout-margin="" layout-fill="" style=" background-color: fuchsia;">
