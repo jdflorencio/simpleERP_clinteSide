@@ -8,14 +8,11 @@ angular.module('notaFiscalService', [])
 	const type = 'error'
 
 	NotaFiscalFactory.consultarNotaFiscal = function() {
-		$http.get(`${host}/${$stateParams.id}`)
-		.then( ( obj ) => {
-			const { result } =  obj.data
-			self.notaFiscal = result
-		})
-		.catch((error) => {
-			console.log(error)
-		})
+        try {
+            return $http.get(`${host}/${$stateParams.id}`)
+        } catch (error) {
+            console.warn("Erro buscar pela nota ", error)
+        }
     }
 
     NotaFiscalFactory.atualizar = function() {

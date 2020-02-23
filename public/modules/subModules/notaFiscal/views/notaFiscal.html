@@ -1,5 +1,7 @@
-<div ng-cloak>
-  <md-content layout-margin="">
+<div ng-cloak >
+
+  
+  <md-content layout-margin="" style="margin-left: 30px;">
     <div layout-wrap="" layout="row">
       <div flex="100">
         <div flex="100" layout="row">
@@ -9,9 +11,9 @@
         </div>
         <md-card flex="100">
           <md-card-content>
-            <div layout="row" layout-wrap="">
+            <div layout="row" layout-wrap="" >
               <div flex="10">
-                <md-input-container class="md-block" flex-gt-sm>
+                <md-input-container class="md-block" >
                   <label>Código</label>
                   <input ng-model="ctrl.notaFiscal.id" disabled>
                 </md-input-container>
@@ -66,7 +68,7 @@
           </md-card-content>
         </md-card>
       </div>
-      <div flex="100">
+      <div flex="90">
         <md-card flex="100">
           <md-card-content layout-padding="1">
             <div layout="row" layout-wrap="">
@@ -111,37 +113,35 @@
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Aliquota ICMS</label>
-                  <input ng-model="ctrl.chosenItemToAdd.aliq_icms_venda_dentro_estado" ui-number-mask
+                  <input ng-model="ctrl.chosenItemToAdd.tributacao.aliq_icms_venda_dentro_estado" ui-number-mask
                     disabled>
                 </md-input-container>
               </div>
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Base ICMS</label>
-                  <input ng-model="ctrl.chosenItemToAdd.aliq_icms_venda_dentro_estado" ui-number-mask disabled>
+                  <input ng-model="ctrl.chosenItemToAdd.tributacao.aliq_icms_venda_dentro_estado" ui-number-mask disabled>
                 </md-input-container>
               </div>
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Base ICMS</label>
-                  <input ng-model="ctrl.chosenItemToAdd.aliq_icms_venda_dentro_estado" ui-number-mask disabled>
+                  <input ng-model="ctrl.chosenItemToAdd.tributacao.aliq_icms_venda_dentro_estado" ui-number-mask disabled>
                 </md-input-container>
               </div>
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Aliquota Ipi</label>
-                  <input ng-model="ctrl.chosenItemToAdd.aliq_icms_venda_dentro_estado" ui-number-mask disabled>
+                  <input ng-model="ctrl.chosenItemToAdd.tributacao.aliq_icms_venda_dentro_estado" ui-number-mask disabled>
                 </md-input-container>
               </div>
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Base ICMS Subst</label>
-                  <input ng-model="ctrl.chosenItemToAdd.aliq_icms_venda_dentro_estado" ui-number-mask disabled>
+                  <input ng-model="ctrl.chosenItemToAdd.tributacao.aliq_icms_venda_dentro_estado" ui-number-mask disabled>
                 </md-input-container>
               </div>
-
             </div>
-
             <div layout="row" layout-wrap="">
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
@@ -183,7 +183,7 @@
               </div>
               <div flex="" layout-padding="">
                 <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
-                  <md-button class="md-primary" ng-click="ctrl.salvarAtualizar()">Adicionar Produto</md-button>
+                  <button class="md-primary" ng-click="ctrl.adicionarProduto()">Adicionar Produto</button>
                 </section>
               </div>
             </div>
@@ -253,6 +253,23 @@
 
     </div>
   </md-content>
+</div>
+
+
+
+
+
+<div layout="row" layout-margin="" style="background-color: antiquewhite;">
+  <div flex="" style="background-color: blueviolet;">Parent layout and this element have margins.</div>
+</div>
+<div layout="row" layout-padding="" style="background-color: brown;">
+  <div flex="">Parent layout and this element have padding.</div>
+</div>
+<div layout="row" layout-fill=""  style="background-color: darkblue;">
+  <div flex="" style="background-color: darkgoldenrod;">Parent layout is set to fill available space.</div>
+</div>
+<div layout="row" layout-padding="" layout-margin="" layout-fill="" style=" background-color: fuchsia;">
+  <div flex="">I am using all three at once.</div>
 </div>
 
 

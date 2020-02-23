@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-Br">
+
 <head>
   <title>SimpleERP</title>
 
@@ -14,7 +15,7 @@
 
   <link rel="stylesheet" href="assert/css/font-awesome.min.css">
 
-  <link rel="stylesheet" href="/scripts/angular-material/angular-material.min.css"/>
+  <link rel="stylesheet" href="/scripts/angular-material/angular-material.min.css" />
 
   <link rel="stylesheet" href="assert/css/fontawesome-free-5.12.0-web/css/all.min.css">
 
@@ -24,39 +25,69 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/angular.ng-notify/0.6.0/ng-notify.min.css">
 
   <style>
-    h1,h2,h3,h4,h5,h6,p,span  {
-        font-family: "Open Sans", Helvetica;
-        color: rgb(90,90,90);
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    span {
+      font-family: "Open Sans", Helvetica;
+      color: rgb(90, 90, 90);
     }
-    h1,h2,h3,h4,h5,h6 {
-        margin-bottom: 1rem;
-        margin-top: 1rem;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-bottom: 1rem;
+      margin-top: 1rem;
     }
+
     .padding-inner {
-        padding: 30px 5%;        
+      padding: 30px 5%;
     }
+
     /* Overwrite Defaults */
-    md-toolbar.toolbar h1, md-toolbar.md-toolbar-tools h3, md-tabs md-tabs-wrapper md-tab-item span, md-tabs md-tabs-wrapper md-icon, .md-primary span {
-        color: white;
+    md-toolbar.toolbar h1,
+    md-toolbar.md-toolbar-tools h3,
+    md-tabs md-tabs-wrapper md-tab-item span,
+    md-tabs md-tabs-wrapper md-icon,
+    .md-primary span {
+      color: white;
     }
+
     .md-icon-button {
-        font-size: 20px;
+      font-size: 20px;
     }
+
     md-tabs md-tabs-wrapper {
-        background: #2196F3;
+      background: #2196F3;
     }
+
     .md-button {
-        padding: 0 12px;
+      padding: 0 12px;
     }
-</style>
+  </style>
 
 </head>
-
 <body ng-app="materialApp" layout="row" ng-controller="appCtrl as app">
 
-    <md-sidenav class="md-sidenav-left md-whiteframe-4dp ng-cloak" md-component-id="left">
+  <!-- <md-sidenav class="md-sidenav-left md-whiteframe-4dp ng-cloak"   md-is-locked-open="true" md-component-id="left"> -->
+  <md-sidenav
+    class="site-sidenav md-sidenav-left md-whiteframe-z2 hide-print md-closed ng-isolate-scope _md md-locked-open"
+    md-component-id="left" hide-print="" md-is-locked-open="$mdMedia('gt-sm')" tabindex="-1">
 
-        <md-toolbar class="md-toolbar-tools" layout="row" layout-align="center-center">
+    <header class="nav-header" style="background-color:#fff;" style="margin-top: 10;">
+      <a ng-href="/" class="docs-logo" href="/" flex-offset="20">
+        <img src="/assert/img/budgeting-1.svg" alt="AngularJS Logo" width="150">
+        <h1 class="docs-logotype md-heading ng-isolate-scope"> ssimpleERP</h1>
+      </a>
+    </header>
+    <!-- <md-toolbar class="md-toolbar-tools" layout="row" layout-align="center-center">
 
             <md-button ng-click="app.toggleLeft()" class="md-icon-button" aria-label="Close User Menu">
               <md-icon md-font-icon="fa-bars" class="md-menu-text-color fa s24"></md-icon>
@@ -64,38 +95,24 @@
 
             <h3 class="md-toolbar-tools">Menu</h3>
         
-        </md-toolbar>
-
-        
-
-        <div ng-repeat="menu in app.siderbar">
-        <md-list-item 
-        
-        layout="row" ng-click="app.toggleLeft()" href="{{menu.href}}">
-            <span>{{menu.title}}</span>
-        </md-list-item>
-        <md-divider></md-divider>
-        </div>
-
-
-
-    </md-sidenav>
-
-    <md-sidenav class="md-sidenav-right md-whiteframe-4dp ng-cloak" md-component-id="right">
-
-        <md-toolbar class="md-toolbar-tools" layout="row" layout-align="space-between-center">
-            <h3 class="md-toolbar-tools">User Menu</h3>
-            
-            <md-button ng-click="app.toggleRight()" class="md-icon-button" aria-label="Close User Menu">
-              <md-icon md-font-icon="fa-user" class="md-menu-text-color fa s24"></md-icon>
-            </md-button>
-
-        </md-toolbar>
-
-    </md-sidenav>
-
-<div style="width:100%" class="ng-cloak">
-    <md-toolbar class="toolbar">
+        </md-toolbar> -->
+    <div ng-repeat="menu in app.siderbar">
+      <md-list-item layout="row" ng-click="app.toggleLeft()" href="{{menu.href}}">
+        <span>{{menu.title}}</span>
+      </md-list-item>
+      <md-divider></md-divider>
+    </div>
+  </md-sidenav>
+  <md-sidenav class="md-sidenav-right md-whiteframe-4dp ng-cloak" md-component-id="right">
+    <md-toolbar class="md-toolbar-tools" layout="row" layout-align="space-between-center">
+      <h3 class="md-toolbar-tools">User Menu</h3>
+      <md-button ng-click="app.toggleRight()" class="md-icon-button" aria-label="Close User Menu">
+        <md-icon md-font-icon="fa-user" class="md-menu-text-color fa s24"></md-icon>
+      </md-button>
+    </md-toolbar>
+  </md-sidenav>
+  <div style="width:100%" class="ng-cloak">
+    <!-- <md-toolbar class="toolbar">
         <div layout="row" layout-align="center center" layout-wrap class="md-toolbar-tools">
 
             <md-button ng-click="app.toggleLeft()" class="md-icon-button" aria-label="Main Menu">
@@ -114,60 +131,70 @@
             <h1 flex="90" class="md-headline">{{ title }}</h1><div class="nav-header" ng-click="ctrl.doTheBack()">Return</div>
         </div>
 
+    </md-toolbar> -->
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2 md-truncate="" flex="">{{title}}</h2>
+        <md-button>
+          Right Bar Button
+        </md-button>
+      </div>
+
     </md-toolbar>
 
     <div ui-view id="main"></div>
 
-</div>
+  </div>
 
-<script src="/scripts/angular/angular.min.js"></script>
-<script src="/scripts/angular-animate/angular-animate.min.js"></script>
-<script src="/scripts/angular-aria/angular-aria.min.js"></script>
-<script src="/scripts/angular-material/angular-material.min.js"></script>
+  <script src="/scripts/angular/angular.min.js"></script>
+  <script src="/scripts/angular-animate/angular-animate.min.js"></script>
+  <script src="/scripts/angular-aria/angular-aria.min.js"></script>
+  <script src="/scripts/angular-material/angular-material.min.js"></script>
 
-<script src="/scripts/angular-locale-pt-br/angular-locale_pt-br.js"></script>
+  <script src="/scripts/angular-locale-pt-br/angular-locale_pt-br.js"></script>
 
-<script src="/scripts/angular-input-masks/releases/angular-input-masks-dependencies.js"></script>
-<script src="/scripts/angular-input-masks/releases/angular-input-masks.js"></script>
+  <script src="/scripts/angular-input-masks/releases/angular-input-masks-dependencies.js"></script>
+  <script src="/scripts/angular-input-masks/releases/angular-input-masks.js"></script>
 
-<script src="//cdn.jsdelivr.net/angular.ng-notify/0.6.0/ng-notify.min.js"></script>
-<script type="text/javascript" src="/scripts/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="//cdn.jsdelivr.net/angular.ng-notify/0.6.0/ng-notify.min.js"></script>
+  <script type="text/javascript" src="/scripts/angular-ui-router/release/angular-ui-router.min.js"></script>
 
 
-<script src="modules/clientes/controllers/clientesCtrl.js"></script>
-<script src="modules/clientes/services/clientesService.js"></script>
-<script src="modules/subModules/cliente/controllers/clienteCtrl.js"></script>
-<script src="modules/subModules/cliente/services/clienteService.js"></script>
+  <script src="modules/clientes/controllers/clientesCtrl.js"></script>
+  <script src="modules/clientes/services/clientesService.js"></script>
+  <script src="modules/subModules/cliente/controllers/clienteCtrl.js"></script>
+  <script src="modules/subModules/cliente/services/clienteService.js"></script>
 
-<script src="modules/produtos/controllers/produtosCtrl.js"></script>
-<script src="modules/produtos/services/produtosService.js"></script>
-<script src="modules/subModules/produto/controllers/produtoCtrl.js"></script>
-<script src="modules/subModules/produto/services/produtoService.js"></script>
+  <script src="modules/produtos/controllers/produtosCtrl.js"></script>
+  <script src="modules/produtos/services/produtosService.js"></script>
+  <script src="modules/subModules/produto/controllers/produtoCtrl.js"></script>
+  <script src="modules/subModules/produto/services/produtoService.js"></script>
 
-<script src="modules/grupos/controllers/gruposCtrl.js"></script>
-<script src="modules/grupos/services/gruposService.js"></script>
-<script src="modules/subModules/grupo/controllers/grupoCtrl.js"></script>
-<script src="modules/subModules/grupo/services/grupoService.js"></script>
+  <script src="modules/grupos/controllers/gruposCtrl.js"></script>
+  <script src="modules/grupos/services/gruposService.js"></script>
+  <script src="modules/subModules/grupo/controllers/grupoCtrl.js"></script>
+  <script src="modules/subModules/grupo/services/grupoService.js"></script>
 
-<script src="modules/subgrupos/controllers/subgruposCtrl.js"></script>
-<script src="modules/subgrupos/services/subgruposService.js"></script>
-<script src="modules/subModules/subgrupo/controllers/subgrupoCtrl.js"></script>
-<script src="modules/subModules/subgrupo/services/subgrupoService.js"></script>
+  <script src="modules/subgrupos/controllers/subgruposCtrl.js"></script>
+  <script src="modules/subgrupos/services/subgruposService.js"></script>
+  <script src="modules/subModules/subgrupo/controllers/subgrupoCtrl.js"></script>
+  <script src="modules/subModules/subgrupo/services/subgrupoService.js"></script>
 
-<script src="modules/tributacao/controllers/tributacaoCtrl.js"></script>
-<script src="modules/tributacao/services/tributacaoService.js"></script>
-<script src="modules/subModules/tributo/controllers/tributoCtrl.js"></script>
-<script src="modules/subModules/tributo/services/tributoService.js"></script>
+  <script src="modules/tributacao/controllers/tributacaoCtrl.js"></script>
+  <script src="modules/tributacao/services/tributacaoService.js"></script>
+  <script src="modules/subModules/tributo/controllers/tributoCtrl.js"></script>
+  <script src="modules/subModules/tributo/services/tributoService.js"></script>
 
-<script src="modules/notasFiscais/controllers/notasFiscaisCtrl.js"></script>
-<script src="modules/notasFiscais/services/notasFiscaisService.js"></script>
-<script src="modules/subModules/notaFiscal/controllers/notaFiscalCtrl.js"></script>
-<script src="modules/subModules/notaFiscal/services/notaFiscalService.js"></script>
+  <script src="modules/notasFiscais/controllers/notasFiscaisCtrl.js"></script>
+  <script src="modules/notasFiscais/services/notasFiscaisService.js"></script>
+  <script src="modules/subModules/notaFiscal/controllers/notaFiscalCtrl.js"></script>
+  <script src="modules/subModules/notaFiscal/services/notaFiscalService.js"></script>
 
-<script src="app.controller.js"></script>
+  <script src="app.controller.js"></script>
 
-<script src="app.js"></script>
-<script src="app.routes.js"></script>
+  <script src="app.js"></script>
+  <script src="app.routes.js"></script>
 
 </body>
+
 </html>

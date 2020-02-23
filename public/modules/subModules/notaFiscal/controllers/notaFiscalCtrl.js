@@ -14,33 +14,44 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 
 	// PRODUTO
 	self.selectedItemChange = selectedItemChange
-	self.chosenItemToAdd;
+	self.chosenItemToAdd ={
+		estoque_atual:0,
+		quantidade: 0,
+		desconto: 0,
+		vl_venda: 0,
+		acrescimo: 0,
+		tributacao: {
+			aliq_icms_venda_dentro_estado: 0.0,
+			aliq_icms_venda_fora_estado: 0.0,
+			aliq_icms_reducao_venda: 0.0,
+			cst_base_venda: 0.0,
+			cst_pis_venda: 0.0,
+			aliq_pis_venda: 0.0,
+			cst_cofins_venda: 0.0,
+			aliq_cofins_venda: 0.0,
+			aliq_icms_compra_dentro_estado: 0.0,
+			aliq_icms_compra_fora_estado: 0.0,
+			aliq_icms_reducao_compra: 0.0,
+			cst_base_compra: 0.0,
+			cst_pis_compra: 0.0,
+			aliq_pis_compra: 0.0,
+			cst_cofins_compra: 0.0,
+			aliq_cofins_compra: 0.0,
+			mva: 0.0
+		}
+	}
 
 	self.init = function() {
 		switch ("id" in $stateParams) {
 			case true:
 				NotaFiscal.consultarNotaFiscal()
+				.then( ( obj ) => {
+					const { result } =  obj.data
+					self.notaFiscal =  result
+				})
 				break
 			default:
-					self.chosenItemToAdd = {					
-						aliq_icms_venda_dentro_estado: 0.0,
-						aliq_icms_venda_fora_estado: 0.0,
-						aliq_icms_reducao_venda: 0.0,
-						cst_base_venda: 0.0,
-						cst_pis_venda: 0.0,
-						aliq_pis_venda: 0.0,
-						cst_cofins_venda: 0.0,
-						aliq_cofins_venda: 0.0,
-						aliq_icms_compra_dentro_estado: 0.0,
-						aliq_icms_compra_fora_estado: 0.0,
-						aliq_icms_reducao_compra: 0.0,
-						cst_base_compra: 0.0,
-						cst_pis_compra: 0.0,
-						aliq_pis_compra: 0.0,
-						cst_cofins_compra: 0.0,
-						aliq_cofins_compra: 0.0,
-						mva: 0.0
-				}
+				console.warn("Não Foi passado no parametro")
 			}
 		}
 
@@ -62,6 +73,12 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 		}
 	}
 
+	self.adicionarProduto = () => {
+		console.info(self.notaFiscal.nota_itens)
+		console.warn(self.chosenItemToAdd)
+		self.notaFiscal.nota_itens.push(self.chosenItemToAdd)
+	}
+
 	function selectedClienteChange(cliente) {
 		self.chosenClienteToAdd = cliente
 	}
@@ -69,7 +86,9 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 	function selectedItemChange(item) {
 		self.chosenItemToAdd = item
 	}
-	
 
-	  self.init()
+	self.init()
+
+	console.info(self.notaFiscal)
+	  
 }]);
