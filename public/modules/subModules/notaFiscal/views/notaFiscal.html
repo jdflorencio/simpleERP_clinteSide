@@ -13,19 +13,19 @@
               <div flex="10">
                 <md-input-container class="md-block">
                   <label>Código</label>
-                  <input ng-model="ctrl.notaFiscal.id" disabled>
+                  <input ng-model="ctrl.notaFiscal.cabecalho.id" disabled>
                 </md-input-container>
               </div>
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Número da Nota</label>
-                  <input ng-model="ctrl.notaFiscal.numero" disabled>
+                  <input ng-model="ctrl.notaFiscal.cabecalho.numero" disabled>
                 </md-input-container>
               </div>
               <div flex="">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Chave da Nota</label>
-                  <input ng-model="ctrl.notaFiscal.chave_nfe" disabled>
+                  <input ng-model="ctrl.notaFiscal.cabecalho.chave_nfe" disabled>
                 </md-input-container>
               </div>
 
@@ -34,7 +34,7 @@
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Tipo da nota</label>
-                  <input ng-model="ctrl.notaFiscal.tipo" disabled>
+                  <input ng-model="ctrl.notaFiscal.cabecalho.tipo" disabled>
                 </md-input-container>
               </div>
 
@@ -46,10 +46,15 @@
               </div>
               <div flex="30">
 
-                <md-autocomplete md-floating-label="cliente" required="" md-input-minlength="2" md-input-maxlength="18"
-                  md-selected-item-change="ctrl.selectedClienteChange(item)" md-search-text="ctrl.searchCliente"
-                  md-items="item in ctrl.querySearch(ctrl.searchCliente, 'cliente')" md-item-text="item.nome"
-                  md-require-match="" input-aria-describedby="favoriteStateDescription">
+                <md-autocomplete 
+                    md-floating-label="cliente" 
+                    required="" md-input-minlength="2" 
+                    md-input-maxlength="18"
+                    md-selected-item-change="ctrl.selectedClienteChange(item)" 
+                    md-search-text="ctrl.searchCliente"
+                    md-items="item in ctrl.querySearch(ctrl.searchCliente, 'cliente')" 
+                    md-item-text="item.nome"
+                    md-require-match="" input-aria-describedby="favoriteStateDescription">
                   <md-item-template>
                     <span>{{item.nome}}</span>
                   </md-item-template>
@@ -59,7 +64,7 @@
               <div flex="30">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Data de Emissão</label>
-                  <input ng-model="ctrl.notaFiscal.data_emssao">
+                  <input ng-model="ctrl.notaFiscal.cabecalho.data_emissao">
                 </md-input-container>
               </div>
             </div>
