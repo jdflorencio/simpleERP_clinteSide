@@ -50,8 +50,6 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 					const { result } =  obj.data
 					self.notaFiscal =  result
 					self.selectedClienteChange(self.notaFiscal.cabecalho.pessoa)
-					console.warn(self.notaFiscal.itens)
-					
 				})
 				break
 			default:
@@ -78,9 +76,10 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 	}
 
 	self.adicionarProduto = () => {
-		console.info(self.notaFiscal.nota_itens)
-		console.warn(self.chosenItemToAdd)
-		self.notaFiscal.nota_itens.push(self.chosenItemToAdd)
+		console.warn(self.notaFiscal.itens)
+		self.notaFiscal.itens.push(self.chosenItemToAdd)
+		console.info(self.chosenItemToAdd)
+		self.chosenItemToAdd = {}
 	}
 
 	function selectedClienteChange(cliente) {
@@ -89,10 +88,10 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 
 	function selectedItemChange(item) {
 		self.chosenItemToAdd = item
+		self.chosenItemToAdd.quantidade = 1
+		self.chosenItemToAdd.desconto = 0
+		self.chosenItemToAdd.acrescimo = 0 
 	}
 
 	self.init()
-
-	console.info(self.notaFiscal)
-	  
 }]);
