@@ -78,9 +78,15 @@
 <body ng-app="materialApp" layout="row" ng-controller="appCtrl as app">
 
   <!-- <md-sidenav class="md-sidenav-left md-whiteframe-4dp ng-cloak"   md-is-locked-open="true" md-component-id="left"> -->
-  <md-sidenav
-    class="site-sidenav md-sidenav-left md-whiteframe-z2 hide-print md-closed ng-isolate-scope _md md-locked-open"
-    md-component-id="left" hide-print="" md-is-locked-open="$mdMedia('gt-sm')" tabindex="-1">
+  <md-sidenav class="site-sidenav 
+      md-sidenav-left 
+      md-whiteframe-z2 
+      hide-print md-closed 
+      ng-isolate-scope _md 
+      md-locked-open" md-component-id="left" hide-print="" md-is-locked-open="$mdMedia('gt-sm')" tabindex="-1">
+
+
+
 
     <header class="nav-header" style="background-color:#fff;" style="margin-top: 10;">
       <a ng-href="/" class="docs-logo" href="/" flex-offset="20">
@@ -88,22 +94,26 @@
         <h1 class="docs-logotype md-heading ng-isolate-scope"> ssimpleERP</h1>
       </a>
     </header>
-    <!-- <md-toolbar class="md-toolbar-tools" layout="row" layout-align="center-center">
 
-            <md-button ng-click="app.toggleLeft()" class="md-icon-button" aria-label="Close User Menu">
-              <md-icon md-font-icon="fa-bars" class="md-menu-text-color fa s24"></md-icon>
-            </md-button>
+    <md-content flex="" class="_md flex">
 
-            <h3 class="md-toolbar-tools">Menu</h3>
-        
-        </md-toolbar> -->
-    <div ng-repeat="menu in app.siderbar">
-      <md-list-item layout="row" ng-click="app.toggleLeft()" href="{{menu.href}}">
-        <span>{{menu.title}}</span>
-      </md-list-item>
+      <!-- <md-toolbar class="md-toolbar-tools" layout="row" layout-align="center-center">
+  
+              <md-button ng-click="app.toggleLeft()" class="md-icon-button" aria-label="Close User Menu">
+                <md-icon md-font-icon="fa-bars" class="md-menu-text-color fa s24"></md-icon>
+              </md-button>
+  
+              <h3 class="md-toolbar-tools">Menu</h3>
+          
+          </md-toolbar> -->
+      <div ng-repeat="menu in app.siderbar">
+        <md-list-item layout="row" ng-click="app.toggleLeft()" href="{{menu.href}}">
+          <span>{{menu.title}}</span>
+        </md-list-item>
+        <md-divider></md-divider>
+      </div>
+    </md-content>
 
-      <md-divider></md-divider>
-    </div>
   </md-sidenav>
   <md-sidenav class="md-sidenav-right md-whiteframe-4dp ng-cloak" md-component-id="right">
     <md-toolbar class="md-toolbar-tools" layout="row" layout-align="space-between-center">
@@ -113,6 +123,7 @@
       </md-button>
     </md-toolbar>
   </md-sidenav>
+
   <div style="width:100%" class="ng-cloak">
     <!-- <md-toolbar class="toolbar">
         <div layout="row" layout-align="center center" layout-wrap class="md-toolbar-tools">
@@ -141,11 +152,8 @@
           <md-icon md-font-icon="fa-user" class="md-menu-text-color fa s24"></md-icon>
         </md-button>
       </div>
-
     </md-toolbar>
-
     <div ui-view id="main"></div>
-
   </div>
 
   <script src="/scripts/angular/angular.min.js"></script>
