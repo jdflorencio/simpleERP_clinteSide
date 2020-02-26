@@ -50,6 +50,7 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 					const { result } =  obj.data
 					self.notaFiscal =  result
 					self.selectedClienteChange(self.notaFiscal.cabecalho.pessoa)
+					console.warn(self.notaFiscal.itens)
 					
 				})
 				break
@@ -84,7 +85,6 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 
 	function selectedClienteChange(cliente) {
 		self.chosenClienteToAdd = cliente
-		console.log(self.chosenClienteToAdd)
 	}
 
 	function selectedItemChange(item) {

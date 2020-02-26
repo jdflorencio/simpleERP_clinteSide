@@ -1,5 +1,5 @@
 <div ng-cloak>
-  <md-content layout-margin="" style="margin-left: 30px;">
+  <md-content layout-margin="">
     <div layout-wrap="" layout="row">
       <div flex="100">
         <div flex="100" layout="row">
@@ -46,16 +46,11 @@
               </div>
               <div flex="30">
 
-                <md-autocomplete 
-                    md-selected-item="ctrl.chosenClienteToAdd"
-                    md-floating-label="cliente" 
-                    required="" md-input-minlength="2" 
-                    md-input-maxlength="18"
-                    md-selected-item-change="ctrl.selectedClienteChange(item)" 
-                    md-search-text="ctrl.searchCliente"
-                    md-items="item in ctrl.querySearch(ctrl.searchCliente, 'cliente')" 
-                    md-item-text="item.nome"
-                    md-require-match="" input-aria-describedby="favoriteStateDescription">
+                <md-autocomplete md-selected-item="ctrl.chosenClienteToAdd" md-floating-label="cliente" required=""
+                  md-input-minlength="2" md-input-maxlength="18"
+                  md-selected-item-change="ctrl.selectedClienteChange(item)" md-search-text="ctrl.searchCliente"
+                  md-items="item in ctrl.querySearch(ctrl.searchCliente, 'cliente')" md-item-text="item.nome"
+                  md-require-match="" input-aria-describedby="favoriteStateDescription">
                   <md-item-template>
                     <span>{{item.nome}}</span>
                   </md-item-template>
@@ -72,7 +67,7 @@
           </md-card-content>
         </md-card>
       </div>
-      <div flex="90">
+      <div flex="100">
         <md-card flex="100">
           <md-card-content layout-padding="1">
             <div layout="row" layout-wrap="">
@@ -89,7 +84,7 @@
                 </md-input-container>
               </div>
 
-              <div flex="">
+              <div flex="25">
                 <md-autocomplete md-floating-label="Produto" required="" md-input-minlength="2" md-input-maxlength="18"
                   md-selected-item-change="ctrl.selectedItemChange(item)" md-search-text="ctrl.searchProduto"
                   md-items="item in ctrl.querySearch(ctrl.searchProduto, 'produto')" md-item-text="item.descricao"
@@ -99,6 +94,33 @@
                   </md-item-template>
                 </md-autocomplete>
               </div>
+              <div flex="10">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Quantidade</label>
+                  <input ng-model="ctrl.chosenItemToAdd.quantidade" ui-number-mask>
+                </md-input-container>
+              </div>
+              <div flex="10">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Preço de venda</label>
+                  <input ng-model="ctrl.chosenItemToAdd.vl_venda" ui-number-mask>
+                </md-input-container>
+              </div>
+              <div flex="10">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Desconto</label>
+                  <input ng-model="ctrl.chosenItemToAdd.desconto" ui-number-mask>
+                </md-input-container>
+              </div>
+              <div flex="10">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>Acrescimo</label>
+                  <input ng-model="ctrl.chosenItemToAdd.acrescimo" ui-number-mask>
+                </md-input-container>
+              </div>
+            </div>
+
+            <div layout="row" layout-wrap="">
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>CFOP</label>
@@ -111,9 +133,13 @@
                   <input ng-model="ctrl.chosenItemToAdd.cst_icms">
                 </md-input-container>
               </div>
-            </div>
+              <div flex="10">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>NCM</label>
+                  <input ng-model="ctrl.chosenItemToAdd.ncm">
+                </md-input-container>
+              </div>
 
-            <div layout="row" layout-wrap="">
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Aliquota ICMS</label>
@@ -149,44 +175,15 @@
                     disabled>
                 </md-input-container>
               </div>
-            </div>
-            <div layout="row" layout-wrap="">
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>estoque atual</label>
                   <input ng-model="ctrl.chosenItemToAdd.estoque_atual" ui-number-mask disabled>
                 </md-input-container>
               </div>
-              <div flex="10">
-                <md-input-container class="md-block" flex-gt-sm>
-                  <label>NCM</label>
-                  <input ng-model="ctrl.chosenItemToAdd.ncm">
-                </md-input-container>
-              </div>
-              <div flex="10">
-                <md-input-container class="md-block" flex-gt-sm>
-                  <label>Quantidade</label>
-                  <input ng-model="ctrl.chosenItemToAdd.quantidade" ui-number-mask>
-                </md-input-container>
-              </div>
-              <div flex="10">
-                <md-input-container class="md-block" flex-gt-sm>
-                  <label>Preço de venda</label>
-                  <input ng-model="ctrl.chosenItemToAdd.vl_venda" ui-number-mask>
-                </md-input-container>
-              </div>
-              <div flex="10">
-                <md-input-container class="md-block" flex-gt-sm>
-                  <label>Desconto</label>
-                  <input ng-model="ctrl.chosenItemToAdd.desconto" ui-number-mask>
-                </md-input-container>
-              </div>
-              <div flex="10">
-                <md-input-container class="md-block" flex-gt-sm>
-                  <label>Acrescimo</label>
-                  <input ng-model="ctrl.chosenItemToAdd.acrescimo" ui-number-mask>
-                </md-input-container>
-              </div>
+            </div>
+            <div layout="row" layout-wrap="">
+
               <div flex="10">
               </div>
               <div flex="" layout-padding="">
@@ -195,74 +192,68 @@
                 </section>
               </div>
             </div>
-            <md-card flex="100">
-              <md-card-content>
-                <div layout="row" layout-wrap="">
-
-                  <div class="my-custom-scrollbar table-wrapper-scroll-y">
-                    <table class="mdc-data-table__table ">
-                      <thead">
-                        <tr>
-                          <th></th>
-                          <th>ID</th>
-                          <th>Descricão</th>
-                          <th>CFOP</th>
-                          <th>CST</th>
-                          <th>QTD</th>
-                          <th>Valor</th>
-                          <th>Desc.</th>
-                          <th>Acresc.</th>
-                          <th>SubTotal</th>
-                          <th>Ações</th>
-                          <!-- <th style="display: none;">Total</th> -->
-                        </tr>
-                        </thead>
-                        <tbody class="mdc-data-table__content">
-
-                          <tr ng-repeat="item in ctrl.notaFiscal.nota_itens" class="mdc-data-table__row">
-                            <td class="mdc-data-table__cell">{{$index +1 }}</td>
-                            <td class="mdc-data-table__cell">{{item.id}}</td>
-                            <td class="mdc-data-table__cell">{{item.produto.descricao}}</td>
-                            <td class="mdc-data-table__cell">{{item.cfop}}</td>
-                            <td class="mdc-data-table__cell">{{item.cst}}</td class="mdc-data-table__cell">
-                            <td class="mdc-data-table__cell">{{item.quantidade}}</td class="mdc-data-table__cell">
-                            <td class="mdc-data-table__cell">R${{item.produto.vl_venda}}</td
-                              class="mdc-data-table__cell">
-                            <td class="mdc-data-table__cell">R${{item.acrescimo}}</td class="mdc-data-table__cell">
-                            <td class="mdc-data-table__cell">R${{item.subtotal}} </td class="mdc-data-table__cell">
-                            <td class="mdc-data-table__cell">R${{item.subtotal}} </td class="mdc-data-table__cell">
-                            <td></td>
-                            <!-- <td style="display: none;" class="mdc-data-table__cell"></td> -->
-                          </tr>
-
-                        </tbody>
-                        <tfoot></tfoot>
-                    </table>
-                  </div>
-                </div>
-
-              </md-card-content>
-            </md-card>
-
-
-
           </md-card-content>
         </md-card>
-
       </div>
-
-      <div flex="100" layout-margin="">
-        <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
-          <md-button class="md-primary" ng-click="ctrl.salvarAtualizar()">Salvar</md-button>
-          <md-button ng-click="ctrl.cancelar()" class="md-warn">Cancelar</md-button>
-        </section>
-
-      </div>
-
     </div>
   </md-content>
 </div>
 
+<div flex="100" layout-margin="">
+  <md-card flex="100">
+    <md-card-content>
+      <div layout="row" layout-wrap="">
+        <div class="my-custom-scrollbar table-wrapper-scroll-y">
+          <table class="mdc-data-table__table ">
+            <thead">
+              <tr>
+                <th></th>
+                <th>ID</th>
+                <th>Descricão</th>
+                <th>CFOP</th>
+                <th>CST</th>
+                <th>QTD</th>
+                <th>Valor</th>
+                <th>Desc.</th>
+                <th>Acresc.</th>
+                <th>SubTotal</th>
+                <th>Ações</th>
+                <!-- <th style="display: none;">Total</th> -->
+              </tr>
+              </thead>
+              <tbody class="mdc-data-table__content">
+                <tr ng-repeat="item in ctrl.notaFiscal.itens" class="mdc-data-table__row">
+                  <td class="mdc-data-table__cell">{{$index +1 }}</td>
+                  <td class="mdc-data-table__cell">{{item.id}}</td>
+                  <td class="mdc-data-table__cell">{{item.descricao}}</td>
+                  <td class="mdc-data-table__cell">{{item.nota_itens.cfop}}</td>
+                  <td class="mdc-data-table__cell">{{item.nota_itens.cst}}</td class="mdc-data-table__cell">
+                  <td class="mdc-data-table__cell">{{item.nota_itens.quantidade}}</td class="mdc-data-table__cell">
+                  <td class="mdc-data-table__cell">R${{item.vl_venda}}</td class="mdc-data-table__cell">
+                  <td class="mdc-data-table__cell">R${{item.nota_itens.acrescimo}}</td class="mdc-data-table__cell">
+                  <td class="mdc-data-table__cell">R${{item.nota_itens.subtotal}} </td class="mdc-data-table__cell">
+                  <td class="mdc-data-table__cell">R${{item.nota_itens.subtotal}} </td class="mdc-data-table__cell">
+                  <td></td>
+                  <!-- <td style="display: none;" class="mdc-data-table__cell"></td> -->
+                </tr>
+
+              </tbody>
+              <tfoot></tfoot>
+          </table>
+        </div>
+      </div>
+
+    </md-card-content>
+  </md-card>
+
+</div>
+
+<div flex="100" layout-margin="">
+  <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
+    <md-button class="md-primary" ng-click="ctrl.salvarAtualizar()">Salvar</md-button>
+    <md-button ng-click="ctrl.cancelar()" class="md-warn">Cancelar</md-button>
+  </section>
+</div>
 
 
 

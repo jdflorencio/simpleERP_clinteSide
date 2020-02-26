@@ -38,6 +38,7 @@
     }
 
     h1,
+
     h2,
     h3,
     h4,
@@ -77,13 +78,13 @@
 
 <body ng-app="materialApp" layout="row" ng-controller="appCtrl as app">
 
-  <!-- <md-sidenav class="md-sidenav-left md-whiteframe-4dp ng-cloak"   md-is-locked-open="true" md-component-id="left"> -->
-  <md-sidenav class="site-sidenav 
+  <md-sidenav class="md-sidenav-left md-whiteframe-4dp ng-cloak"   md-is-locked-open="" md-component-id="left">
+  <!-- <md-sidenav class="site-sidenav 
       md-sidenav-left 
       md-whiteframe-z2 
       hide-print md-closed 
       ng-isolate-scope _md 
-      md-locked-open" md-component-id="left" hide-print="" md-is-locked-open="$mdMedia('gt-sm')" tabindex="-1">
+      md-locked-open" md-component-id="left" hide-print="" md-is-locked-open="$mdMedia('gt-sm')" tabindex="-1"> -->
 
 
 
@@ -147,6 +148,9 @@
     </md-toolbar> -->
     <md-toolbar>
       <div class="md-toolbar-tools">
+        <md-button ng-click="app.toggleLeft()" class="md-icon-button" aria-label="Main Menu">
+          <md-icon md-font-icon="fa-bars" class="md-menu-text-color fa s24"></md-icon>
+        </md-button>
         <h2 md-truncate="" flex="">{{title}}</h2>
         <md-button ng-click="app.toggleRight()" class="md-icon-button" aria-label="User Menu">
           <md-icon md-font-icon="fa-user" class="md-menu-text-color fa s24"></md-icon>
