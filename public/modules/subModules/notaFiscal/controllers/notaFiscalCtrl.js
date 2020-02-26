@@ -12,6 +12,7 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 	self.selectedClienteChange = selectedClienteChange
 	self.chosenClienteToAdd
 
+
 	// PRODUTO
 	self.selectedItemChange = selectedItemChange
 	self.chosenItemToAdd ={
@@ -48,6 +49,8 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 				.then( ( obj ) => {
 					const { result } =  obj.data
 					self.notaFiscal =  result
+					self.selectedClienteChange(self.notaFiscal.cabecalho.pessoa)
+					
 				})
 				break
 			default:
@@ -81,6 +84,7 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 
 	function selectedClienteChange(cliente) {
 		self.chosenClienteToAdd = cliente
+		console.log(self.chosenClienteToAdd)
 	}
 
 	function selectedItemChange(item) {
