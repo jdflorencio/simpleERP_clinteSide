@@ -51,9 +51,9 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 
 	self.adicionarProduto = () => {
 		const item = {
-				descricao:"NESCAFE MATINAL",
-				estoque_atual:"50.0000",
-				referencia:null,
+				descricao: self.chosenItemToAdd.descricao,
+				estoque_atual: self.chosenItemToAdd.estoque_atual,
+				referencia: self.chosenItemToAdd.referencia,
 				nota_itens:{}
 		}
 
@@ -76,6 +76,7 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 		item.nota_itens.aliq_ipi = ''
 		item.nota_itens.base_ipi = ''
 
+		self.searchProduto  = ''
 		self.notaFiscal.itens.push(item)
 	}
 
