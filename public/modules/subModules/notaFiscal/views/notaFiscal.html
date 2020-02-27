@@ -25,8 +25,11 @@
               <div flex="">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Chave da Nota</label>
-                  <input ng-model="ctrl.notaFiscal.cabecalho.chave_nfe" disabled>
+                  <input ng-model="ctrl.notaFiscal.cabecalho.chave_nfe" >
                 </md-input-container>
+                <div ng-messages="colorForm.favoriteColor.$error">
+                  <div ng-message="required">{{ctrl.notaFiscal.cabecalho["chave_nfe"].length}}</div>
+                </div>
               </div>
 
             </div>

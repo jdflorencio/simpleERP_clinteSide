@@ -82,6 +82,9 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 
 	function selectedClienteChange(cliente) {
 		self.chosenClienteToAdd = cliente
+		self.notaFiscal.cabecalho.pessoaId = self.chosenClienteToAdd.id
+		self.notaFiscal.cabecalho.pessoa  = self.chosenClienteToAdd
+		
 	}
 
 	function selectedItemChange(item) {
