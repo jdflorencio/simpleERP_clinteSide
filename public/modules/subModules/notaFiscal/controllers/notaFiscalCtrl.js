@@ -1,5 +1,6 @@
 angular.module('notaFiscalCtrl', ['notaFiscalService'])
 .controller('notaFiscalCtrl', [
+
 	'$stateParams',
 	'$state',
 	'NotaFiscal',
@@ -8,10 +9,9 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 	self = this
 	self.querySearch = NotaFiscal.querySearch
 
-	// CLIENTE	
+	// CLIENTE
 	self.selectedClienteChange = selectedClienteChange
 	self.chosenClienteToAdd
-
 
 	// PRODUTO
 	self.selectedItemChange = selectedItemChange
@@ -77,7 +77,7 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 
 	self.adicionarProduto = () => {
 		console.warn(self.notaFiscal.itens)
-		self.notaFiscal.itens.push(self.chosenItemToAdd)
+		self.notaFiscal.itens.push(self.chosenItemToAdd.itens_nota)
 		console.info(self.chosenItemToAdd)
 		self.chosenItemToAdd = {}
 	}
