@@ -28,14 +28,15 @@ angular.module('clienteCtrl', ['clienteService'])
 	}
 
 	self.init = function() {
+		console.info("id" in $stateParams)
 		switch ("id" in $stateParams) {
 			case true:
 				self.consultarCientes()
 
 				break
 			case false:
-			}
 				self.cliente = {tipo: 'pf', sexo: 'masculino', enderecos: [{}], telefones: [{}]}
+			}
 	}
 
 	self.removerTelefone =  async function(index) {
@@ -85,15 +86,14 @@ angular.module('clienteCtrl', ['clienteService'])
 
 	self.salvarAtualizar = () => {
 		
-		
-		if (Object.keys(self.cliente.enderecos[0]).length  == 1 &&  self.cliente.enderecos[0].$$hashKey) {
-			delete self.cliente.enderecos;
-		}
 
-		if (Object.keys(self.cliente.telefones[0]).length == 1 &&  self.cliente.telefones[0].$$hashKey) {
+		if (self.cliente["enderecos"][0].length == 1 && typeof self.cliente.enderecos != "undefined") {
+			delete self.cliente.enderecos;
+
+		if (self.cliente["telefones"][0].length == 1 &&  self.cliente.telefones) {
 			delete self.cliente.telefones;
 		}
-	
+	}
 		self.cliente.data_nascimento = self.cliente.data_nascimento  ? FormatToAPI.dateFormat(self.cliente.data_nascimento) : null
 		self.cliente.data_fundacao = self.cliente.data_fundacao  ? FormatToAPI.dateFormat(self.cliente.data_fundacao) : null
 
@@ -101,7 +101,7 @@ angular.module('clienteCtrl', ['clienteService'])
 			case true:
 				$http.put(`${host}/`, self.cliente)
 					.then((result) => {
-						$state.go('clientes', {id: result.data.id});
+						$state.go('clientes');
 							// $window.location.reload();
 							// self.init()
 							let msg = result.data.sucesso ? result.data.msg : result.data.error.message
@@ -124,8 +124,8 @@ angular.module('clienteCtrl', ['clienteService'])
 			case false:
 				$http.post(`${host}`, self.cliente)
 					.then((result) => {
-						console.log(result)
-						$state.go('editar_cliente', {id: result.data.id});
+						const { data } = result.data
+						$state.go('editar_cliente', {id: data.id});
 					}).catch( error => {
 				})
 		}
@@ -142,4 +142,5 @@ angular.module('clienteCtrl', ['clienteService'])
 
 	self.init()
 	
-}]);
+}
+])
