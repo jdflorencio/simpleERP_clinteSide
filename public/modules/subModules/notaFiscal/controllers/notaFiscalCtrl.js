@@ -1,6 +1,5 @@
 angular.module('notaFiscalCtrl', ['notaFiscalService'])
 .controller('notaFiscalCtrl', [
-
 	'$stateParams',
 	'$state',
 	'NotaFiscal',
@@ -15,40 +14,15 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 
 	// PRODUTO
 	self.selectedItemChange = selectedItemChange
-	self.chosenItemToAdd ={
-		estoque_atual:0,
-		quantidade: 0,
-		desconto: 0,
-		vl_venda: 0,
-		acrescimo: 0,
-		tributacao: {
-			aliq_icms_venda_dentro_estado: 0.0,
-			aliq_icms_venda_fora_estado: 0.0,
-			aliq_icms_reducao_venda: 0.0,
-			cst_base_venda: 0.0,
-			cst_pis_venda: 0.0,
-			aliq_pis_venda: 0.0,
-			cst_cofins_venda: 0.0,
-			aliq_cofins_venda: 0.0,
-			aliq_icms_compra_dentro_estado: 0.0,
-			aliq_icms_compra_fora_estado: 0.0,
-			aliq_icms_reducao_compra: 0.0,
-			cst_base_compra: 0.0,
-			cst_pis_compra: 0.0,
-			aliq_pis_compra: 0.0,
-			cst_cofins_compra: 0.0,
-			aliq_cofins_compra: 0.0,
-			mva: 0.0
-		}
-	}
 
 	self.init = function() {
 		switch ("id" in $stateParams) {
 			case true:
 				NotaFiscal.consultarNotaFiscal()
 				.then( ( obj ) => {
-					const { result } =  obj.data
-					self.notaFiscal =  result
+					const { result } = obj.data
+					self.notaFiscal = result
+
 					self.selectedClienteChange(self.notaFiscal.cabecalho.pessoa)
 				})
 				break
@@ -76,10 +50,33 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 	}
 
 	self.adicionarProduto = () => {
-		console.warn(self.notaFiscal.itens)
-		self.notaFiscal.itens.push(self.chosenItemToAdd.itens_nota)
-		console.info(self.chosenItemToAdd)
-		self.chosenItemToAdd = {}
+		const item = {
+				descricao:"NESCAFE MATINAL",
+				estoque_atual:"50.0000",
+				referencia:null,
+				nota_itens:{}
+		}
+
+		// item.nota_itens.id = self.chosenItemToAdd.
+		item.nota_itens.produtoId = self.chosenItemToAdd.id
+		item.nota_itens.cfop = self.chosenItemToAdd.tributacao.cfop_dentro_estado
+		item.nota_itens.cst = self.chosenItemToAdd.tributacao.cst_base_venda
+		// item.nota_itens.cst = self.chosenItemToAdd.nota_itens.cst_cofins_venda
+		item.nota_itens.quantidade = self.chosenItemToAdd.quantidade
+		item.nota_itens.valor = self.chosenItemToAdd.vl_venda
+		item.nota_itens.desconto = self.chosenItemToAdd.desconto
+		item.nota_itens.acrescimo = self.chosenItemToAdd.acrescimo
+		item.nota_itens.subtotal = ''
+		item.nota_itens.total = ''
+		item.nota_itens.aliq_icms = self.chosenItemToAdd.tributacao.aliq_icms_venda_dentro_estado // aliq_icms_venda_fora_estado
+		item.nota_itens.base_icms = self.chosenItemToAdd.tributacao.cst_base_venda
+		item.nota_itens.valor_icms  = ''
+		item.nota_itens.aliq_subst  = ''
+		item.nota_itens.base_subst = ''
+		item.nota_itens.aliq_ipi = ''
+		item.nota_itens.base_ipi = ''
+
+		self.notaFiscal.itens.push(item)
 	}
 
 	function selectedClienteChange(cliente) {

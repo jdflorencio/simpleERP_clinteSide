@@ -124,13 +124,13 @@
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>CFOP</label>
-                  <input ng-model="ctrl.chosenItemToAdd.tributacao.cfop">
+                  <input ng-model="ctrl.chosenItemToAdd.tributacao.cfop_dentro_estado">
                 </md-input-container>
               </div>
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>CST</label>
-                  <input ng-model="ctrl.chosenItemToAdd.cst_icms">
+                  <input ng-model="ctrl.chosenItemToAdd.tributacao.cst_base_venda">
                 </md-input-container>
               </div>
               <div flex="10">
@@ -150,13 +150,13 @@
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Base ICMS</label>
-                  <input ng-model="ctrl.chosenItemToAdd.tributacao.aliq_icms_venda_dentro_estado" ui-number-mask
+                  <input ng-model="ctrl.chosenItemToAdd.tributacao.base_icms" ui-number-mask
                     disabled>
                 </md-input-container>
               </div>
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
-                  <label>Base ICMS</label>
+                  <label>valor ICMS</label>
                   <input ng-model="ctrl.chosenItemToAdd.tributacao.aliq_icms_venda_dentro_estado" ui-number-mask
                     disabled>
                 </md-input-container>
@@ -187,7 +187,9 @@
               <div flex="10">
               </div>
               <div flex="" layout-padding="">
+                
                 <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
+                
                   <button class="md-primary" ng-click="ctrl.adicionarProduto()">Adicionar Produto</button>
                 </section>
               </div>
@@ -224,15 +226,15 @@
               <tbody class="mdc-data-table__content">
                 <tr ng-repeat="item in ctrl.notaFiscal.itens" class="mdc-data-table__row">
                   <td class="mdc-data-table__cell">{{$index +1 }}</td>
-                  <td class="mdc-data-table__cell">{{item.id}}</td>
-                  <td class="mdc-data-table__cell">{{item.descricao}}</td>
+                  <td class="mdc-data-table__cell">{{item.nota_itens.produtoId}}</td>
+                  <td column-widths(500) class="mdc-data-table__cell" >{{item.descricao}}</td>
                   <td class="mdc-data-table__cell">{{item.nota_itens.cfop}}</td>
                   <td class="mdc-data-table__cell">{{item.nota_itens.cst}}</td class="mdc-data-table__cell">
                   <td class="mdc-data-table__cell">{{item.nota_itens.quantidade}}</td class="mdc-data-table__cell">
-                  <td class="mdc-data-table__cell">R${{item.vl_venda}}</td class="mdc-data-table__cell">
-                  <td class="mdc-data-table__cell">R${{item.nota_itens.acrescimo}}</td class="mdc-data-table__cell">
-                  <td class="mdc-data-table__cell">R${{item.nota_itens.subtotal}} </td class="mdc-data-table__cell">
-                  <td class="mdc-data-table__cell">R${{item.nota_itens.subtotal}} </td class="mdc-data-table__cell">
+                  <td class="mdc-data-table__cell">R${{item.nota_itens.valor}}</td class="mdc-data-table__cell">
+                  <td class="mdc-data-table__cell">R${{item.nota_itens.desconto}}</td class="mdc-data-table__cell">
+                  <td class="mdc-data-table__cell">R${{item.nota_itens.acrescimo}} </td class="mdc-data-table__cell">
+                  <td class="mdc-data-table__cell">R${{item.nota_itens.valor + item.nota_itens.acrescimo }} </td class="mdc-data-table__cell">
                   <td></td>
                   <!-- <td style="display: none;" class="mdc-data-table__cell"></td> -->
                 </tr>
