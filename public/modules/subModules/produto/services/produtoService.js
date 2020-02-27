@@ -1,12 +1,22 @@
 angular.module('produtoService', [])
-.factory('Cliente', function($http) {
+.factory('ProdutoService', function($http, configURL) {
+
+    self = this	
+	const { baseURL } = configURL
+	const host = `${baseURL}/tributacao`
     
-    var exampleFactory = {};
+    const produtoFactory = {};
 
-    exampleFactory.all = function() {
-        //return $http.get(API.URL/example);
-    };
+    produtoFactory.tributos = function() {
+         $http.get(`${host}`)
+        .then( tributacao => {
+            self.tributacao =  tributacao.data.result
+        })
+        .catch( error => {            
+            console.log( error )
+        })
+    }
 
-    return exampleFactory;
+    return produtoFactory;
 
-});
+})
