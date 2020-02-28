@@ -66,15 +66,15 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 		item.nota_itens.valor = self.chosenItemToAdd.vl_venda
 		item.nota_itens.desconto = self.chosenItemToAdd.desconto
 		item.nota_itens.acrescimo = self.chosenItemToAdd.acrescimo
-		item.nota_itens.subtotal = ''
-		item.nota_itens.total = ''
+		item.nota_itens.subtotal = 0.0
+		item.nota_itens.total = 0.0
 		item.nota_itens.aliq_icms = self.chosenItemToAdd.tributacao.aliq_icms_venda_dentro_estado // aliq_icms_venda_fora_estado
 		item.nota_itens.base_icms = self.chosenItemToAdd.tributacao.cst_base_venda
-		item.nota_itens.valor_icms  = ''
-		item.nota_itens.aliq_subst  = ''
-		item.nota_itens.base_subst = ''
-		item.nota_itens.aliq_ipi = ''
-		item.nota_itens.base_ipi = ''
+		item.nota_itens.valor_icms  = 0.0
+		item.nota_itens.aliq_subst  = 0.0
+		item.nota_itens.base_subst = 0.0
+		item.nota_itens.aliq_ipi = 0.0
+		item.nota_itens.base_ipi = 0.0
 
 		self.searchProduto  = ''
 		self.notaFiscal.itens.push(item)
