@@ -14,8 +14,10 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 
 	// PRODUTO
 	self.selectedItemChange = selectedItemChange
+	self.chosenClienteToAddToAdd
 
 	self.init = function() {
+		
 		switch ("id" in $stateParams) {
 			case true:
 				NotaFiscal.consultarNotaFiscal()
@@ -27,7 +29,12 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 				})
 				break
 			default:
-				console.warn("Não Foi passado no parametro")
+				self.notaFiscal = {
+					cabecalho: {}, 
+					itens:[]
+				}
+
+				
 			}
 		}
 
