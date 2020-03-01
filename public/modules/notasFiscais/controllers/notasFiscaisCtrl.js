@@ -1,8 +1,16 @@
 angular.module('notasFiscaisCtrl', ['notasFiscaisService'])
-.controller('notasFiscaisCtrl', function(NotasFiscais) {
+.controller('notasFiscaisCtrl', ["NotasFiscais", "$state", function(NotasFiscais, $state) {
 	
 	self = this;
 
-	self.notasFiscaisItems = NotasFiscais.all();
+	NotasFiscais.getAll()
 
-});
+	self.remover = function(notaId) {
+		NotasFiscais.deletar(notaId)
+	}
+	
+	self.editar = function(notaId) {
+		$state.go('editar_nota_fiscal', {id: notaId})
+	}
+
+}]);

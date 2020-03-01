@@ -43,7 +43,7 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 	}
 
 	self.cancelar = function() {
-		$state.go('notaFiscals');
+		$state.go('notasfiscais');
 	}
 
 	self.salvarAtualizar = () => {
