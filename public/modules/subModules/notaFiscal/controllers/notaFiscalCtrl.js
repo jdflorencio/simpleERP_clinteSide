@@ -99,5 +99,14 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 		self.chosenItemToAdd.acrescimo = 0 
 	}
 
+	self.editarItem = function(position_item) {
+		console.log(position_item)
+	}
+
+	self.excluirItem = function(position_item) {
+		self.notaFiscal["itens"][position_item].deletado = true
+		
+	}
+
 	self.init()
 }]);
