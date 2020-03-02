@@ -66,7 +66,7 @@ angular.module('notaFiscalService', [])
             })
         }
         return []
-	  }
+      }      
 
     return NotaFiscalFactory;
 });
