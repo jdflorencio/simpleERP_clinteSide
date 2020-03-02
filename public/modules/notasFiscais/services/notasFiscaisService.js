@@ -12,7 +12,7 @@ angular.module('notasFiscaisService', [])
             self.notas = all.data.result.rows
             self.quantidade_registro = function() {
                 const val = []
-                for (let i = 0; i <  Math.round((all.data.result.count)/3); i++ ) {
+                for (let i = 0; i <  Math.ceil((all.data.result.count)/4); i++ ) {
                     val.push(i+1)
                 }
                 return val
