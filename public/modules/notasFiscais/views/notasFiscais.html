@@ -1,5 +1,4 @@
 <div>
-
     <div layout-wrap="" layout-margin="" >
         <md-card layout-margin="">
             <md-card-content>
@@ -16,11 +15,9 @@
             <md-divider></md-divider>
             <md-card-actions layout="row" layout-align="end center">
                 PAGINAS:
-                <md-button   class="md-icon-button" ng-repeat="pagina in ctrl.quantidade_registro()"> {{pagina}}</md-button>
-               
+                <md-button  ng-click="ctrl.pagina(pagina)" class="md-icon-button" ng-repeat="pagina in ctrl.quantidade_registro()"> {{pagina}}</md-button>
             </md-card-actions>
         </md-card>
-
     </div>
 
 

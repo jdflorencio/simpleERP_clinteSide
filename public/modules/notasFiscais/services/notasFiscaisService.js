@@ -3,20 +3,21 @@ angular.module('notasFiscaisService', [])
     
     var notasFiscaisFactory = {};
 
-    notasFiscaisFactory.getAll =  function(){
+    notasFiscaisFactory.getAll =  function(pagina = 1) {
        
-        return $http.get(`${configURL.baseURL}/notafiscal`)
-        .then(all => {
+        return $http.get(`${configURL.baseURL}/notafiscal`, {
+            params: { pagina: pagina }
+        })
+        .then( all => {
             self.notas = all.data.result.rows
             self.quantidade_registro = function() {
                 const val = []
-                for (let i = 0; i <  Math.ceil((all.data.result.count)/3); i++ ) {
+                for (let i = 0; i <  Math.round((all.data.result.count)/3); i++ ) {
                     val.push(i+1)
                 }
                 return val
             }
-            // Math.ceil((all.data.result.count)/3)
-            
+            // Math.ceil((all.data.result.count)/3)            
         })
         .catch(error => {
             console.warn('erro ==>>', error )
