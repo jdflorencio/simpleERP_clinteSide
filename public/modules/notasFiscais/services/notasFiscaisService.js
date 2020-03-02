@@ -7,7 +7,15 @@ angular.module('notasFiscaisService', [])
        
         return $http.get(`${configURL.baseURL}/notafiscal`)
         .then(all => {
-            self.notas = all.data.result
+            self.notas = all.data.result.rows
+            self.quantidade_registro = function() {
+                const val = []
+                for (let i = 0; i <  Math.ceil((all.data.result.count)/3); i++ ) {
+                    val.push(i+1)
+                }
+                return val
+            }
+            // Math.ceil((all.data.result.count)/3)
             
         })
         .catch(error => {

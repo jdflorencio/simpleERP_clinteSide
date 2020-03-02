@@ -10,17 +10,25 @@
                         class="md-secondary md-hue-3 md-warn"></md-icon>
                     <md-icon md-font-icon="fas fa-edit" ng-click="ctrl.editar(nota.id)" 
                     class="md-secondary md-hue-3" aria-label="Chat"></md-icon>
-                    <md-divider md-inset ng-if="!$last"></md-divider>
+                    <!-- <md-divider md-inset ng-if="!$last"></md-divider> -->
                 </md-list-item>
             </md-card-content>
+            <md-divider></md-divider>
             <md-card-actions layout="row" layout-align="end center">
-                <md-button>Anterior</md-button>
-                <md-button>Atual</md-button>
-                <md-button>proximo</md-button>
+                PAGINAS:
+                <md-button   class="md-icon-button" ng-repeat="pagina in ctrl.quantidade_registro()"> {{pagina}}</md-button>
+               
             </md-card-actions>
         </md-card>
 
     </div>
+
+
+
+
+
+  
+  
 
 
 </div>
