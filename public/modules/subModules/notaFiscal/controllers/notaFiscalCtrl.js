@@ -82,7 +82,6 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 		item.nota_itens.base_subst = 0.0
 		item.nota_itens.aliq_ipi = 0.0
 		item.nota_itens.base_ipi = 0.0
-
 		self.searchProduto  = ''
 		self.notaFiscal.itens.push(item)
 	}
@@ -91,7 +90,6 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 		self.chosenClienteToAdd = cliente
 		self.notaFiscal.cabecalho.pessoaId = self.chosenClienteToAdd.id
 		self.notaFiscal.cabecalho.pessoa  = self.chosenClienteToAdd
-		
 	}
 
 	function selectedItemChange(item) {

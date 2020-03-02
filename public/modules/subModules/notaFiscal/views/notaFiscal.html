@@ -239,7 +239,20 @@
                   <td class="mdc-data-table__cell">R${{item.nota_itens.desconto}}</td class="mdc-data-table__cell">
                   <td class="mdc-data-table__cell">R${{item.nota_itens.acrescimo}} </td class="mdc-data-table__cell">
                   <td class="mdc-data-table__cell">R${{item.nota_itens.valor + item.nota_itens.acrescimo }} </td class="mdc-data-table__cell">
-                  <td></td>
+                  <td class="mdc-data-table__cell">
+                    <div layout="column" flex=""  layout-align="center center">
+                      <md-menu md-offset="0 -7">
+                        <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdMenu.open($event)">
+                          <md-icon md-font-icon="fas fa-ellipsis-v"></md-icon>
+                        </md-button>
+                        <md-menu-content width="2">
+                          <md-menu-item ng-repeat="item in [1, 2, 3]">
+                            <md-button ng-click="ctrl.announceClick($index)"> <span md-menu-align-target>Option</span> {{item}} </md-button>
+                          </md-menu-item>
+                        </md-menu-content>
+                      </md-menu>
+                    </div>
+                </td>
                   <!-- <td style="display: none;" class="mdc-data-table__cell"></td> -->
                 </tr>
 

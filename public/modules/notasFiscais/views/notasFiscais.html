@@ -8,8 +8,9 @@
                     <md-checkbox class="md-secondary" ng-model="person.selected " style="display: none;"></md-checkbox>
                     <md-icon md-font-icon="fas fa-trash-alt" ng-click="ctrl.remover(nota.id)" aria-label="Excluir"
                         class="md-secondary md-hue-3 md-warn"></md-icon>
-                    <md-icon md-font-icon="fas fa-edit" ng-click="ctrl.editar(nota.id)"
-                        class="md-secondary md-hue-3" aria-label="Chat"></md-icon>
+                    <md-icon md-font-icon="fas fa-edit" ng-click="ctrl.editar(nota.id)" 
+                    class="md-secondary md-hue-3" aria-label="Chat"></md-icon>
+                    <md-divider md-inset ng-if="!$last"></md-divider>
                 </md-list-item>
             </md-card-content>
             <md-card-actions layout="row" layout-align="end center">
