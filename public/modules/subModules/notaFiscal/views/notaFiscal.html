@@ -214,7 +214,7 @@
             <thead">
               <tr>
                 <th></th>
-                <th>ID</th>
+                <th class="hide">ID</th>
                 <th>Descricão</th>
                 <th>CFOP</th>
                 <th>CST</th>
@@ -230,7 +230,7 @@
               <tbody class="mdc-data-table__content">
                 <tr ng-repeat="item in ctrl.notaFiscal.itens" class="mdc-data-table__row">
                   <td class="mdc-data-table__cell">{{$index +1 }}</td>
-                  <td class="mdc-data-table__cell">{{item.nota_itens.produtoId}}</td>
+                  <td class="mdc-data-table__cell hide">{{item.nota_itens.produtoId}}</td>
                   <td column-widths(500) class="mdc-data-table__cell" >{{item.descricao}}</td>
                   <td class="mdc-data-table__cell">{{item.nota_itens.cfop}}</td>
                   <td class="mdc-data-table__cell">{{item.nota_itens.cst}}</td class="mdc-data-table__cell">
@@ -246,8 +246,9 @@
                           <md-icon md-font-icon="fas fa-ellipsis-v"></md-icon>
                         </md-button>
                         <md-menu-content width="2">
-                          <md-menu-item ng-repeat="item in [1, 2, 3]">
-                            <md-button ng-click="ctrl.announceClick($index)"> <span md-menu-align-target>Option</span> {{item}} </md-button>
+                          <md-menu-item >
+                            <md-button ng-click="ctrl.editarItem($index)"> Editar </md-button>
+                            <md-button ng-click="ctrl.excluirItem($index)"> Excluir</md-button>
                           </md-menu-item>
                         </md-menu-content>
                       </md-menu>
