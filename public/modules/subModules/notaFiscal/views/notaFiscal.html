@@ -48,17 +48,22 @@
                 </md-input-container>
               </div>
               <div flex="30">
-
-                <md-autocomplete md-selected-item="ctrl.chosenClienteToAdd" md-floating-label="cliente" required=""
-                  md-input-minlength="2" md-input-maxlength="18"
-                  md-selected-item-change="ctrl.selectedClienteChange(item)" md-search-text="ctrl.searchCliente"
-                  md-items="item in ctrl.querySearch(ctrl.searchCliente, 'cliente')" md-item-text="item.nome"
-                  md-require-match="" input-aria-describedby="favoriteStateDescription">
+                <md-autocomplete 
+                    md-selected-item="ctrl.chosenClienteToAdd" 
+                    md-floating-label="cliente" 
+                    required=""
+                    md-input-minlength="2"
+                    md-input-maxlength="18"
+                    md-selected-item-change="ctrl.selectedClienteChange(item)" 
+                    md-search-text="ctrl.searchCliente"
+                    md-items="item in ctrl.querySearch(ctrl.searchCliente, 'cliente')" 
+                    md-item-text="item.nome"
+                    md-require-match="" 
+                    input-aria-describedby="favoriteStateDescription">
                   <md-item-template>
                     <span>{{item.nome}}</span>
                   </md-item-template>
                 </md-autocomplete>
-
               </div>
               <div flex="30">
                 <md-input-container class="md-block" flex-gt-sm>
@@ -86,13 +91,19 @@
                   <input ng-model="ctrl.chosenItemToAdd.codigo_ean" disabled>
                 </md-input-container>
               </div>
-
               <div flex="25">
-                <md-autocomplete 
-                  md-floating-label="Produto" required="" md-input-minlength="2" md-input-maxlength="18"
-                  md-selected-item-change="ctrl.selectedItemChange(item)" md-search-text="ctrl.searchProduto"
-                  md-items="item in ctrl.querySearch(ctrl.searchProduto, 'produto')" md-item-text="item.descricao"
-                  md-require-match=""   input-aria-describedby="favoriteStateDescription">
+                <md-autocomplete
+                    md-floating-label="Produto" 
+                    required="" 
+                    md-input-minlength="2" 
+                    md-input-maxlength="18"
+                    md-selected-item="ctrl.chosenItemToAdd"
+                    md-selected-item-change="ctrl.selectedItemChange(item)" 
+                    md-search-text="ctrl.searchProduto"
+                    md-items="item in ctrl.querySearch(ctrl.searchProduto, 'produto')" 
+                    md-item-text="item.descricao"
+                    md-require-match=""   
+                    input-aria-describedby="favoriteStateDescription">
                   <md-item-template>
                     <span>{{item.descricao}}</span>
                   </md-item-template>
@@ -123,7 +134,6 @@
                 </md-input-container>
               </div>
             </div>
-
             <div layout="row" layout-wrap="" >
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
@@ -143,7 +153,6 @@
                   <input ng-model="ctrl.chosenItemToAdd.ncm">
                 </md-input-container>
               </div>
-
               <div flex="10">
                 <md-input-container class="md-block" flex-gt-sm>
                   <label>Aliquota ICMS</label>

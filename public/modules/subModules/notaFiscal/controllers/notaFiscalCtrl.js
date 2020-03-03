@@ -14,7 +14,7 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 
 	// PRODUTO
 	self.selectedItemChange = selectedItemChange
-	self.chosenClienteToAddToAdd
+	self.chosenItemToAdd
 
 	self.init = function() {
 		
@@ -33,8 +33,6 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 					cabecalho: {}, 
 					itens:[]
 				}
-
-				
 			}
 		}
 
@@ -57,6 +55,7 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 	}
 
 	self.adicionarProduto = () => {
+
 		const item = {
 				descricao: self.chosenItemToAdd.descricao,
 				estoque_atual: self.chosenItemToAdd.estoque_atual,
@@ -82,8 +81,17 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 		item.nota_itens.base_subst = 0.0
 		item.nota_itens.aliq_ipi = 0.0
 		item.nota_itens.base_ipi = 0.0
+
 		self.searchProduto  = ''
+		if (self.chosenItemToAdd.posicao_item_edicao != undefined) {
+			console.log("aqui", typeof parseInt(self.chosenItemToAdd.posicao_item_edicao))
+			self.notaFiscal.itens[self.chosenItemToAdd.posicao_item_edicao]
+			console.info(self.notaFiscal.itens[self.chosenItemToAdd.posicao_item_edicao])
+			
+			return true
+		}
 		self.notaFiscal.itens.push(item)
+		
 	}
 
 	function selectedClienteChange(cliente) {
@@ -94,18 +102,51 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 
 	function selectedItemChange(item) {
 		self.chosenItemToAdd = item
-		self.chosenItemToAdd.quantidade = 1
-		self.chosenItemToAdd.desconto = 0
-		self.chosenItemToAdd.acrescimo = 0 
+		// self.chosenItemToAdd.quantidade = 1
+		// self.chosenItemToAdd.desconto = 0
+		// self.chosenItemToAdd.acrescimo = 0 
 	}
 
 	self.editarItem = function(position_item) {
-		console.log(position_item)
+		NotaFiscal.querySearch(self.notaFiscal.itens[position_item].descricao, "produto")
+		.then(data => {
+			const schemaProdutoConsuta = {
+				chosenItemToAdd: {
+					posicao_item_edicao: position_item,
+					descricao: self.notaFiscal.itens[position_item].descricao, 
+					id:  self.notaFiscal.itens[position_item].nota_itens.produtoId,
+					codigo_ean: self.notaFiscal.itens[position_item].id,
+					quantidade: self.notaFiscal.itens[position_item].nota_itens.quantidade,
+					vl_venda: self.notaFiscal.itens[position_item].nota_itens.valor,
+					desconto: self.notaFiscal.itens[position_item].nota_itens.desconto,
+					acrescimo: self.notaFiscal.itens[position_item].nota_itens.acrescimo,
+					ncm: data[0].ncm,			
+					estoque_atual: data[0].estoque_atual,
+					codigo_ean: data[0].codigo_ean,		
+					tributacao:  {
+						cfop_dentro_estado: self.notaFiscal.itens[position_item].nota_itens.cfop,
+						cst_base_venda: self.notaFiscal.itens[position_item].nota_itens.cst,
+						aliq_icms_venda_dentro_estado: self.notaFiscal.itens[position_item].nota_itens.aliq_icms,
+						base_icms: self.notaFiscal.itens[position_item].nota_itens.base_icms,
+						aliq_icms_venda_dentro_estado: self.notaFiscal.itens[position_item].nota_itens.aliq_icms,
+						aliq_icms_venda_dentro_estado: self.notaFiscal.itens[position_item].nota_itens.aliq_icms,
+						aliq_icms_venda_dentro_estado: self.notaFiscal.itens[position_item].nota_itens.aliq_icms
+					}
+				}
+			}
+			self.chosenItemToAdd = schemaProdutoConsuta.chosenItemToAdd;
+		})
+		
+
+		
+		
+
 	}
 
+	  
+	
 	self.excluirItem = function(position_item) {
 		self.notaFiscal["itens"][position_item].deletado = true
-		
 	}
 
 	self.init()
