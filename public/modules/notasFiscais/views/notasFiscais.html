@@ -3,7 +3,7 @@
         <md-card layout-margin="">
             <md-card-content>
                 <md-list-item ng-repeat="nota in ctrl.notas" class="noright">
-                    <p> {{nota.id}} - <strong>{{ nota.pessoa.nome}}</strong> {{nota.data_emissao | date: dd/MM/yyyy}}</p>
+                    <p> <strong style="font-size: 18px;color: red;">{{nota.id}}</strong>  - <strong>{{ nota.pessoa.nome}}</strong> {{nota.data_emissao | date: dd/MM/yyyy}}</p>
                     <md-checkbox class="md-secondary" ng-model="person.selected " style="display: none;"></md-checkbox>
                     <md-icon md-font-icon="fas fa-trash-alt" ng-click="ctrl.remover(nota.id)" aria-label="Excluir"
                         class="md-secondary md-hue-3 md-warn"></md-icon>

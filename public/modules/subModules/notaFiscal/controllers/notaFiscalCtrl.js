@@ -57,10 +57,10 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 	self.adicionarProduto = () => {
 
 		const item = {
-				descricao: self.chosenItemToAdd.descricao,
-				estoque_atual: self.chosenItemToAdd.estoque_atual,
-				referencia: self.chosenItemToAdd.referencia,
-				nota_itens:{}
+			descricao: self.chosenItemToAdd.descricao,
+			estoque_atual: self.chosenItemToAdd.estoque_atual,
+			referencia: self.chosenItemToAdd.referencia,
+			nota_itens:{}
 		}
 
 		// item.nota_itens.id = self.chosenItemToAdd.
@@ -80,21 +80,20 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 		item.nota_itens.aliq_subst  = 0.0
 		item.nota_itens.base_subst = 0.0
 		item.nota_itens.aliq_ipi = 0.0
-		item.nota_itens.base_ipi = 0.0
-
-		
+		item.nota_itens.base_ipi = 0.0		
 		
 		self.searchProduto  = ''
 		if (self.chosenItemToAdd.posicao_item_edicao != undefined) {
 
 			let posicao  =  self.chosenItemToAdd.posicao_item_edicao
+			console.log(">>>>",posicao)
 			item.nota_itens.id = self.notaFiscal.itens[posicao].nota_itens.id
+			console.warn(">>>>", item.nota_itens.id)
 			self.notaFiscal.itens.splice(posicao, 1 , item)
-			
 			return true
+
 		}
 		self.notaFiscal.itens.push(item)
-		
 	}
 
 	function selectedClienteChange(cliente) {
@@ -123,9 +122,9 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 					vl_venda: self.notaFiscal.itens[position_item].nota_itens.valor,
 					desconto: self.notaFiscal.itens[position_item].nota_itens.desconto,
 					acrescimo: self.notaFiscal.itens[position_item].nota_itens.acrescimo,
-					ncm: data[0].ncm,			
+					ncm: data[0].ncm,
 					estoque_atual: data[0].estoque_atual,
-					codigo_ean: data[0].codigo_ean,		
+					codigo_ean: data[0].codigo_ean,
 					tributacao:  {
 						cfop_dentro_estado: self.notaFiscal.itens[position_item].nota_itens.cfop,
 						cst_base_venda: self.notaFiscal.itens[position_item].nota_itens.cst,
@@ -139,14 +138,7 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 			}
 			self.chosenItemToAdd = schemaProdutoConsuta.chosenItemToAdd;
 		})
-		
-
-		
-		
-
 	}
-
-	  
 	
 	self.excluirItem = function(position_item) {
 		self.notaFiscal["itens"][position_item].deletado = true
