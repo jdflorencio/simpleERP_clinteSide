@@ -82,11 +82,14 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 		item.nota_itens.aliq_ipi = 0.0
 		item.nota_itens.base_ipi = 0.0
 
+		
+		
 		self.searchProduto  = ''
 		if (self.chosenItemToAdd.posicao_item_edicao != undefined) {
-			console.log("aqui", typeof parseInt(self.chosenItemToAdd.posicao_item_edicao))
-			self.notaFiscal.itens[self.chosenItemToAdd.posicao_item_edicao]
-			console.info(self.notaFiscal.itens[self.chosenItemToAdd.posicao_item_edicao])
+
+			let posicao  =  self.chosenItemToAdd.posicao_item_edicao
+			item.nota_itens.id = self.notaFiscal.itens[posicao].nota_itens.id
+			self.notaFiscal.itens.splice(posicao, 1 , item)
 			
 			return true
 		}
@@ -102,9 +105,9 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 
 	function selectedItemChange(item) {
 		self.chosenItemToAdd = item
-		// self.chosenItemToAdd.quantidade = 1
-		// self.chosenItemToAdd.desconto = 0
-		// self.chosenItemToAdd.acrescimo = 0 
+		self.chosenItemToAdd.quantidade = 1
+		self.chosenItemToAdd.desconto = 0
+		self.chosenItemToAdd.acrescimo = 0 
 	}
 
 	self.editarItem = function(position_item) {
