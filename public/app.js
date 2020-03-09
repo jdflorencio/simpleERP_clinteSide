@@ -32,6 +32,10 @@ var materialApp = angular
     'notaFiscalCtrl',
     'notaFiscalService',
 
+    'loginCtrl',
+    'loginService',
+
+
     'ngNotify'
 
 ])
