@@ -1,7 +1,9 @@
 angular.module('appCtrl',[])
 .controller('appCtrl', function($mdSidenav, $stateParams, $rootScope) {
 
-    self = this;
+	self = this;
+	
+	
 
     self.siderbar = {
 			home: {
@@ -40,7 +42,7 @@ angular.module('appCtrl',[])
 
 	self.doTheBack = function() {
 		window.history.back();
-	  };
+	};
 
 })
 .constant("configURL", {

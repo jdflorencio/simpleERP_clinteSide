@@ -6,11 +6,26 @@ router.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     // UI Router States
     // Inserting Page title as State Param
     $stateProvider
+        .state('login', {
+            url: '/login',
+            templateUrl: '/modules/login/views/login.html',
+            controller: 'loginCtrl',
+            controllerAs: 'ctrl',
+            params: {
+                title: "SimpleERP"
+            }, 
+            resolve: {
+                skipIfAuthenticated: _skipIfAuthenticated                
+            }
+        })
         .state('home', {
             url: '/',
             templateUrl: 'home.html',
             params: {
                 title: "SimpleERP"
+            },
+            resolve: {
+                redirectIfNotAuthenticated: _redirectIfNotAuthenticated        
             }
         })
         .state('clientes', {
@@ -174,8 +189,22 @@ router.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
                 title: "Editando a nota Fiscal"
             }
         })
-
-
     $locationProvider.html5Mode(true);
-
 });
+
+
+function _skipIfAuthenticated() {
+    console.log('_____')
+    // $console.log($auth)
+    // var defer = $q.defer();
+    // if($auth.authenticate()) {
+    //   defer.reject(); /* (1) */
+    // } else {
+    //   defer.resolve(); /* (2) */
+    // }
+    // return defer.promise;
+  }
+
+function _redirectIfNotAuthenticated() {
+    console.log('não autenticado')
+}
