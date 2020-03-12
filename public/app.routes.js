@@ -1,10 +1,31 @@
 var router = angular.module('materialApp.routes', ['ui.router']);
-router.config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+router.config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $injector) {
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/login');
 
-    // UI Router States
-    // Inserting Page title as State Param
+    $httpProvider.interceptors.push(($injector) => {
+        return {
+          request: function (req) {
+            req.headers.Authorization = 'Bearer ' +  localStorage.getItem("Authorization")
+            return req
+          },
+          responseError: function (error) {
+            
+            if (error.status == 401) {
+                localStorage.removeItem('Authorization')
+                var state = $injector.get('$state')
+                console.log(state)
+                state.go('login')
+            }
+             return false
+          },
+          requestError: function(err) {
+            console.warn(" ||| aqui >>>", err)
+          }
+        }
+
+      })
+
     $stateProvider
         .state('login', {
             url: '/login',
@@ -15,8 +36,11 @@ router.config(function($stateProvider, $urlRouterProvider, $locationProvider, $h
                 title: "SimpleERP"
             }, 
             resolve: {
-                skipIfAuthenticated: _skipIfAuthenticated                
+                skipIfAuthenticated: function(AppService) {                                 
+                teste = AppService.notAuthenticated()                
+                
             }
+        }
         })
         .state('home', {
             url: '/',
@@ -194,17 +218,10 @@ router.config(function($stateProvider, $urlRouterProvider, $locationProvider, $h
 
 
 function _skipIfAuthenticated() {
-    console.log('_____')
-    // $console.log($auth)
-    // var defer = $q.defer();
-    // if($auth.authenticate()) {
-    //   defer.reject(); /* (1) */
-    // } else {
-    //   defer.resolve(); /* (2) */
-    // }
-    // return defer.promise;
-  }
+    
+}
 
 function _redirectIfNotAuthenticated() {
-    console.log('São Autenticado')
+    console.log('Não Autenticado')
 }
+

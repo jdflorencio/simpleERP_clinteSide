@@ -1,19 +1,24 @@
-<md-card flex="">
-    <md-card-content>
-        <md-input-container class="md-block" flex-gt-sm>
-            <label>Código Interno</label>
-            <input ng-model="ctrl.usuario">
-        </md-input-container>
-        <md-input-container class="md-block" flex-gt-sm>
-            <label>Código Interno</label>
-            <input type="password" ng-model="ctrl.password">
-        </md-input-container>
-    </md-card-content>
+<div layout="column" layout-gt-sm="row" layout-align="end center">
 
-    <div flex="100" layout-margin="">
-        <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
-            <md-button class="md-primary" ng-click="ctrl.conectar()">Entrar</md-button>
-        </section>
-    </div>
+    
 
-</md-card>
+    <md-card flex-gt-sm="33">
+        <md-card-content>
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>email</label>
+                <input ng-model="ctrl.usuario">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Senha</label>
+                <input type="password" ng-model="ctrl.password">
+            </md-input-container>
+        </md-card-content>
+
+        <div flex="100" layout-margin="">
+            <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
+                <md-button class="md-primary" ng-click="ctrl.conectar()">Entrar</md-button>
+            </section>
+        </div>
+
+    </md-card>
+</div>

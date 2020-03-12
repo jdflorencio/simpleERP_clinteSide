@@ -24,6 +24,12 @@ angular.module('appService', [])
         }
     }
 
+    appService.notAuthenticated =  function() {
+        if (localStorage.getItem('Authorization')) {             
+            $state.go('login')
+        }
+    }
+
     return appService
 
 }])

@@ -44,27 +44,7 @@ var materialApp = angular
     $mdThemingProvider.theme('default')
       .primaryPalette('blue')
       .accentPalette('red')
-      // $rootScope.meuNome = "Joao diego"
 
-      $httpProvider.interceptors.push(() => {
-        return {
-          request: function (req) {
-            req.headers.Authorization = 'Bearer ' +  localStorage.getItem("Authorization")
-            return req
-          },
-          responseError: function (error) {
-            
-            if (error.status == 401) {
-                localStorage.removeItem('Authorization')
-            }
-             return false
-          },
-          requestError: function(err) {
-            console.warn(" ||| aqui >>>", err)
-          }
-        }
-
-      })
     })
 
   .factory('FormatToAPI', function () {
@@ -79,11 +59,5 @@ var materialApp = angular
           return date.split('-').reverse().join('/')
         }
       }
-    }
-  })
-  .run(function($rootScope, $location) {    
-    if(!localStorage.getItem("Authorization") ) {
-      $location.path('/login')
-
     }
   })

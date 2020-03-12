@@ -4,9 +4,7 @@ angular.module('appCtrl',['appService'])
 function($mdSidenav, $stateParams, $rootScope, AppService) {
 
 	self = this;
-	// console.log(AppService.notificacao(401))
 
-	// $httpProvider.interceptors.push()
 
     self.siderbar = {
 			home: {
@@ -29,7 +27,8 @@ function($mdSidenav, $stateParams, $rootScope, AppService) {
 
     // Update title using rootscope
     self.updateTitle = function() {
-        $rootScope.title = $stateParams.title;
+		$rootScope.title = $stateParams.title;
+		console.log($rootScope.title)
     }
 
     // Run updateTitle on each state change
@@ -48,12 +47,14 @@ function($mdSidenav, $stateParams, $rootScope, AppService) {
 	};
 
 	self.logged = function(){
+	logged = true
 		if(!localStorage.getItem("Authorization") ) {
-			return false
-	  
+			logged = false
+			
 		  }
-		  return true
+		  $rootScope.sidebar =  logged
 	}
+	$rootScope.$on('$stateChangeSuccess', self.logged);
 
 }])
 .constant("configURL", {
