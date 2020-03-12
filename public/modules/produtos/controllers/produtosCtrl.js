@@ -1,5 +1,7 @@
-angular.module('produtosCtrl', ['produtosService'])
-.controller('produtosCtrl', ['$http', '$state','$filter', 'configURL', function($http, $state, $filter, configURL) {
+angular.module('produtosCtrl', ['produtosService', 'appService'])
+.controller('produtosCtrl', ['$http', '$state','$filter', 'configURL', 'AppService',
+
+function($http, $state, $filter, configURL, AppSevice) {
 
 	self = this
 	const { baseURL } = configURL
@@ -8,6 +10,8 @@ angular.module('produtosCtrl', ['produtosService'])
 	const init = function() {
 		$http.get(`${host}`)
 		.then((obj) => {
+			
+			AppSevice.notificacao(obj.status)
 			const { result } = obj.data
 			self.produtos = result
 		})

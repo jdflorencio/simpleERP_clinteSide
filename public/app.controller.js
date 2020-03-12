@@ -1,9 +1,12 @@
-angular.module('appCtrl',[])
-.controller('appCtrl', function($mdSidenav, $stateParams, $rootScope) {
+angular.module('appCtrl',['appService'])
+.controller('appCtrl',[ '$mdSidenav', '$stateParams','$rootScope','AppService', 
+
+function($mdSidenav, $stateParams, $rootScope, AppService) {
 
 	self = this;
-	
-	
+	// console.log(AppService.notificacao(401))
+
+	// $httpProvider.interceptors.push()
 
     self.siderbar = {
 			home: {
@@ -44,7 +47,15 @@ angular.module('appCtrl',[])
 		window.history.back();
 	};
 
-})
+	self.logged = function(){
+		if(!localStorage.getItem("Authorization") ) {
+			return false
+	  
+		  }
+		  return true
+	}
+
+}])
 .constant("configURL", {
 	baseURL: "http://127.0.0.1:3333/api"
 })

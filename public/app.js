@@ -31,17 +31,20 @@ var materialApp = angular
     'notasFiscaisService',
     'notaFiscalCtrl',
     'notaFiscalService',
-
+    'appService',
     'loginCtrl',
     'loginService',
 
-    'ngNotify'
-
+    'ngNotify',
+    // 'ngAnimate',
+    // 'toastr'
   ])
+
   .config(function ($mdThemingProvider, $httpProvider) {
     $mdThemingProvider.theme('default')
       .primaryPalette('blue')
       .accentPalette('red')
+      // $rootScope.meuNome = "Joao diego"
 
       $httpProvider.interceptors.push(() => {
         return {
@@ -53,7 +56,6 @@ var materialApp = angular
             
             if (error.status == 401) {
                 localStorage.removeItem('Authorization')
-                //  $state.go('login')              
             }
              return false
           },
@@ -61,8 +63,10 @@ var materialApp = angular
             console.warn(" ||| aqui >>>", err)
           }
         }
+
       })
     })
+
   .factory('FormatToAPI', function () {
     return {
       dateFormat: function (date) {
@@ -77,4 +81,9 @@ var materialApp = angular
       }
     }
   })
-  
+  .run(function($rootScope, $location) {    
+    if(!localStorage.getItem("Authorization") ) {
+      $location.path('/login')
+
+    }
+  })

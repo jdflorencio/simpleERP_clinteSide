@@ -1,9 +1,12 @@
 angular.module('loginCtrl', ['loginService'])
-.controller('loginCtrl', ['configURL', '$http', '$state', function( configURL, $http, $state) {
+.controller('loginCtrl', ['configURL', '$http', '$state',  function( configURL, $http, $state) {
 	
 	self = this;
 	self.usuario = 'jdflorencio@gmail.com'
 	self.password = '123456'
+
+	
+	// $httpProvider.interceptors.push()
 
 	self.conectar = function(){
 		$http.post(`${configURL.baseURL}/login`, {usuario: self.usuario, senha : self.password})

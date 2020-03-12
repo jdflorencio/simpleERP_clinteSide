@@ -1,5 +1,5 @@
 var router = angular.module('materialApp.routes', ['ui.router']);
-router.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+router.config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 
     $urlRouterProvider.otherwise('/');
 
@@ -206,5 +206,5 @@ function _skipIfAuthenticated() {
   }
 
 function _redirectIfNotAuthenticated() {
-    console.log('não autenticado')
+    console.log('São Autenticado')
 }

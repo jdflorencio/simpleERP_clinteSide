@@ -1,3 +1,4 @@
+
 angular.module('produtoCtrl', ['produtoService'])
 	.controller('produtoCtrl', [
 
@@ -8,8 +9,9 @@ angular.module('produtoCtrl', ['produtoService'])
 		'ngNotify',
 		'$scope',
 		'ProdutoService',
+		'AppService',
 
-		function ($http, $stateParams, $state, configURL, ngNotify, $scope, ProdutoService) {
+		function ($http, $stateParams, $state, configURL, ngNotify, $scope, ProdutoService, AppService) {
 
 			self = this
 			self.produto
@@ -40,6 +42,9 @@ angular.module('produtoCtrl', ['produtoService'])
 			self.consultarProduto = function () {
 				$http.get(`${host}/${$stateParams.id}`)
 					.then((obj) => {
+
+						AppService.notificacao(obj.status)
+
 						const { result } = obj.data
 						self.produto = result.produto
 						self.grupo = result.grupo
