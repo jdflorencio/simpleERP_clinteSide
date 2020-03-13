@@ -1,30 +1,37 @@
 var router = angular.module('materialApp.routes', ['ui.router']);
-router.config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $injector) {
+router.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $injector) {
 
     $urlRouterProvider.otherwise('/login');
 
     $httpProvider.interceptors.push(($injector) => {
         return {
-          request: function (req) {
-            req.headers.Authorization = 'Bearer ' +  localStorage.getItem("Authorization")
-            return req
-          },
-          responseError: function (error) {
-            
-            if (error.status == 401) {
-                localStorage.removeItem('Authorization')
-                var state = $injector.get('$state')
-                console.log(state)
-                state.go('login')
+            request: function (req) {
+                req.headers.Authorization = 'Bearer ' + localStorage.getItem("Authorization")
+                return req
+            },
+            responseError: function (error) {
+
+                const { status } = error
+
+                switch (status) {
+                    case 401:
+                        localStorage.removeItem('Authorization')
+                        var state = $injector.get('$state')
+                        state.go('login')
+                        break
+                    case 403:
+                        console.info('atual URL:', window.location)
+                        // console.info('atual URL:', $stateProvider)
+                        break
+                }
+                return
+            },
+            requestError: function (err) {
+                console.warn(" ||| aqui >>>", err)
             }
-             return false
-          },
-          requestError: function(err) {
-            console.warn(" ||| aqui >>>", err)
-          }
         }
 
-      })
+    })
 
     $stateProvider
         .state('login', {
@@ -34,13 +41,13 @@ router.config(function($stateProvider, $urlRouterProvider, $locationProvider, $h
             controllerAs: 'ctrl',
             params: {
                 title: "SimpleERP"
-            }, 
+            },
             resolve: {
-                skipIfAuthenticated: function(AppService) {                                 
-                teste = AppService.notAuthenticated()                
-                
+                skipIfAuthenticated: function (AppService) {
+                    teste = AppService.notAuthenticated()
+
+                }
             }
-        }
         })
         .state('home', {
             url: '/',
@@ -49,7 +56,7 @@ router.config(function($stateProvider, $urlRouterProvider, $locationProvider, $h
                 title: "SimpleERP"
             },
             resolve: {
-                redirectIfNotAuthenticated: _redirectIfNotAuthenticated        
+                redirectIfNotAuthenticated: _redirectIfNotAuthenticated
             }
         })
         .state('clientes', {
@@ -218,7 +225,7 @@ router.config(function($stateProvider, $urlRouterProvider, $locationProvider, $h
 
 
 function _skipIfAuthenticated() {
-    
+
 }
 
 function _redirectIfNotAuthenticated() {

@@ -15,10 +15,6 @@ angular.module('appService', [])
                 $state.go('login')
                 break
 
-            case undefined:
-                $state.go('login')
-                break
-
             default:
                 console.warn('não foi possivel fazer a requisição')
         }
