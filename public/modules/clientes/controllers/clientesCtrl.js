@@ -1,5 +1,5 @@
 angular.module('clientesCtrl', ['clientesService'])
-.controller('clientesCtrl', ['$http', '$state','$filter', function($http, $state, $filter) {
+.controller('clientesCtrl', ['$http', '$state','$filter', 'AppService', function($http, $state, $filter, AppService) {
 	
 	self = this;
 	const host = `http://127.0.0.1:3333/api/cliente/` 
@@ -9,6 +9,7 @@ angular.module('clientesCtrl', ['clientesService'])
 		.then((obj) => {
 			const { result } = obj.data
 			self.clientes = result
+
 			console.log($filter('date')(self.clientes[0].updatedAt, 'dd/MM/yyyy'))
 			
 		})
@@ -23,7 +24,7 @@ angular.module('clientesCtrl', ['clientesService'])
 	}
 
 	self.remover = function(id) {
-		console.log(id)
+		
 		$http.delete(`${host}${id}`)
 		.then(obj => {
 			const { result } = obj.data
