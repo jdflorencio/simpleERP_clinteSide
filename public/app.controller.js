@@ -28,7 +28,6 @@ function($mdSidenav, $stateParams, $rootScope, AppService) {
     // Update title using rootscope.js
     self.updateTitle = function() {
 		$rootScope.title = $stateParams.title;
-		console.log($rootScope.title)
     }
 
     // Run updateTitle on each state change

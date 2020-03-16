@@ -69,8 +69,9 @@ angular.module('clienteCtrl', ['clienteService'])
 			self.consultarCientes = function () {
 				$http.get(`${host}/${$stateParams.id}`)
 					.then((obj) => {
-						const { result } = obj.data
-						self.cliente = result
+
+						const { dados } = obj.data
+						self.cliente = dados
 						self.cliente.data_nascimento = self.cliente.data_nascimento != null ? $filter('date')(self.cliente.data_nascimento, 'dd/MM/yyyy') : ''
 						self.cliente.data_fundacao = self.cliente.data_fundacao != null ? $filter('date')(self.cliente.data_fundacao, 'dd/MM/yyyy') : null
 
@@ -98,32 +99,34 @@ angular.module('clienteCtrl', ['clienteService'])
 					case true:
 						$http.put(`${host}/`, self.cliente)
 							.then((result) => {
+								AppService.notificacao(result.status, result.data.mensagem)
 								$state.go('clientes');
-								AppService.notificacao(result.state, result.data.mensagem)
-							}).catch(error => {
-								AppService.notificacao(error.state, error.data.mensagem)
+							}).catch(error => {								
+								AppService.notificacao(null,null)
 							})
 						break
 					case false:
 						$http.post(`${host}`, self.cliente)
 							.then((result) => {
-								const { data } = result.data
-								$state.go('editar_cliente', { id: data.id });
-
-								AppService.notificacao(result.state, result.data.mensagem)
+								const { dados } = result.data
+								$state.go('editar_cliente', { id: dados.id });
+								AppService.notificacao(result.status, result.data.mensagem)
 
 							}).catch(error => {
-								AppService.notificacao(error.state, error.data.mensagem)
+								AppService.notificacao(null,null)
 							})
 				}
 			}
 
 			self.delete = (table, id_registro) => {
-				
+
 				$http.delete(`${host}/${$stateParams.id}/${table}/${id_registro}`)
 					.then(result => {
-						
-						if (result.data.sucesso) { }
+						AppService.notificacao(result.state, result.data.mensagem)
+					})
+					.catch( error => { 
+						AppService.notificacao(null,null)
+
 					})
 			}
 

@@ -1,37 +1,36 @@
 angular.module('clientesCtrl', ['clientesService'])
-.controller('clientesCtrl', ['$http', '$state','$filter', 'AppService', function($http, $state, $filter, AppService) {
-	
-	self = this;
-	const host = `http://127.0.0.1:3333/api/cliente/` 
+	.controller('clientesCtrl', ['$http', '$state', '$filter', 'AppService', function ($http, $state, $filter, AppService) {
 
-	init = function() {
-		$http.get(`${host}`)
-		.then((obj) => {
-			const { result } = obj.data
-			self.clientes = result
+		self = this;
+		const host = `http://127.0.0.1:3333/api/cliente/`
 
-			console.log($filter('date')(self.clientes[0].updatedAt, 'dd/MM/yyyy'))
-			
-		})
-	}
+		init = function () {
+			$http.get(`${host}`)
+				.then((obj) => {
+					const { dados } = obj.data
+					self.clientes = dados
+				})
+		}
 
-	self.irCliente = function(clienteId) {
-		$state.go('editar_cliente', {id: clienteId})
-	}
+		self.irCliente = function (clienteId) {
+			$state.go('editar_cliente', { id: clienteId })
+		}
 
-	self.novoCliente = function() {
-		$state.go('adicionar_cliente')
-	}
+		self.novoCliente = function () {
+			$state.go('adicionar_cliente')
+		}
 
-	self.remover = function(id) {
-		
-		$http.delete(`${host}${id}`)
-		.then(obj => {
-			const { result } = obj.data
-			if (obj.status == 200) {				
-					init()	
-			}
-		})
-	}
-	init()
-}])
+		self.remover = function (id) {
+
+			$http.delete(`${host}${id}`)
+				.then(obj => {
+					const { data } = obj
+					AppService.notificacao(obj.status, data.mensagem)
+					init()
+				})
+				.catch(error=> {
+					AppService.notificacao(null, null)
+				})
+		}
+		init()
+	}])

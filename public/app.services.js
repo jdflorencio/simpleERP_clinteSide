@@ -3,24 +3,27 @@ angular.module('appService', [])
     const appService = {}
 
     appService.notificacao = function(resp, message) {
+
+        console.info('>>>>>', resp, message)
         switch(resp) {
             case 200:
-                console.log("Autenticando!")
+                
+                ngNotify.set(` ${message} :)`, {
+                    type: 'success',
+                });
                 break
             case 201: 
             case 401:
 
                 ngNotify.set(`${message}`, {
-                    type: error,
+                    type: 'error',
                 });
-
-                numero = 401
-                console.log('Erro na autenticaçãao')
-                $state.go('login')
                 break
-
-            default:
-                console.warn('não foi possivel fazer a requisição')
+            case 204:
+            default:                
+                ngNotify.set(`Erro inesperado :(`, {
+                    type: 'error',
+                });
         }
     }
 
