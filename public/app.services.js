@@ -10,6 +10,7 @@ angular.module('appService', [])
                 
                 ngNotify.set(` ${message} :)`, {
                     type: 'success',
+                    theme: 'pastel'
                 });
                 break
             case 201: 
@@ -19,6 +20,11 @@ angular.module('appService', [])
                     type: 'error',
                 });
                 break
+            case 403:
+                ngNotify.set(`${message}`, {
+                    type: 'warn',
+                });
+
             case 204:
             default:                
                 ngNotify.set(`Erro inesperado :(`, {

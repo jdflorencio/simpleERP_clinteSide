@@ -1,6 +1,6 @@
 
 angular.module('tributacaoCtrl', ['tributacaoService'])
-.controller('tributacaoCtrl', ['$http', '$state','$filter', 'configURL', function($http, $state, $filter, configURL) {
+.controller('tributacaoCtrl', ['$http', '$state','$filter', 'configURL', 'AppService', function($http, $state, $filter, configURL, AppService) {
 
 	self = this
 	const { baseURL } = configURL
@@ -9,8 +9,14 @@ angular.module('tributacaoCtrl', ['tributacaoService'])
 	const init = function() {
 		$http.get(`${host}`)
 		.then((obj) => {
-			const { result } = obj.data
-			self.tributacaos = result
+			const { dados, mensagem } = obj.data
+			self.tributacaos = dados
+
+			if (obj.status == 403) 
+			{
+				AppService.notificacao(obj.status, mensagem)
+
+			}
 		})
 	}
 

@@ -3,9 +3,9 @@ angular.module('tributoCtrl', ['tributoService'])
 	'$stateParams',
 	'$state',
 	'configURL',
-	'ngNotify',
-	function($http, $stateParams, $state, configURL, ngNotify ) {
-	
+	'AppService',
+	function($http, $stateParams, $state, configURL, AppService ) {
+	console.info('configURL')
 	const { baseURL } = configURL
 	const host = `${baseURL}/tributacao`
 
@@ -26,14 +26,8 @@ angular.module('tributoCtrl', ['tributoService'])
 			self.tributo =  obj.data.result
 		})
 		.catch((error) => {
-			if (error.data.error) {
-				message = `${error.data.error.message} em (${error.data.error.error[0]})`
-				type = 'warn'
-			}		
-			ngNotify.set(`${message}`, {
-				type: type,
-				theme: 'pastel'
-			})
+			AppService.notificacao(null, null)
+			
 		})
 	}
 
@@ -43,45 +37,26 @@ angular.module('tributoCtrl', ['tributoService'])
 
 	self.salvarAtualizar = () => {
 
-		let message = ':( Houve um error Inesperado '
-		let type = 'error'
 		switch ("id" in $stateParams && $stateParams.id != '' ) {
 			case true:				
 					$http.put(`${host}/`, self.tributo)
 					.then((result =>{						
-						$state.go('tributacao');
-						let msg = result.data.sucesso ? result.data.msg :data.error.message
-						ngNotify.set(`${msg}`, {
-							type:'info'
-						});
+						$state.go('tributacao')
+						const { mensagem } = result.data
+						AppService.notificacao(result.status, mensagem)
 					}))
 					.catch ((error)=> {
-						console.log(error.data)
-						if (error.data.error) {
-							message = `${error.data.error.message} em (${error.data.error.error[0]})`
-							type = 'warn'
-						}		
-						ngNotify.set(`${message}`, {
-							type: type,
-							theme: 'pastel'
-						})
+						AppService.notificacao(null, null)
 					})
 				break
 			case false:
 				$http.post(`${host}`, self.tributo)
 					.then((result) => {
-
-						const { data } = result.data
-						console.log(data)
+						const { mensagem } = result.data
 						$state.go('editar_tributo', {id: data.id})
-						
-						let msg = result.data.sucesso ? result.data.msg : result.data.error.message
-						ngNotify.set(`${msg}`, {type:'info',  theme: 'pastel'})
+						AppService.notificacao(result.status, mensagem)
 					}).catch( error => {
-						ngNotify.set(`${message}`, {
-							type: type,
-							theme: 'pastel'
-						})
+						AppService.notificacao(null, null)
 				})
 		}
 	}

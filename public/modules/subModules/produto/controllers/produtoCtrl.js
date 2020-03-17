@@ -43,15 +43,14 @@ angular.module('produtoCtrl', ['produtoService'])
 				$http.get(`${host}/${$stateParams.id}`)
 					.then((obj) => {
 
-						AppService.notificacao(obj.status)
-
-						const { result } = obj.data
-						self.produto = result.produto
-						self.grupo = result.grupo
-						self.subgrupo = result.subgrupo
+						const { dados } = obj.data
+						self.produto = dados.produto
+						self.grupo = dados.grupo
+						self.subgrupo = dados.subgrupo
 					})
 					.catch((error) => {
-						console.log(error)
+						
+						AppService.notificacao(null, null)
 					})
 			}
 
@@ -60,40 +59,28 @@ angular.module('produtoCtrl', ['produtoService'])
 			}
 
 			self.salvarAtualizar = () => {
-				let message = ':( Houve um error Inesperado '
-				let type = 'error'
+			
 				switch ("id" in $stateParams && $stateParams.id != '') {
 					case true:
 						const result = $http.put(`${host}/`, self.produto)
 							.then((result => {
+								const  { mensagem } = result.data
 								$state.go('produtos', { id: result.data.id });
-								let msg = result.data.sucesso ? result.data.msg : data.error.message
-								ngNotify.set(`${msg}`, {
-									type: 'info'
-								});
+								AppService.notificacao(result.status, mensagem)
 							}))
 							.catch((error) => {
-								if (error.data.error) {
-									message = `${error.data.error.message} em (${error.data.error.error[0]})`
-									type = 'warn'
-								}
-								ngNotify.set(`${message}`, {
-									type: type,
-									theme: 'pastel'
-								})
+								AppService.notificacao(null, null)
 							})
+
 						break
 					case false:
 						$http.post(`${host}`, self.produto)
 							.then((result) => {
-								$state.go('produtos');
-								let msg = result.data.sucesso ? result.data.msg : result.data.error.message
-								ngNotify.set(`${msg}`, { type: 'info', theme: 'pastel' });
+								const { mensagem } = result.data
+								$state.go('produtos')
+								AppService.notificacao(result.status, mensagem)
 							}).catch( error => {
-								ngNotify.set(`${message}`, {
-									type: type,
-									theme: 'pastel'
-								})
+								AppService.notificacao(null, null)
 							})
 				}
 			}
