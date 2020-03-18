@@ -26,13 +26,14 @@ angular.module('notasFiscaisService', [])
 
     notasFiscaisFactory.deletar = function(notaId) {
         return $http.delete(`${configURL.baseURL}/notafiscal/${notaId}`)
-        .then(all => {
+        .then( all => {
             const { mensagem } = all.data
             notasFiscaisFactory.getAll()
             AppService.notificacao(all.status, mensagem)
+
         })
         .catch( error => {
-            AppService.notificacao(null, null)
+            AppService.notificacao(error.status, error.data.mensagem)
         })
     }
 

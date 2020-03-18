@@ -22,8 +22,8 @@ angular.module('notaFiscalCtrl', ['notaFiscalService'])
 			case true:
 				NotaFiscal.consultarNotaFiscal()
 				.then( ( obj ) => {
-					const { result } = obj.data
-					self.notaFiscal = result
+					const { dados } = obj.data
+					self.notaFiscal = dados
 
 					self.selectedClienteChange(self.notaFiscal.cabecalho.pessoa)
 				})

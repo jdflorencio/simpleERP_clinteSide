@@ -22,6 +22,12 @@ angular.module('appService', [])
                 ngNotify.set(`${message}`, {
                     type: 'warn',
                 });
+                break
+            case 412:
+                ngNotify.set(`Erro inesperado :(`, {
+                    type: 'warn',
+                });
+                break
             case 204:
             default:                
                 ngNotify.set(`Erro inesperado :(`, {
