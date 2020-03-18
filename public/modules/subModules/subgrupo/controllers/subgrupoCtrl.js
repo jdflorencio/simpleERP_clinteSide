@@ -47,9 +47,8 @@ angular.module('subgrupoCtrl', ['subgrupoService'])
 							.then((result => {
 
 								$state.go('subgrupos', { id: result.data.id })
-								const { mensagem } = result.dados
+								const { mensagem } = result.data
 								AppService.notificacao(result.status, mensagem)
-
 							}))
 							.catch(() => {
 								AppService.notificacao(null, null)

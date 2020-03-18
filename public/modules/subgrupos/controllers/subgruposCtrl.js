@@ -26,8 +26,11 @@ angular.module('subgruposCtrl', ['subgruposService'])
 		$http.delete(`${host}${id}`)
 		.then(obj => {
 			const { mensagem } = obj.data
-			AppService.notificao(obj.status, mensagem)
+			AppService.notificacao(obj.status, mensagem)
 			init()
+		})
+		.catch(()=> {
+			AppService.notificacao(null, null)
 		})
 	}
 
