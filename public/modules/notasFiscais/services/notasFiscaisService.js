@@ -1,5 +1,5 @@
 angular.module('notasFiscaisService', [])
-.factory('NotasFiscais', function($http, configURL) {
+.factory('NotasFiscais',  function($http, configURL, AppService) {
     
     var notasFiscaisFactory = {};
 
@@ -9,10 +9,10 @@ angular.module('notasFiscaisService', [])
             params: { pagina: pagina }
         })
         .then( all => {
-            self.notas = all.data.result.rows
+            self.notas = all.data.dados.rows
             self.quantidade_registro = function() {
                 const val = []
-                for (let i = 0; i <  Math.ceil((all.data.result.count)/4); i++ ) {
+                for (let i = 0; i <  Math.ceil((all.data.dados.count)/4); i++ ) {
                     val.push(i+1)
                 }
                 return val
@@ -27,14 +27,15 @@ angular.module('notasFiscaisService', [])
     notasFiscaisFactory.deletar = function(notaId) {
         return $http.delete(`${configURL.baseURL}/notafiscal/${notaId}`)
         .then(all => {
-            self.notas = all.data.result
+            const { mensagem } = all.data
             notasFiscaisFactory.getAll()
+            AppService.notificacao(all.status, mensagem)
         })
         .catch( error => {
-            console.log(error)
+            AppService.notificacao(null, null)
         })
     }
 
-    return notasFiscaisFactory;
+    return notasFiscaisFactory
 
 });
