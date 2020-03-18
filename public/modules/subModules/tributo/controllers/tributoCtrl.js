@@ -23,7 +23,7 @@ angular.module('tributoCtrl', ['tributoService'])
 	self.consultarTributo = function() {
 		$http.get(`${host}/${$stateParams.id}`)
 		.then( ( obj ) => {
-			self.tributo =  obj.data.result
+			self.tributo =  obj.data.dados
 		})
 		.catch((error) => {
 			AppService.notificacao(null, null)
@@ -32,7 +32,7 @@ angular.module('tributoCtrl', ['tributoService'])
 	}
 
 	self.cancelar = function() {
-		$state.go('tributos');
+		$state.go('tributacao');
 	}
 
 	self.salvarAtualizar = () => {
@@ -52,9 +52,11 @@ angular.module('tributoCtrl', ['tributoService'])
 			case false:
 				$http.post(`${host}`, self.tributo)
 					.then((result) => {
-						const { mensagem } = result.data
-						$state.go('editar_tributo', {id: data.id})
+						const { mensagem, dados } = result.data
 						AppService.notificacao(result.status, mensagem)
+						console.log(dados)
+
+						$state.go('editar_tributo', {id: dados.id})
 					}).catch( error => {
 						AppService.notificacao(null, null)
 				})

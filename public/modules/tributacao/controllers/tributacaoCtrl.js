@@ -30,11 +30,14 @@ angular.module('tributacaoCtrl', ['tributacaoService'])
 
 	self.remover = function(id) {
 		$http.delete(`${host}${id}`)
-		.then(obj => {
-			const { result } = obj.data
-			if (obj.status == 200) {				
-					init()	
-			}
+		.then(result => {
+			const { mensagem } = result.data
+			
+			AppService.notificacao(result.status, mensagem)
+			init()
+		})
+		.catch( error => {
+			AppService.notificacao(null, null)
 		})
 	}
 

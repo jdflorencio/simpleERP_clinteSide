@@ -1,5 +1,5 @@
 angular.module('gruposCtrl', ['gruposService'])
-.controller('gruposCtrl', ['$http', '$state','$filter', 'configURL', function($http, $state, $filter, configURL) {
+.controller('gruposCtrl', ['$http', '$state','$filter', 'configURL', 'AppService', function($http, $state, $filter, configURL, AppService) {
 
 	self = this
 	const { baseURL } = configURL
@@ -8,8 +8,8 @@ angular.module('gruposCtrl', ['gruposService'])
 	const init = function() {
 		$http.get(`${host}`)
 		.then((obj) => {
-			const { result } = obj.data
-			self.grupos = result
+			const { dados } = obj.data
+			self.grupos = dados
 		})
 	}
 
@@ -30,10 +30,13 @@ angular.module('gruposCtrl', ['gruposService'])
 	self.remover = function(id) {
 		$http.delete(`${host}${id}`)
 		.then(obj => {
-			const { result } = obj.data
-			if (obj.status == 200) {				
-					init()	
-			}
+			const { mensagem } = obj.data
+			AppService.notificacao(obj.status, mensagem)
+			init()
+		})
+		.catch( error => {
+			AppService.notificacao(null, null)
+			
 		})
 	}
 

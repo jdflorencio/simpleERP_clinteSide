@@ -4,7 +4,6 @@ angular.module('appService', [])
 
     appService.notificacao = function(resp, message) {
 
-        console.info('>>>>>', resp, message)
         switch(resp) {
             case 200:
                 
@@ -15,7 +14,6 @@ angular.module('appService', [])
                 break
             case 201: 
             case 401:
-
                 ngNotify.set(`${message}`, {
                     type: 'error',
                 });
@@ -24,7 +22,6 @@ angular.module('appService', [])
                 ngNotify.set(`${message}`, {
                     type: 'warn',
                 });
-
             case 204:
             default:                
                 ngNotify.set(`Erro inesperado :(`, {
